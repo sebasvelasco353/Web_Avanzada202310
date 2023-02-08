@@ -1,0 +1,12 @@
+.navbar {
+    width: 100vw;
+    height: 100px;
+    background-color: azure;
+    position: sticky;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
+    justify-content: space-around;
+}
