@@ -10,3 +10,11 @@
     align-content: space-between;
     justify-content: space-around;
 }
+
+.button {
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
