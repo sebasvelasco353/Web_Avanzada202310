@@ -19,7 +19,7 @@ function NavBar({ sitename }) {
         <div className="navbar">
             <p> Welcome to {siteName} </p>
 
-            <div style={{ backgroundColor: bttnPressed ? "red" : "green", height: 30, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }} onClick={handleBttn}>
+            <div className="button" style={{ backgroundColor: bttnPressed ? "red" : "green" }} onClick={handleBttn}>
                 {bttnPressed ? <p style={{ color: "white", padding: 8 }}>Cancel X</p>
                     :
                     <p style={{ color: "white", padding: 8 }}>Change sitename</p>}
