@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { StudentsContext } from '../../App';
 import './Content.css';
+import EditStudent from '../EditStudent';
 
 function Content({ modifySemester, removeStudent }) {
     const students = useContext(StudentsContext);
@@ -8,6 +9,7 @@ function Content({ modifySemester, removeStudent }) {
     const [selectedStudent, setSelectedStudent] = useState(null);
 
     const openEditView = (idx) => {
+        console.log("selectedStudent: " + idx)
         setSelectedStudent(idx);
     }
 
@@ -22,16 +24,16 @@ function Content({ modifySemester, removeStudent }) {
                     <th>Semester</th>
                 </tr>
                 {students.map((student, idx) => (
-                    <tr key={idx} onClick={openEditView}>
+                    <tr key={idx} onClick={() => openEditView(idx)}>
                         <td> {student.name} </td>
                         <td> {student.age} </td>
                         <td> {student.career} </td>
                         <td>
-                            <button onClick={() => modifySemester(idx, "decrease")}> - </button>
+                            <button onClick={(e) => {e.stopPropagation(); modifySemester(idx, "decrease")}}> - </button>
                             {student.semester}
-                            <button onClick={() => modifySemester(idx, "increase")}> + </button>
+                            <button onClick={(e) => {e.stopPropagation(); modifySemester(idx, "increase")}}> + </button>
                         </td>
-                        <button onClick={() => removeStudent(idx)}>Remove</button>
+                        <button onClick={(e) => {e.stopPropagation(); removeStudent(idx)}}>Remove</button>
                     </tr>
 
                 ))}
