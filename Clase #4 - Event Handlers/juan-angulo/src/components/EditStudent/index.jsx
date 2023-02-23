@@ -1,30 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { StudentsContext } from '../../App';
 import './EditStudent.css';
 
-function EditStudent({ idx }) {
+function EditStudent({ idx, saveChanges, closeEditView }) {
     const students = useContext(StudentsContext);
+
+    const [student, setStudent] = useState(students.at(idx));
+
+    const handleChange = (event) => {
+        var input = event.target;
+        setStudent({...student, [input.name]: input.value})
+    }
+
     return (
         <div className="Container" style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <h2>Edit Student</h2>
-            <div style={{ width: 'fit-content', margin: 'auto' }}>
+            
+            <div style={{ width: 'fit-content', margin: 'auto', border: '1px solid black', padding: 15, borderRadius: 10 }}>
+                <h2 style={{ marginTop: 0 }}>Edit Student</h2>
                 <div className="field">
                     <p> Name: </p>
-                    <input type="text" value={students.at(idx).name} />
+                    <input type="text" name="name" value={student.name} onChange={handleChange} />
                 </div>
                 <div className="field">
                     <p> Age: </p>
-                    <input type="text" value={students.at(idx).age} />
+                    <input type="number" name="age" value={student.age} onChange={handleChange} />
                 </div>
                 <div className="field">
                     <p> Career: </p>
-                    <input type="text" value={students.at(idx).career} />
+                    <input type="text" name="career" value={student.career} onChange={handleChange} />
                 </div>
                 <div className="field">
-                    <p> Semester: </p>
-                    <input type="text" value={students.at(idx).semester} />
+                    <p> Semester:&nbsp; </p>
+                    <input type="number" name="semester" value={student.semester} onChange={handleChange} />
                 </div>
-                <button>Save</button>
+                <div style={{ marginTop: 10 }}>
+                    <button onClick={() => {saveChanges(idx, student); closeEditView()}} > Save </button>
+                </div>
             </div>
         </div>
     )

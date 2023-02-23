@@ -35,6 +35,16 @@ function App() {
     setStudents(newArr)
   }
 
+  const saveChanges = (idx, newStudent) => {
+    const newArr = students.map(student => {
+      if (students.indexOf(student) === idx) {
+        student = newStudent;
+      }
+      return student;
+    });
+    setStudents(newArr)
+  }
+
   const removeStudent = (idx) => {
     setStudents(students.splice(idx + 1, 1));
   }
@@ -42,7 +52,7 @@ function App() {
   return (
     <div className="App">
       <StudentsContext.Provider value={students}>
-        <Content modifySemester={modifySemester} removeStudent={removeStudent} />
+        <Content modifySemester={modifySemester} removeStudent={removeStudent} saveChanges={saveChanges} />
       </StudentsContext.Provider>
     </div>
   );
