@@ -3,7 +3,7 @@ import { StudentsContext } from '../../App';
 import './Content.css';
 import EditStudent from '../EditStudent';
 
-function Content({ modifySemester, removeStudent }) {
+function Content({ modifySemester, removeStudent, saveChanges }) {
     const students = useContext(StudentsContext);
 
     const [selectedStudent, setSelectedStudent] = useState(null);
@@ -11,6 +11,11 @@ function Content({ modifySemester, removeStudent }) {
     const openEditView = (idx) => {
         console.log("selectedStudent: " + idx)
         setSelectedStudent(idx);
+    }
+
+    const closeEditView = () => {
+        console.log("closeEditView");
+        setSelectedStudent(null);
     }
 
     return (
@@ -38,7 +43,7 @@ function Content({ modifySemester, removeStudent }) {
 
                 ))}
             </table>
-            {selectedStudent != null && <EditStudent idx={selectedStudent} />}
+            {selectedStudent != null && <EditStudent idx={selectedStudent} saveChanges={saveChanges} closeEditView={closeEditView} />}
         </div>
     )
 }
