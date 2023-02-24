@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import { StudentsContext } from '../../App';
 import './Content.css';
 import EditStudent from '../EditStudent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleMinus, faCirclePlus, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 
 function Content({ modifySemester, removeStudent, saveChanges }) {
     const students = useContext(StudentsContext);
@@ -18,30 +20,38 @@ function Content({ modifySemester, removeStudent, saveChanges }) {
         setSelectedStudent(null);
     }
 
-    return (
-        <div className="Container">
-            <h1>Students</h1>
-            <table style={{ width: '100%' }}>
-                <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Career</th>
-                    <th>Semester</th>
-                </tr>
-                {students.map((student, idx) => (
-                    <tr key={idx} onClick={() => openEditView(idx)}>
-                        <td> {student.name} </td>
-                        <td> {student.age} </td>
-                        <td> {student.career} </td>
-                        <td>
-                            <button onClick={(e) => {e.stopPropagation(); modifySemester(idx, "decrease")}}> - </button>
-                            {student.semester}
-                            <button onClick={(e) => {e.stopPropagation(); modifySemester(idx, "increase")}}> + </button>
-                        </td>
-                        <button onClick={(e) => {e.stopPropagation(); removeStudent(idx)}}>Remove</button>
-                    </tr>
+    const checkIfSelectedWhenRemove = (idx) => {
+        if (idx === selectedStudent) {
+            closeEditView();
+        }
+    }
 
-                ))}
+    return (
+        <div className="container">
+            <h1>Students <FontAwesomeIcon icon={faGraduationCap} /></h1>
+            <table className="dltrc" style={{ width: '90%' }}>
+                <tbody>
+                    <tr className="dlheader">
+                        <td className="dlheader">Name</td>
+                        <td className="dlheader">Age</td>
+                        <td className="dlheader">Career</td>
+                        <td className="dlheader">Semester</td>
+                        <td className="dlheader"></td>
+                    </tr>
+                    {students.map((student, idx) => (
+                        <tr className="dlinfo hover02" key={idx} onClick={() => openEditView(idx)}>
+                            <td className="dlinfo"> {student.name} </td>
+                            <td className="dlinfo"> {student.age} </td>
+                            <td className="dlinfo"> {student.career} </td>
+                            <td className="dlinfo" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <FontAwesomeIcon icon={faCircleMinus} onClick={(e) => { e.stopPropagation(); modifySemester(idx, "decrease") }} />
+                                <p style={{ width: 30 }}> {student.semester} </p>
+                                <FontAwesomeIcon icon={faCirclePlus} onClick={(e) => { e.stopPropagation(); modifySemester(idx, "increase") }} />
+                            </td>
+                            <td className="dlinfo"><button onClick={(e) => { e.stopPropagation(); checkIfSelectedWhenRemove(idx); removeStudent(idx) }}>Remove</button></td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
             {selectedStudent != null && <EditStudent idx={selectedStudent} saveChanges={saveChanges} closeEditView={closeEditView} />}
         </div>

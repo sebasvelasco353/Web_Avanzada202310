@@ -1,22 +1,30 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { StudentsContext } from '../../App';
 import './EditStudent.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 
 function EditStudent({ idx, saveChanges, closeEditView }) {
     const students = useContext(StudentsContext);
 
     const [student, setStudent] = useState(students.at(idx));
 
+    useEffect(() => {
+        setStudent(students.at(idx));
+    }, [idx]);
+
     const handleChange = (event) => {
         var input = event.target;
-        setStudent({...student, [input.name]: input.value})
+        setStudent({ ...student, [input.name]: input.value })
     }
 
     return (
-        <div className="Container" style={{ alignItems: 'center', justifyContent: 'center' }}>
-            
-            <div style={{ width: 'fit-content', margin: 'auto', border: '1px solid black', padding: 15, borderRadius: 10 }}>
-                <h2 style={{ marginTop: 0 }}>Edit Student</h2>
+        <div className="Container" style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 30 }}>
+            <div style={{ width: 'fit-content', margin: 'auto', border: '1px solid black', padding: 15, borderRadius: 10, boxShadow: '0px 0px 8px 0px rgba(0,0,0,0.75)' }}>
+                <div style={{ display: 'flex', justifyContent: 'right' }}>
+                    <FontAwesomeIcon icon={faCircleXmark} size="lg" onClick={closeEditView} />
+                </div>
+                <h2 style={{ marginTop: -15 }}>Edit Student</h2>
                 <div className="field">
                     <p> Name: </p>
                     <input type="text" name="name" value={student.name} onChange={handleChange} />
@@ -33,8 +41,8 @@ function EditStudent({ idx, saveChanges, closeEditView }) {
                     <p> Semester:&nbsp; </p>
                     <input type="number" name="semester" value={student.semester} onChange={handleChange} />
                 </div>
-                <div style={{ marginTop: 10 }}>
-                    <button onClick={() => {saveChanges(idx, student); closeEditView()}} > Save </button>
+                <div style={{ marginTop: 10, marginBottom: 3 }}>
+                    <button onClick={() => { saveChanges(idx, student); closeEditView() }} > Save </button>
                 </div>
             </div>
         </div>
