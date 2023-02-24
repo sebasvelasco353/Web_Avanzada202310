@@ -6,7 +6,7 @@ export const StudentsContext = React.createContext();
 
 function App() {
 
-  const [students, setStudents] = React.useState([
+  const [students, setStudents] = useState([
     {
       name: 'Juan',
       age: 20,
@@ -14,10 +14,22 @@ function App() {
       semester: 8
     },
     {
-      name: 'Pedro',
+      name: 'Hugo',
+      age: 18,
+      career: 'DMI',
+      semester: 7
+    },
+    {
+      name: 'Paco',
       age: 18,
       career: 'Sistemas',
-      semester: 6
+      semester: 3
+    },
+    {
+      name: 'Luis',
+      age: 22,
+      career: 'Telemática',
+      semester: 10
     }
   ]);
 
@@ -32,7 +44,7 @@ function App() {
       }
       return student;
     });
-    setStudents(newArr)
+    setStudents(newArr);
   }
 
   const saveChanges = (idx, newStudent) => {
@@ -42,11 +54,13 @@ function App() {
       }
       return student;
     });
-    setStudents(newArr)
+    setStudents(newArr);
   }
 
   const removeStudent = (idx) => {
-    setStudents(students.splice(idx + 1, 1));
+    const newArr = [...students];
+    newArr.splice(idx, 1);
+    setStudents(newArr);
   }
 
   return (
