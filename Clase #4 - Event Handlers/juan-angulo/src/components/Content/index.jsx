@@ -2,21 +2,29 @@ import React, { useContext, useState } from 'react';
 import { StudentsContext } from '../../App';
 import './Content.css';
 import EditStudent from '../EditStudent';
+import AddStudent from '../AddStudent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleMinus, faCirclePlus, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { faCircleMinus, faCirclePlus, faGraduationCap, faUserMinus, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
-function Content({ modifySemester, removeStudent, saveChanges }) {
+function Content({ modifySemester, removeStudent, saveChanges, addStudent }) {
     const students = useContext(StudentsContext);
 
     const [selectedStudent, setSelectedStudent] = useState(null);
+    const [addStudentView, setAddStudentView] = useState(false);
+
+    const openAddView = () => {
+        setAddStudentView(true);
+    }
+
+    const closeAddView = () => {
+        setAddStudentView(false);
+    }
 
     const openEditView = (idx) => {
-        console.log("selectedStudent: " + idx)
         setSelectedStudent(idx);
     }
 
     const closeEditView = () => {
-        console.log("closeEditView");
         setSelectedStudent(null);
     }
 
@@ -48,11 +56,17 @@ function Content({ modifySemester, removeStudent, saveChanges }) {
                                 <p style={{ width: 30 }}> {student.semester} </p>
                                 <FontAwesomeIcon icon={faCirclePlus} onClick={(e) => { e.stopPropagation(); modifySemester(idx, "increase") }} />
                             </td>
-                            <td className="dlinfo"><button onClick={(e) => { e.stopPropagation(); checkIfSelectedWhenRemove(idx); removeStudent(idx) }}>Remove</button></td>
+                            <td className="dlinfo">
+                                <button onClick={(e) => { e.stopPropagation(); checkIfSelectedWhenRemove(idx); removeStudent(idx) }}>
+                                    Remove <FontAwesomeIcon icon={faUserMinus} />
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <button style={{ marginTop: 20 }} onClick={openAddView}>Add <FontAwesomeIcon icon={faUserPlus} /></button>
+            {addStudentView && <AddStudent addStudent={addStudent} closeAddView={closeAddView} />}
             {selectedStudent != null && <EditStudent idx={selectedStudent} saveChanges={saveChanges} closeEditView={closeEditView} />}
         </div>
     )

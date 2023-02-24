@@ -19,8 +19,8 @@ function EditStudent({ idx, saveChanges, closeEditView }) {
     }
 
     return (
-        <div className="Container" style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 30 }}>
-            <div style={{ width: 'fit-content', margin: 'auto', border: '1px solid black', padding: 15, borderRadius: 10, boxShadow: '0px 0px 8px 0px rgba(0,0,0,0.75)' }}>
+        <div className="container" style={{ paddingTop: 30 }}>
+            <div className="modal-card">
                 <div style={{ display: 'flex', justifyContent: 'right' }}>
                     <FontAwesomeIcon icon={faCircleXmark} size="lg" onClick={closeEditView} />
                 </div>

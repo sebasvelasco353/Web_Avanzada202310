@@ -8,28 +8,22 @@ function App() {
 
   const [students, setStudents] = useState([
     {
-      name: 'Juan',
-      age: 20,
-      career: 'Sistemas',
-      semester: 8
-    },
-    {
       name: 'Hugo',
-      age: 18,
+      age: 17,
       career: 'DMI',
-      semester: 7
+      semester: 1
     },
     {
       name: 'Paco',
-      age: 18,
-      career: 'Sistemas',
-      semester: 3
+      age: 19,
+      career: 'SIS',
+      semester: 5
     },
     {
       name: 'Luis',
-      age: 22,
-      career: 'Telemática',
-      semester: 10
+      age: 21,
+      career: 'TEL',
+      semester: 9
     }
   ]);
 
@@ -39,7 +33,9 @@ function App() {
         if (action === "increase") {
           student.semester += 1;
         } else if (action === "decrease") {
-          student.semester -= 1;
+          if (student.semester - 1 > 0) {
+            student.semester -= 1;
+          }
         }
       }
       return student;
@@ -63,10 +59,15 @@ function App() {
     setStudents(newArr);
   }
 
+  const addStudent = (student) => {
+    const newArr = [...students, student];
+    setStudents(newArr);
+  }
+
   return (
     <div className="App">
       <StudentsContext.Provider value={students}>
-        <Content modifySemester={modifySemester} removeStudent={removeStudent} saveChanges={saveChanges} />
+        <Content modifySemester={modifySemester} removeStudent={removeStudent} saveChanges={saveChanges} addStudent={addStudent} />
       </StudentsContext.Provider>
     </div>
   );
