@@ -1,0 +1,15 @@
+.container__div--special{
+    background-color: blue;
+    height: 10vw;
+}
+
+.container__div{
+    background-color: blueviolet;
+    height: 10vw;
+}
+
+.container Button {
+    margin-top: 20px;
+    margin-right: 20px;
+    font-size: 25px;
+}
