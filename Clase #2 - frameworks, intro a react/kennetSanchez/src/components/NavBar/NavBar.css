@@ -1,0 +1,62 @@
+.toggleButton{
+    margin: 3vw;
+    border-radius: 10px;
+    height: 3vw;
+    color: rgb(228, 234, 228);
+    background-color: rgb(40, 42, 43);
+}
+
+.toggleButton--dark{
+    margin: 3vw;
+    border-radius: 10px;
+    height: 3vw;
+    color: rgb(40, 42, 43);
+    background-color: rgb(228, 234, 228);
+}
+
+.navBar{
+    display: flex;
+    margin: 5vw;
+    background-color: rgb(228, 234, 228);
+    height: 8vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.navBar--dark{
+    display: flex;
+    margin: 5vw;
+    background-color: rgb(40, 42, 43);
+    height: 8vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.navBar__links{
+    text-decoration: none;
+    color: rgb(40, 42, 43);
+    font-weight: bold;
+    font-size: large;
+    margin-right: 100px;
+}
+
+.navBar__links--dark{
+    text-decoration: none;
+    color: rgb(228, 234, 228);
+    font-weight: bold;
+    font-size: large;
+    margin-right: 100px;
+
+}
+
+.navBar__paragraph{
+    color: rgb(40, 42, 43);
+    font-weight: bold;
+    font-size: large;
+}
+
+.navBar__paragraph--dark{
+    color: rgb(228, 234, 228);
+    font-weight: bold;
+    font-size: large;
+}

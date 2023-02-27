@@ -1,0 +1,10 @@
+
+*{
+    border: solid red 1px;
+}
+
+.footer{
+    width: 100vw;
+    height: 100vw;
+    background-color: azure;
+}
