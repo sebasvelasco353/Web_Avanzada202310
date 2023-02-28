@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { studentsContext } from "../App";
 
-const List = ({addSemester, removeSemester, showDetails}) => {
+const List = ({addSemester, removeSemester, showDetails, deleteStudent}) => {
 
     const actualList = useContext(studentsContext)
 
@@ -21,6 +21,7 @@ const List = ({addSemester, removeSemester, showDetails}) => {
                                 <th> <span> Major: </span> {item.major}</th>
                                 <th> <button className="addButton" onClick={() => addSemester(item.id)}> +1 semester </button></th>
                                 <th> <button className="removeButton" onClick={() => removeSemester(item.id)} > -1 semester </button></th>
+                                <th> <button className="removeButton" onClick={() => deleteStudent(item.id)} > Detele </button></th>
                             </tr>
                         })
                     }

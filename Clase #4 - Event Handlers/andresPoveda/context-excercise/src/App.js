@@ -55,6 +55,16 @@ function App() {
     setStudentList(newArr)
   }
 
+  function deleteStudent(itemID) { 
+    let findStudent = studentsList.findIndex((obj => obj.id === itemID))
+    console.log("index: ", findStudent);
+    const newArr = [...studentsList];
+    newArr.pop(findStudent);
+    
+    setStudentList(newArr);
+  }
+
+
   //Remove a semester
   function removeSemester(itemID) {
 
@@ -98,7 +108,7 @@ function App() {
   return (
     <div className="App">
       <studentsContext.Provider value={studentsList}>
-        <List addSemester={addSemester} removeSemester={removeSemester} showDetails={showDetails} />
+        <List addSemester={addSemester} removeSemester={removeSemester} showDetails={showDetails} deleteStudent={deleteStudent} />
         <detailsContext.Provider value = {itemContext}>
           <Details handleEdit={handleEdit} />
           {/*<Editing /> */}
