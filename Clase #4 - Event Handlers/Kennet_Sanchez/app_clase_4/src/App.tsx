@@ -6,31 +6,27 @@ import Row  from "./components/Row";
 import Table from './components/Table';
 
 
-const studentsArray : any [] = [
-  {
-    name : "Pablo",
-    carrer: "Mercadeo",
-    age: 45,
-    sem : 4
-  },
-  {
-    name : "Fernando",
-    carrer: "Medicina",
-    age: 20,
-    sem : 6
-  },
-  {
-    name : "Gabriel",
-    carrer: "Sistemas",
-    age: 21,
-    sem : 8
-  },
-]
 
-function App() {
+export const StudentsContext = React.createContext({
+  students: Array(), 
+  setStudents:(newStudents: any [] )=>{}
+});
+
+const App = () => {
+
+
+  const updateToken = (newStudents : Array<any> )=>{state.students = newStudents}
+
+  const [state, setState] = React.useState(()=> ({
+      students : Array(),
+      setStudents : (newStudents: any[])=>{updateToken(newStudents)}
+  }))
+
   return (
     <div className="App">
-      <Table students = {studentsArray} ></Table>
+      <StudentsContext.Provider value={state}>
+        <Table></Table>
+      </StudentsContext.Provider>
     </div>
   );
 }

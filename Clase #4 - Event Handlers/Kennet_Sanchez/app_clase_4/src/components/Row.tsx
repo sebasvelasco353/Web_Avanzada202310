@@ -1,21 +1,23 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import { isConstructorDeclaration } from 'typescript';
+import { StudentsContext } from '../App';
 
 const Row = (
     props : {
+                id: number,
                 name: string,
                 carrer: string,
                 age: number,
-                sem : number;
+                semester : number;
             }
 ) => {
 
     const [name, setName] = React.useState(props.name);
     const [carrer, setCarrer] = React.useState(props.carrer);
     const [age, setAge] = React.useState(props.age);
-    const [semester, setSemester] = React.useState(props.sem);
-    const rowSemesterId = "inputRowSemester";
+    const [semester, setSemester] = React.useState(props.semester);
+
+    const {students, setStudents} = React.useContext(StudentsContext);
 
     function getElementUsingId(id: string) {
         return document.getElementById(id);
@@ -38,30 +40,54 @@ const Row = (
 
 
 
-    function updateStudent(){
+    function updateStudentForm(){
 
         render(
             <div>
                 <input type="text" name="newName" id="newName" defaultValue={name}/>
                 <input type="text" name="newCarrer" id="newCarrer" defaultValue={carrer}/>
-                <input type="number" name="newAge" id="newAge" />
-                <input type="number" name="newSemester" id="newSemester" />
+                <input type="number" name="newAge" id="newAge" defaultValue={age}/>
+                <input type="number" name="newSemester" id="newSemester" defaultValue={semester}/>
+                <button type="submit" onClick={()=>updateStudent(props.id , nameValue, carrerValue, ageValue, semesterValue)}></button>
             </div>
         )
 
-        console.log(getElementUsingId("newName"))
-        const newName = prompt("New name: ", name);
-        const newCarrer = prompt("New carrer: ", carrer);
-        const newAge = prompt("New age: ", (age+""));
-        const newSemester = prompt("New semester: ", (semester+""));
-        setName(newName!);
-        setCarrer(newCarrer!);
-        setAge(parseInt(newAge!));
-        setSemester(parseInt(newSemester!));
+        let nameInput = getElementUsingId("newName") as HTMLInputElement;
+        let nameValue = nameInput.value;
+
+        let carrerInput = getElementUsingId("newCarrer") as HTMLInputElement;
+        let carrerValue = carrerInput.value;
+
+
+        let ageInput = getElementUsingId("newAge") as HTMLInputElement;
+        let ageValue = ageInput.value;
+
+        let semesterInput = getElementUsingId("newSemester") as HTMLInputElement;
+        let semesterValue = semesterInput.value;
+
+        
+    }
+
+    function updateStudent(id: number, nameValue: string, carrerValue: string, ageValue: string, semesterValue: string){
+        let oldStudents = students;
+        let newStudents : any [] = [];
+
+        oldStudents.map(student => {
+            if(student.id == id){
+                student.id = id;
+                student.name = nameValue;
+                student.carrer = carrerValue;
+                student.age = parseInt(ageValue);
+                student.semester = parseInt(semesterValue);
+            }
+            return student;
+        });
+        console.log(oldStudents)
+        setStudents(oldStudents);
     }
 
     return (
-        <div className="rowDiv" onClick={updateStudent}>
+        <div className="rowDiv" onClick={updateStudentForm}>
             
             <input className="rowInput" type="text" name="name" id="inputRowName" placeholder="Jhon" value={name}/>
             
