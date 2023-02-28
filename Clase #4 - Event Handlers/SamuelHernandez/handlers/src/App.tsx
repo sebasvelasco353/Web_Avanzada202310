@@ -1,13 +1,16 @@
 import React from 'react';
-import {StudentProvider} from "./context/Student/StudentProvider";
+import {Table} from "./components/Table/Table";
+import "./App.css";
 
 function App() {
     return (
-        <StudentProvider>
-            <main className="app">
-
-            </main>
-        </StudentProvider>
+        <main className="app">
+            <section className={"app__header"}>
+                <h2 className={"app__title"}>Student Table</h2>
+                <button className={"app__button"}>Add Student</button>
+            </section>
+            <Table/>
+        </main>
     );
 }
 

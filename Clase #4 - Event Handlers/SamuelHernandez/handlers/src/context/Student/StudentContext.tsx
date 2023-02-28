@@ -9,7 +9,22 @@ interface IStudentContext {
 }
 
 const defaultState = {
-    students : [],
+    students : [
+        {
+            id: "A00368069",
+            name: "Samuel Hernández",
+            age: 19,
+            career: "Systems Engineering",
+            semester : 7
+        },
+        {
+            id: "A00369521",
+            name: "Kennet Sánchez",
+            age: 19,
+            career: "Systems Engineering",
+            semester : 7
+        },
+    ],
 }
 
 const StudentContext = createContext<IStudentContext>(defaultState);
