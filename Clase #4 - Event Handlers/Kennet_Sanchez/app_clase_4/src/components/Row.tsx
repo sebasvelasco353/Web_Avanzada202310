@@ -38,15 +38,17 @@ const Row = (
 
     function removeStudent(event: React.MouseEvent<HTMLButtonElement>) {
         event.stopPropagation();
-        getElementUsingId("rowStudent"+props.id)?.remove()
-        
 
         const newStudents = students.filter(student => {
             if(student.id != props.id){
                 return student;
             }
         });
+
         setStudents(newStudents);
+
+        getElementUsingId("rowStudent"+props.id)?.remove()
+
     }
 
 
@@ -80,7 +82,6 @@ const Row = (
         let semesterInput = getElementUsingId("newSemester"+id) as HTMLInputElement;
         let semesterValue = semesterInput.value;
 
-        console.log(nameValue, carrerValue, ageValue, semesterValue);
         let oldStudents = students;
         let newStudents : any [] = [];
 
@@ -99,19 +100,17 @@ const Row = (
             }
             return student;
         });
-        
-
         setStudents(newStudents);
     }
 
     return (
         <div id={"rowStudent"+props.id} className="rowDiv" onClick={updateStudentForm}>
             
-            <input className="rowInput" type="text" name="name" id="inputRowName" placeholder="Jhon" value={name}/>
+            <input className="rowInput" type="text" name="name" id="inputRowName" placeholder="Jhon" value={name} readOnly={true}/>
             
-            <input className="rowInput" type="text" name="career" id="inputRowCareer" placeholder="Software engineering" value={carrer}/>
+            <input className="rowInput" type="text" name="career" id="inputRowCareer" placeholder="Software engineering" value={carrer} readOnly={true}/>
 
-            <input className="rowInput" type="number" name="age" id="inputRowAge" placeholder="18" value={age}/>
+            <input className="rowInput" type="number" name="age" id="inputRowAge" placeholder="18" value={age} readOnly={true}/>
 
             <button className="iconButton" onClick={decrementSemester}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="bi bi-dash-lg" viewBox="0 0 16 16">
@@ -119,7 +118,7 @@ const Row = (
                 </svg>
             </button>
 
-            <input className="rowInput" type="number" name="semester" id="inputRowSemester" value={semester}/>
+            <input className="rowInput" type="number" name="semester" id="inputRowSemester" value={semester} readOnly={true}/>
 
             <button className="iconButton" onClick={incrementSemester}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="bi bi-plus-circle-fill" viewBox="0 0 16 16">
@@ -127,7 +126,7 @@ const Row = (
                 </svg>
             </button>
 
-           <button className="rowInput" onClick={removeStudent}>
+           <button className="iconButton" onClick={removeStudent}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash-fill" viewBox="0 0 16 16">
                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                 </svg>

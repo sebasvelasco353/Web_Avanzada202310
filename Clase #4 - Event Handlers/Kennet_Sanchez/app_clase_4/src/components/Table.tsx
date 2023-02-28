@@ -7,7 +7,6 @@ const Table = () => {
     let firstTime = true;
 
     const {students, setStudents} = React.useContext(StudentsContext);
-    const [tableStudents, setTableStudents] = React.useState(students);
 
     const studentsArray : any [] = [
         {
@@ -40,9 +39,9 @@ const Table = () => {
 
     return (
         <div>
-            {tableStudents.map((student) => {
+            {students.map((student) => {
                 return(
-                    <Row id = {student.id} name = {student.name} age = {student.age} carrer = {student.carrer} semester= {student.semester}></Row>
+                    <Row  key={student.id} id = {student.id} name = {student.name} age = {student.age} carrer = {student.carrer} semester= {student.semester}></Row>
                 )
             })}
         </div>
