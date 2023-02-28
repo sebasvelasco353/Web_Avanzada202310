@@ -107,11 +107,16 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={onAdd}>Agregar</button>
-      <StudentContext.Provider value={students}>
-        <Table onEdit={onEdit} onChangeSemester={onChangeSemester} onRemove={onRemove}></Table>
-      </StudentContext.Provider>
+      <div class="d-flex justify-content-center mt-4 mb-4">
+        <button onClick={onAdd}>Agregar</button>
+      </div>
+      <div class="d-flex justify-content-center">
+        <StudentContext.Provider value={students}>
+          <Table onEdit={onEdit} onChangeSemester={onChangeSemester} onRemove={onRemove}></Table>
+        </StudentContext.Provider>
+      </div>
     </div>
+    
   );
 }
 
