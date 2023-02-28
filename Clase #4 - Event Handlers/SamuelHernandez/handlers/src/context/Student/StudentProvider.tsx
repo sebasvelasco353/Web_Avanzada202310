@@ -18,7 +18,7 @@ export const StudentProvider = ({children} : {children: ReactNode[] | ReactNode}
     }
 
     const removeStudent = (id : string) => {
-        const studentNotExists = students.find(s => s.id === id) !== undefined;
+        const studentNotExists = students.find(s => s.id === id) === undefined;
         if (studentNotExists) return false;
         setStudents(
             students.filter(s => s.id !== id)

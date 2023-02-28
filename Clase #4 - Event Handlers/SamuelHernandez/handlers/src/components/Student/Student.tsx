@@ -1,30 +1,50 @@
 import {StudentType} from "./StudentType";
 import "./Student.css";
 import {Plus, Dash, Trash} from 'react-bootstrap-icons';
-import React from "react";
+import React, {useContext} from "react";
+import StudentContext from "../../context/Student/StudentContext";
 
 export const Student = (props: StudentType) => {
+
+    const {students, removeStudent, updateStudent} = useContext(StudentContext);
+
     const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        alert("Student Clicked!")
+        alert("Modal, allegedly");
     };
 
     const increaseSemester = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        alert("Increment!")
+        const newVal = props.semester + 1;
+        if (newVal === 13) {
+            alert("Can't do more than 12 semesters!")
+            return;
+        }
+        updateStudent!(props.id, {
+            ...props,
+            semester: newVal
+        });
     };
 
     const decreaseSemester = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        alert("Decrement!")
+        const newVal = props.semester - 1;
+        if (newVal < 0) {
+            alert("Can't do less than 0 semesters!")
+            return;
+        }
+        updateStudent!(props.id, {
+            ...props,
+            semester: newVal
+        });
     };
 
-    const removeStudent = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const deleteStudent = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        alert("Bye!!")
+        removeStudent!(props.id);
     };
 
     return (
@@ -42,7 +62,7 @@ export const Student = (props: StudentType) => {
                         className={"student__button student__button--remove"}><Dash size={26}/>
                 </button>
             </div>
-            <button className={"student__button student__button--delete"} onClick={removeStudent}><Trash size={26}/>
+            <button className={"student__button student__button--delete"} onClick={deleteStudent}><Trash size={26}/>
             </button>
         </article>
     );
