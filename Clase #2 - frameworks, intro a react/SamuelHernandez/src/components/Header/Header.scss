@@ -1,0 +1,49 @@
+.nav {
+    background-color: #f5bb79;
+    color: #2b2b2b;
+    font-size: 1.5rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 4rem;
+    transition: background-color 800ms ease-in-out;
+
+    &__linktree {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 2rem;
+        list-style-type: none;
+    }
+
+    &--magenta {
+        background-color: #ec80ec;
+        color: #2b2b2b;
+    }
+
+    &--cyan {
+        background-color: #90d7f3;
+        color: #2b2b2b;
+    }
+
+    &--yellow {
+        background-color: #f3e281;
+        color: #2b2b2b;
+    }
+
+    &--red {
+        background-color: #ec8080;
+        color: #2b2b2b;
+    }
+
+    &--blue {
+        background-color: #80a6ec;
+        color: #2b2b2b;
+    }
+
+    &--green {
+        background-color: #92ec80;
+        color: #2b2b2b;
+    }
+}

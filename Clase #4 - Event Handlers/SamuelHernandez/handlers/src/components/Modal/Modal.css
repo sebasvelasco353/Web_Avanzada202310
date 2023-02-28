@@ -1,0 +1,83 @@
+.modal__background {
+    background-color: #282c3422;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(1rem);
+    display: grid;
+    place-items: center;
+    transition: opacity 600ms ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.shown {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    height: 40rem;
+    width: 44rem;
+    background-color: #fff6f1;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+    padding-inline: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 5px 1rem #282c3433;
+}
+
+.modal__data {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal__data input {
+    border-radius: 12px;
+    border: #bc4215 2px solid;
+    padding: 1rem;
+    width: 16rem;
+    font-size: 1.2rem;
+}
+
+.modal__data h2 {
+    font-weight: normal;
+}
+
+.modal__submit {
+    padding-inline: 1.8rem;
+    padding-block: 0.8rem;
+    border-radius: 0.5rem;
+    background-color: coral;
+    border: transparent solid;
+    font-size: 1.2rem;
+    transition: all 200ms ease-in-out;
+}
+
+.modal__submit:hover {
+    cursor: pointer;
+    background-color: transparent;
+    border: coral solid;
+    color: coral;
+}
+
+.modal__submit:focus {
+    transition: all 100ms linear;
+    scale: 0.95;
+    cursor: pointer;
+    background-color: #FF7F5022;
+    border: #FF7F50CC solid;
+    color: #FF7F50CC;
+}
