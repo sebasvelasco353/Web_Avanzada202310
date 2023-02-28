@@ -26,16 +26,27 @@ const Row = (
 
 
     function incrementSemester(event: React.MouseEvent<HTMLButtonElement>) {
+        event.stopPropagation();
         setSemester(semester+1)
     }
 
     function decrementSemester(event: React.MouseEvent<HTMLButtonElement>) {
+        event.stopPropagation();
         setSemester(semester-1)
 
     }
 
     function removeStudent(event: React.MouseEvent<HTMLButtonElement>) {
+        event.stopPropagation();
+        getElementUsingId("rowStudent"+props.id)?.remove()
+        
 
+        const newStudents = students.filter(student => {
+            if(student.id != props.id){
+                return student;
+            }
+        });
+        setStudents(newStudents);
     }
 
 
@@ -44,50 +55,57 @@ const Row = (
 
         render(
             <div>
-                <input type="text" name="newName" id="newName" defaultValue={name}/>
-                <input type="text" name="newCarrer" id="newCarrer" defaultValue={carrer}/>
-                <input type="number" name="newAge" id="newAge" defaultValue={age}/>
-                <input type="number" name="newSemester" id="newSemester" defaultValue={semester}/>
-                <button type="submit" onClick={()=>updateStudent(props.id , nameValue, carrerValue, ageValue, semesterValue)}></button>
+                <input type="text" name="newName" id={"newName"+props.id} defaultValue={name}/>
+                <input type="text" name="newCarrer" id={"newCarrer"+props.id} defaultValue={carrer}/>
+                <input type="number" name="newAge" id={"newAge"+props.id} defaultValue={age}/>
+                <input type="number" name="newSemester" id={"newSemester"+props.id} defaultValue={semester}/>
+                <button type="submit" onClick={()=>updateStudent(props.id)}>Save</button>
             </div>
         )
-
-        let nameInput = getElementUsingId("newName") as HTMLInputElement;
-        let nameValue = nameInput.value;
-
-        let carrerInput = getElementUsingId("newCarrer") as HTMLInputElement;
-        let carrerValue = carrerInput.value;
-
-
-        let ageInput = getElementUsingId("newAge") as HTMLInputElement;
-        let ageValue = ageInput.value;
-
-        let semesterInput = getElementUsingId("newSemester") as HTMLInputElement;
-        let semesterValue = semesterInput.value;
 
         
     }
 
-    function updateStudent(id: number, nameValue: string, carrerValue: string, ageValue: string, semesterValue: string){
+    function updateStudent(id: number){
+        let nameInput = getElementUsingId("newName"+id) as HTMLInputElement;
+        let nameValue = nameInput.value;
+
+        let carrerInput = getElementUsingId("newCarrer"+id) as HTMLInputElement;
+        let carrerValue = carrerInput.value;
+
+
+        let ageInput = getElementUsingId("newAge"+id) as HTMLInputElement;
+        let ageValue = ageInput.value;
+
+        let semesterInput = getElementUsingId("newSemester"+id) as HTMLInputElement;
+        let semesterValue = semesterInput.value;
+
+        console.log(nameValue, carrerValue, ageValue, semesterValue);
         let oldStudents = students;
         let newStudents : any [] = [];
 
-        oldStudents.map(student => {
+        newStudents = oldStudents.map(student => {
             if(student.id == id){
                 student.id = id;
                 student.name = nameValue;
                 student.carrer = carrerValue;
                 student.age = parseInt(ageValue);
                 student.semester = parseInt(semesterValue);
+
+                setName(nameValue);
+                setCarrer(carrerValue);
+                setAge(parseInt(ageValue));
+                setSemester(parseInt(semesterValue));
             }
             return student;
         });
-        console.log(oldStudents)
-        setStudents(oldStudents);
+        
+
+        setStudents(newStudents);
     }
 
     return (
-        <div className="rowDiv" onClick={updateStudentForm}>
+        <div id={"rowStudent"+props.id} className="rowDiv" onClick={updateStudentForm}>
             
             <input className="rowInput" type="text" name="name" id="inputRowName" placeholder="Jhon" value={name}/>
             
