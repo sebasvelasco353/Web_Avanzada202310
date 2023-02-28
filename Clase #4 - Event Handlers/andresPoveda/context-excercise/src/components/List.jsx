@@ -8,17 +8,19 @@ const List = ({addSemester, removeSemester, showDetails}) => {
 
     return (
         <>
+            <h1> Andrés Poveda</h1>
+            <h2> React context excercise</h2>
             <table>
                 <tbody>
-                    {
+                    { 
                         actualList.map((item, index) => {
                             return <tr key={index} onClick={() => showDetails(item)}>
-                                <th>Name: {item.name}</th>
-                                <th> Edad: {item.age}</th>
-                                <th> Semesters: {item.semester}</th>
-                                <th> Major: {item.major}</th>
-                                <th> <button onClick={() => addSemester(item.id)}> +1 semester </button></th>
-                                <th> <button onClick={() => removeSemester(item.id)} > -1 semester </button></th>
+                                <th> <span> Name: </span> {item.name}</th>
+                                <th> <span> Age: </span> {item.age}</th>
+                                <th> <span> Semester: </span> {item.semester}</th>
+                                <th> <span> Major: </span> {item.major}</th>
+                                <th> <button className="addButton" onClick={() => addSemester(item.id)}> +1 semester </button></th>
+                                <th> <button className="removeButton" onClick={() => removeSemester(item.id)} > -1 semester </button></th>
                             </tr>
                         })
                     }

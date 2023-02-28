@@ -1,5 +1,6 @@
 import List from './components/List.jsx';
 import Details from './components/Details.jsx';
+//import Editing from './components/Editing.jsx';
 import React, { useState } from 'react';
 import './App.css';
 
@@ -32,7 +33,9 @@ function App() {
     "id": 3
     }])
   
+  //Item context for Details
   const [itemContext, setItemContext] = useState("");
+
 
   //Add a semester
   function addSemester(itemID) {
@@ -63,24 +66,33 @@ function App() {
 
     /* Asignar el nuevo valor en la posicion del arreglo y cambia el dato de semestre*/
     newArr[findStudent] = {
+      //Hago un copia del arreglo en el valor que coincide
       ...newArr[findStudent],
       semester: newArr[findStudent].semester - 1
     }
-
-    console.log(newArr)
     setStudentList(newArr)
   }
 
-
-
-
+ // Asign value to item in order to give context to "details" component
   function showDetails(data) {
-
     setItemContext(data);
     console.log(itemContext)
-  
+    const setOpacity = document.getElementById("details").style.opacity = "1.0"
   } 
 
+  //Handles the editing in the details component
+  function handleEdit(newParam, param, itemID) {
+    let findStudent = studentsList.findIndex((obj => obj.id === itemID))
+    console.log("index: ", findStudent)
+
+    const newArr = [...studentsList]
+
+    newArr[findStudent][param] = newParam;
+
+    setStudentList(newArr)
+    //Si param es name
+    //newArr[findStudent].name
+  }
 
 
   return (
@@ -88,7 +100,8 @@ function App() {
       <studentsContext.Provider value={studentsList}>
         <List addSemester={addSemester} removeSemester={removeSemester} showDetails={showDetails} />
         <detailsContext.Provider value = {itemContext}>
-          <Details />
+          <Details handleEdit={handleEdit} />
+          {/*<Editing /> */}
         </detailsContext.Provider>
       </studentsContext.Provider>
     </div>
