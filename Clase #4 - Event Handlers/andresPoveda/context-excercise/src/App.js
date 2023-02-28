@@ -59,7 +59,7 @@ function App() {
     let findStudent = studentsList.findIndex((obj => obj.id === itemID))
     console.log("index: ", findStudent);
     const newArr = [...studentsList];
-    newArr.pop(findStudent);
+    newArr.splice(findStudent, 1);
     
     setStudentList(newArr);
   }
