@@ -1,11 +1,10 @@
 import StudentContext from "../../context/Student/StudentContext";
 import {useContext} from "react";
 import {Student} from "../Student/Student";
-import {StudentProvider} from "../../context/Student/StudentProvider";
 import "./Table.css";
 
 interface IProps {
-
+    modalState: { shown: any, setShown: any, setMode: any }
 }
 
 export const Table = (props: IProps) => {
@@ -26,7 +25,7 @@ export const Table = (props: IProps) => {
             <section className={"table__body"}>
                 {students.map((student) => {
                     const {id, name, age, career, semester} = student;
-                    return <Student key={id} id={id} name={name} age={age} career={career} semester={semester}/>
+                    return <Student key={id} id={id} name={name} age={age} career={career} semester={semester} modalState={props.modalState}/>
                 })}
             </section>
         </section>
