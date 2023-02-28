@@ -17,15 +17,16 @@ export const Modal = (props: IProps) => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.target as HTMLFormElement;
+        const id = (form.id as unknown as HTMLInputElement).value;
         const newStudent = {
-            id : (form.id as unknown as HTMLInputElement).value,
+            id : id,
             name : (form.name as unknown as HTMLInputElement).value,
             age : parseInt((form.age as unknown as HTMLInputElement).value),
             career : (form.career as unknown as HTMLInputElement).value,
             semester : parseInt((form.semester as unknown as HTMLInputElement).value),
         }
         if (props.mode === "add") addStudent(newStudent);
-        else updateStudent(form.id, newStudent);
+        else updateStudent(id, newStudent);
         setShown(false);
     };
 
@@ -48,11 +49,11 @@ export const Modal = (props: IProps) => {
                 </section>
                 <section className={"modal__data"}>
                     <h2>Age</h2>
-                    <input type={"number"} name={"age"}/>
+                    <input type={"number"} min={15} name={"age"}/>
                 </section>
                 <section className={"modal__data"}>
                     <h2>Semester</h2>
-                    <input type={"Number"} name={"semester"}/>
+                    <input type={"Number"} min={1} max={12} name={"semester"}/>
                 </section>
                 <section className={"modal__data"}>
                     <h2>Career</h2>

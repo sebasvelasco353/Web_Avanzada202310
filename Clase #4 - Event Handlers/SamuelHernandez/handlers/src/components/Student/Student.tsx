@@ -4,13 +4,18 @@ import {Plus, Dash, Trash} from 'react-bootstrap-icons';
 import React, {useContext} from "react";
 import StudentContext from "../../context/Student/StudentContext";
 
-export const Student = (props: StudentType) => {
+interface IProps extends StudentType {
+    modalState: { shown: any, setShown: any, setMode: any }
+}
 
-    const {students, removeStudent, updateStudent} = useContext(StudentContext);
+export const Student = (props: IProps ) => {
+
+    const {removeStudent, updateStudent} = useContext(StudentContext);
 
     const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        alert("Modal, allegedly");
+        props.modalState.setMode("edit");
+        props.modalState.setShown(true);
     };
 
     const increaseSemester = (e: React.MouseEvent<HTMLButtonElement>) => {
