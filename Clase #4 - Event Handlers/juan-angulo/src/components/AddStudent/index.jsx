@@ -3,19 +3,19 @@ import './AddStudent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 
-function AddStudent({ addStudent, closeAddView }) {
+function AddStudent({ addStudent, manageAddView }) {
     const [newStudent, setNewStudent] = useState({});
 
     const handleChange = (event) => {
         var input = event.target;
-        setNewStudent({ ...newStudent, [input.name]: input.value })
+        setNewStudent({ ...newStudent, [input.name]: (input.name === "semester") ? parseInt(input.value) : input.value });
     }
 
     return (
         <div className="container" style={{ paddingTop: 30 }}>
             <div className="modal-card">
                 <div style={{ display: 'flex', justifyContent: 'right' }}>
-                    <FontAwesomeIcon icon={faCircleXmark} size="lg" onClick={closeAddView} />
+                    <FontAwesomeIcon icon={faCircleXmark} size="lg" onClick={() => manageAddView(false)} />
                 </div>
                 <h2 style={{ marginTop: -15 }}>Add Student</h2>
                 <div className="field">
@@ -35,7 +35,7 @@ function AddStudent({ addStudent, closeAddView }) {
                     <input type="number" name="semester" value={newStudent.semester} onChange={handleChange} />
                 </div>
                 <div style={{ marginTop: 10, marginBottom: 3 }}>
-                    <button onClick={() => { addStudent(newStudent); closeAddView() }} > Add </button>
+                    <button onClick={() => { addStudent(newStudent); manageAddView(false) }} > Add </button>
                 </div>
             </div>
         </div>
