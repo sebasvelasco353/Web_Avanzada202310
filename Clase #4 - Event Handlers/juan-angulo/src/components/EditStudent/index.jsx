@@ -4,7 +4,7 @@ import './EditStudent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 
-function EditStudent({ idx, saveChanges, closeEditView }) {
+function EditStudent({ idx, saveChanges, manageEditView }) {
     const students = useContext(StudentsContext);
 
     const [student, setStudent] = useState(students.at(idx));
@@ -22,7 +22,7 @@ function EditStudent({ idx, saveChanges, closeEditView }) {
         <div className="container" style={{ paddingTop: 30 }}>
             <div className="modal-card">
                 <div style={{ display: 'flex', justifyContent: 'right' }}>
-                    <FontAwesomeIcon icon={faCircleXmark} size="lg" onClick={closeEditView} />
+                    <FontAwesomeIcon icon={faCircleXmark} size="lg" onClick={() => manageEditView(null)} />
                 </div>
                 <h2 style={{ marginTop: -15 }}>Edit Student</h2>
                 <div className="field">
@@ -42,7 +42,7 @@ function EditStudent({ idx, saveChanges, closeEditView }) {
                     <input type="number" name="semester" value={student.semester} onChange={handleChange} />
                 </div>
                 <div style={{ marginTop: 10, marginBottom: 3 }}>
-                    <button onClick={() => { saveChanges(idx, student); closeEditView() }} > Save </button>
+                    <button onClick={() => { saveChanges(idx, student); manageEditView(null) }} > Save </button>
                 </div>
             </div>
         </div>

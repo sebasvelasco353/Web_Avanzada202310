@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import Content from './components/Content';
+import Table from './components/Table';
 
 export const StudentsContext = React.createContext();
 
@@ -27,47 +27,10 @@ function App() {
     }
   ]);
 
-  const modifySemester = (idx, action) => {
-    const newArr = students.map(student => {
-      if (students.indexOf(student) === idx) {
-        if (action === "increase") {
-          student.semester += 1;
-        } else if (action === "decrease") {
-          if (student.semester - 1 > 0) {
-            student.semester -= 1;
-          }
-        }
-      }
-      return student;
-    });
-    setStudents(newArr);
-  }
-
-  const saveChanges = (idx, newStudent) => {
-    const newArr = students.map(student => {
-      if (students.indexOf(student) === idx) {
-        student = newStudent;
-      }
-      return student;
-    });
-    setStudents(newArr);
-  }
-
-  const removeStudent = (idx) => {
-    const newArr = [...students];
-    newArr.splice(idx, 1);
-    setStudents(newArr);
-  }
-
-  const addStudent = (student) => {
-    const newArr = [...students, student];
-    setStudents(newArr);
-  }
-
   return (
     <div className="App">
       <StudentsContext.Provider value={students}>
-        <Content modifySemester={modifySemester} removeStudent={removeStudent} saveChanges={saveChanges} addStudent={addStudent} />
+        <Table handleStudents={setStudents} />
       </StudentsContext.Provider>
     </div>
   );
