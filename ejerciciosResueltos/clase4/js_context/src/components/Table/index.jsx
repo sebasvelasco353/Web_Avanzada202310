@@ -11,19 +11,22 @@ export default function Table() {
   }
 
   return (
-    <table>
-      <thead>
-          <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Semestre</th>
-              <th>Carrera</th>
-              <th>Acciones</th>
-          </tr>
-      </thead>
-      <tbody>
-          {renderStudents()}
-      </tbody>
-    </table>
+    <>
+      <button>Nuevo estudiante</button>
+      <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Semestre</th>
+                <th>Carrera</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {renderStudents()}
+        </tbody>
+      </table>
+    </>
   )
 }
