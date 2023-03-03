@@ -1,8 +1,9 @@
-import './Modal.css';
 import React, { useState } from 'react';
 import { useStudents } from '../../context/studentsReducer';
+import './Modal.css';
 
 function Modal({ handleCloseModal }) {
+
     const { state: { selectedStudent, students } , dispatch } = useStudents();
     const [studentInfo, setStudentInfo] = useState({
         name: selectedStudent ? selectedStudent.name : '',
