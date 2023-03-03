@@ -28,13 +28,14 @@ function StudentsReducer(state, action) {
       return { students: newArr };
     }
     case 'newEntry': {
-      //TODO: Must add a new student
-      console.log(action.type);
-      return state;
+      const newArr = [...state.students];
+      newArr.push(action.payload);
+      return { students: newArr };
     }
     case 'modify': {
-      //TODO: Must change student values.
-      console.log(action.type);
+      const studentIndex = state.students.findIndex((student) => student.id === action.payload.id);
+      const newArr = [...state.students];
+      newArr.push(action.payload);
       return state;
     }
     default: {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+// import * as React from 'react';
 import TableItem from '../TableItem';
 import { useStudents } from '../../context/studentsReducer';
 
@@ -12,7 +12,6 @@ export default function Table() {
 
   return (
     <>
-      <button>Nuevo estudiante</button>
       <table>
         <thead>
             <tr>
