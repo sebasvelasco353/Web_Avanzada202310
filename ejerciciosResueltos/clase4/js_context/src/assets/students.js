@@ -18,7 +18,7 @@ export const students = [
     major: "Relaciones Internacionales",
     semester: 2
   }, {
-    id: 5,
+    id: 3,
     name: "Napoleon",
     lastName: "Dynamite",
     major: "Artes Escenicas",

@@ -1,16 +1,16 @@
 import './App.css';
 import React, { useState } from 'react';
 import Table from './components/Table'
-import NewStudentModal from './components/NewStudentModal';
+import Modal from './components/Modal';
 import { StudentsProvider } from './context/studentsReducer';
 
 
 function App() {
   const [ isModalOpen, setIsModalOpen ] = useState(false);
 
-  const renderAddNewStudentModal = () => {
+  const renderAddModal = () => {
     if (isModalOpen) {
-      return <NewStudentModal handleCloseModal={() => setIsModalOpen(false)} />;
+      return <Modal handleCloseModal={() => setIsModalOpen(false)} />;
     }
     return;
   }
@@ -23,7 +23,7 @@ function App() {
 
         <button onClick={() => setIsModalOpen(true)}>Nuevo estudiante</button>
         <StudentsProvider>
-          {renderAddNewStudentModal()}
+          {renderAddModal()}
           <Table />
         </StudentsProvider>
       </div>

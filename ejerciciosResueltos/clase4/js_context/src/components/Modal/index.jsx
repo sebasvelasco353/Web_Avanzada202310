@@ -1,18 +1,38 @@
+import './Modal.css';
 import React, { useState } from 'react';
-import './NewStudentModal.css';
+import { useStudents } from '../../context/studentsReducer';
 
-function NewStudentModal({ handleCloseModal }) {
+function Modal({ handleCloseModal }) {
+    const { state: { selectedStudent, students } , dispatch } = useStudents();
     const [studentInfo, setStudentInfo] = useState({
-        name: '',
-        lastName: '',
-        semester: '',
-        major: ''
+        name: selectedStudent ? selectedStudent.name : '',
+        lastName: selectedStudent ? selectedStudent.lastName : '',
+        semester: selectedStudent ? selectedStudent.semester : '',
+        major: selectedStudent ? selectedStudent.major : '',
     });
 
     const handleInfoChange = (event) => {
-        console.log(event);
         setStudentInfo({ ...studentInfo, [event.target.name]: event.target.value });
     };
+
+    const handleSave = (event) => {
+        event.preventDefault();
+        let payload;
+        if (selectedStudent !== undefined && selectedStudent !== null) {
+            payload = {
+                ...studentInfo,
+                id: selectedStudent.id
+            }
+            dispatch({type: 'newEntry', payload});
+        } else {
+            payload = {
+                ...studentInfo,
+                id: students.length + 1
+            }
+            dispatch({type: 'modify', payload});
+        }
+        dispatch({ type: 'selectStudent', payload: null});
+    }
 
     return (
         <div className='modal'>
@@ -50,11 +70,11 @@ function NewStudentModal({ handleCloseModal }) {
                         value={studentInfo.major}
                         onChange={(e) => handleInfoChange(e)}
                     />
-                    <button onClick={() => console.log(studentInfo)}>Guardar</button>
+                    <button onClick={(e) => handleSave(e)}>Guardar</button>
                 </form>
             </div>
         </div>
     )
 }
 
-export default NewStudentModal
+export default Modal

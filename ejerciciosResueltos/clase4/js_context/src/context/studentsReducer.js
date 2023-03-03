@@ -38,6 +38,9 @@ function StudentsReducer(state, action) {
       newArr.push(action.payload);
       return state;
     }
+    case 'selectStudent':
+      // TODO: Will be in charge of setting the selected student that will be modified
+      return state
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }
@@ -50,7 +53,7 @@ function StudentsReducer(state, action) {
 ** usamos en App.JS                                                                   **
 */
 function StudentsProvider({ children }) {
-  const [state, dispatch] = React.useReducer(StudentsReducer, { students })
+  const [state, dispatch] = React.useReducer(StudentsReducer, { students, selectedStudent: undefined })
   const value = {state, dispatch}
   return <StudentsContext.Provider value={value}>{children}</StudentsContext.Provider>
 }
