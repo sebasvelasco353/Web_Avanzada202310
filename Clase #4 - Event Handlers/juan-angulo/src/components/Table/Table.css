@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+table.dltrc {
+  width: 95%;
+  border-collapse: separate;
+  border-spacing: 0px;
+  border: solid black 2px;
+  border-radius: 8px;
+}
+
+tr.dlheader {
+  text-align: center;
+  font-weight: bold;
+  border-left: solid black 1px;
+  padding: 2px
+}
+
+td.dlheader {
+  background: #d9d9d9;
+  text-align: center;
+  font-weight: bold;
+  border-left: solid black 1px;
+  border-radius: 0px;
+  padding: 2px
+}
+
+tr.dlinfo,
+td.dlinfo {
+  text-align: center;
+  border-left: solid black 1px;
+  border-top: solid black 1px;
+  padding: 2px
+}
+
+td.dlinfo:first-child,
+td.dlheader:first-child {
+  border-left: none;
+}
+
+td.dlheader:first-child {
+  border-radius: 5px 0 0 0;
+}
+
+td.dlheader:last-child {
+  border-radius: 0 5px 0 0;
+}
+
+/* === ROW HOVER === */
+
+tr.hover02:hover {
+  background-color: #dde6ee;
+  border-radius: 0 0 6px 6px;
+}
