@@ -38,7 +38,7 @@ function Modal({ handleCloseModal }) {
     return (
         <div className='modal'>
             <div className="modal--header">
-                <h3>Add a new Student</h3>
+                <h3>{selectedStudent ? 'chagnge student info' : 'Add a new Student'}</h3>
                 <button onClick={() => handleCloseModal()}>Close</button>
             </div>
             <div className="modal--content">

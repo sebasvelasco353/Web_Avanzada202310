@@ -12,7 +12,7 @@ export default function Table() {
 
   return (
     <>
-      <table>
+      <table style={{ borderCollapse: 'collapse'}}>
         <thead>
             <tr>
                 <th>Nombre</th>

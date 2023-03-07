@@ -13,34 +13,41 @@ function StudentsReducer(state, action) {
       const studentIndex = state.students.findIndex((student) => student.id === action.payload);
       const newArr = [...state.students];
       newArr[studentIndex].semester += 1;
-      return { students: newArr };
+      return { ...state, students: newArr };
     }
     case 'decrement': {
       const studentIndex = state.students.findIndex((student) => student.id === action.payload);
       const newArr = [...state.students];
       newArr[studentIndex].semester -= 1;
-      return { students: newArr };
+      return { ...state, students: newArr };
     }
     case 'delete': {
       const studentIndex = state.students.findIndex((student) => student.id === action.payload);
       const newArr = [...state.students];
       newArr.splice(studentIndex, 1);
-      return { students: newArr };
+      return { ...state, students: newArr };
     }
     case 'newEntry': {
       const newArr = [...state.students];
       newArr.push(action.payload);
-      return { students: newArr };
+      return { ...state, students: newArr };
     }
     case 'modify': {
       const studentIndex = state.students.findIndex((student) => student.id === action.payload.id);
       const newArr = [...state.students];
-      newArr.push(action.payload);
-      return state;
+      newArr[studentIndex] = {
+        ...action.payload
+      };
+      console.log(newArr);
+      return {...state, students: newArr };
     }
     case 'selectStudent':
-      // TODO: Will be in charge of setting the selected student that will be modified
+      return { ...state, selectedStudent: action.payload };
+
+    // TODO: Crear el Reducer case para abrir el modal con los datos a modificar.
+    case 'setModalState':
       return state
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }

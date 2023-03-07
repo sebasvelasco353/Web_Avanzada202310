@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useStudents } from '../../context/studentsReducer';
+import './TableItem.css';
 
 export default function TableItem({ student }) {
   /*
@@ -8,7 +9,7 @@ export default function TableItem({ student }) {
   */
   const { dispatch } = useStudents();
   return (
-    <tr>
+    <tr onClick={() => dispatch({ type: 'selectStudent', payload: student })}>
         <td>{ student.name }</td>
         <td>{ student.lastName }</td>
         <td>{ student.semester }</td>
