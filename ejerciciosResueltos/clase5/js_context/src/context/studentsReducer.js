@@ -29,7 +29,10 @@ function StudentsReducer(state, action) {
     }
     case 'newEntry': {
       const newArr = [...state.students];
-      newArr.push(action.payload);
+      newArr.push({
+        ...action.payload,
+        id: state.students.length + 1
+      });
       return { ...state, students: newArr };
     }
     case 'modify': {
@@ -41,13 +44,9 @@ function StudentsReducer(state, action) {
       console.log(newArr);
       return {...state, students: newArr };
     }
-    case 'selectStudent':
+    case 'selectStudent': {
       return { ...state, selectedStudent: action.payload };
-
-    // TODO: Crear el Reducer case para abrir el modal con los datos a modificar.
-    case 'setModalState':
-      return state
-
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }
@@ -60,7 +59,12 @@ function StudentsReducer(state, action) {
 ** usamos en App.JS                                                                   **
 */
 function StudentsProvider({ children }) {
-  const [state, dispatch] = React.useReducer(StudentsReducer, { students, selectedStudent: undefined })
+  const [state, dispatch] = React.useReducer(StudentsReducer, {
+    students,
+    selectedStudent: undefined,
+    isAddNewStudentModalOpen: false,
+    isEditNewStudentDialogOpen: false
+  })
   const value = {state, dispatch}
   return <StudentsContext.Provider value={value}>{children}</StudentsContext.Provider>
 }
