@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStudents } from '../../context/studentsReducer';
 
+// Esta es otra forma que tenemos para definir estilos en jsx
 const styles = {
     EditBox: {
         display: 'flex',
