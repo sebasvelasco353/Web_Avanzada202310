@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { useStudents } from '../../context/studentsReducer';
 import './Modal.css';
+import { useState } from 'react';
+import { useStudents } from '../../context/studentsReducer';
 
 function Modal({ handleCloseModal }) {
-
-    const { state: { selectedStudent, students } , dispatch } = useStudents();
+    const { dispatch } = useStudents();
     const [studentInfo, setStudentInfo] = useState({
-        name: selectedStudent ? selectedStudent.name : '',
-        lastName: selectedStudent ? selectedStudent.lastName : '',
-        semester: selectedStudent ? selectedStudent.semester : '',
-        major: selectedStudent ? selectedStudent.major : '',
+        name: '',
+        lastName: '',
+        semester: '',
+        major: '',
     });
 
     const handleInfoChange = (event) => {
@@ -18,27 +17,14 @@ function Modal({ handleCloseModal }) {
 
     const handleSave = (event) => {
         event.preventDefault();
-        let payload;
-        if (selectedStudent !== undefined && selectedStudent !== null) {
-            payload = {
-                ...studentInfo,
-                id: selectedStudent.id
-            }
-            dispatch({type: 'newEntry', payload});
-        } else {
-            payload = {
-                ...studentInfo,
-                id: students.length + 1
-            }
-            dispatch({type: 'modify', payload});
-        }
-        dispatch({ type: 'selectStudent', payload: null});
+        dispatch({ type: 'newEntry', payload: studentInfo});
+        handleCloseModal();
     }
 
     return (
         <div className='modal'>
             <div className="modal--header">
-                <h3>{selectedStudent ? 'chagnge student info' : 'Add a new Student'}</h3>
+                <h3>Add a new Student</h3>
                 <button onClick={() => handleCloseModal()}>Close</button>
             </div>
             <div className="modal--content">
