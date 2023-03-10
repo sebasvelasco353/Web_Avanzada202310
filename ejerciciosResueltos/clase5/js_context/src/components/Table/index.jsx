@@ -31,7 +31,11 @@ export default function Table() {
     <>
       <button onClick={() => handleOpenModal()}>Nuevo estudiante</button>
       {renderAddModal()}
-      <table style={{ borderCollapse: 'collapse'}}>
+      <table style={{
+          borderCollapse: 'collapse',
+          width: '90vw',
+          margin: '0 5vw'
+        }}>
         <thead>
             <tr>
                 <th>Nombre</th>
