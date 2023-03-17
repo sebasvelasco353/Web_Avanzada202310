@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { studentsContext } from "../App";
+import { studentsContext } from "../../App";
 
 const List = ({addSemester, removeSemester, showDetails, deleteStudent}) => {
 
