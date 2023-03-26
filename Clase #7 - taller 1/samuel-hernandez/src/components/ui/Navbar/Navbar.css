@@ -6,7 +6,7 @@
   color: #F7F8F3FF;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .navbar__logo {
   display: flex;
@@ -33,6 +33,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
+  transition: width ease-in-out 1s;
 }
 .navbar__actions li {
   font-family: "Rubik", sans-serif;
@@ -62,11 +63,19 @@
 .shown {
   pointer-events: auto;
   visibility: visible;
+  width: auto;
 }
 
 .hidden {
+  width: 0;
+  height: 0;
   pointer-events: none;
   visibility: hidden;
+  display: none;
+}
+.hidden li, .hidden a, .hidden button {
+  height: 0;
+  width: 0;
 }
 
 .selected {

@@ -13,8 +13,8 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path={"/login"} element={<Login/>}/>
                 <Route path={"/"} element={<LoggedLayout/>}>
+                    <Route path={"login"} element={<Login/>}/>
                     <Route index element={<Home/>}/>
                     <Route path={"/cart"} element={<Cart/>}/>
                     <Route path={"/profile"} element={<Profile/>}/>

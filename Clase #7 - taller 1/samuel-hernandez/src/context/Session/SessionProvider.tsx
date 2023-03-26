@@ -7,7 +7,7 @@ interface IProps {
 
 export const SessionProvider = (props: IProps) => {
 
-    const [logged, setLogged] = useState(true);
+    const [logged, setLogged] = useState(false);
 
     const login = () : boolean => {
         setLogged(true);
