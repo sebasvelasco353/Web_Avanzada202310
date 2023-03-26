@@ -1,7 +1,80 @@
 .navbar {
-  width: 100vw;
-  height: 5rem;
-  background-color: var(--primary-dark);
+  height: 6rem;
+  padding-inline: 3rem;
+  padding-block: 1rem;
+  background-color: #002C3EFF;
+  color: #F7F8F3FF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+}
+.navbar__logo__script {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 0.25rem;
+}
+.navbar__logo__script h1 {
+  font-size: xx-large;
+  font-weight: bold;
+}
+.navbar__logo__script p {
+  font-family: "Caveat", cursive;
+  font-size: large;
+}
+.navbar__actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+.navbar__actions li {
+  font-family: "Rubik", sans-serif;
+  display: grid;
+  place-items: center;
+}
+.navbar__actions li:hover {
+  transition: 300ms ease-in-out;
+  color: #78BCC4FF;
+}
+.navbar__actions li a {
+  color: inherit;
+  text-decoration: none;
+  font-size: large;
+}
+.navbar__actions li button {
+  min-width: 8rem;
+  font-size: large;
+  background-color: transparent;
+  color: inherit;
+  border: solid 2px #F7F8F3FF;
+  border-radius: 1rem;
+  padding-inline: 2rem;
+  padding-block: 0.5rem;
+}
+
+.shown {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.hidden {
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.selected {
+  color: #F7444EFF;
+  font-weight: bold;
+  text-decoration: underline 2px;
+  text-underline-offset: 1rem;
+  text-decoration-thickness: 0.25rem;
 }
 
 /*# sourceMappingURL=Navbar.css.map */
