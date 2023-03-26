@@ -8,8 +8,8 @@ interface IProps {
 
 export const LoggedLayout = (props: IProps) => {
     return (
-        <main className={"layout"}>
+        <div className={"layout"}>
             <Navbar />
-        </main>
+        </div>
     );
 }
