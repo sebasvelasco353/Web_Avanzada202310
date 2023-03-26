@@ -6,32 +6,36 @@
   justify-content: center;
   border: solid 2px;
   border-radius: 1rem;
-  color: #525252;
+  color: #737373;
   transition: all 300ms ease-in-out;
 }
 .input__focused {
-  color: #78BCC4FF;
+  color: #be123c;
 }
 .input__label {
   position: absolute;
   z-index: 3;
-  left: 1.5rem;
-  top: -0.625rem;
+  left: 1.75rem;
+  top: -0.5rem;
   color: inherit;
   background-color: #fafafa;
   font-size: small;
+  padding-inline: 0.5rem;
 }
 .input__icon {
-  padding: 0.75rem;
-  width: 3.5rem;
+  padding-inline: 0.5rem;
+  width: 2rem;
   height: 100%;
 }
 .input__box {
-  padding-inline: 4rem;
+  padding-right: 2rem;
+  padding-left: 0.5rem;
   width: 100%;
   height: 3.5rem;
   background-color: transparent;
   border: transparent;
+  font-size: large;
+  color: inherit;
 }
 .input__box.textarea {
   resize: none;
