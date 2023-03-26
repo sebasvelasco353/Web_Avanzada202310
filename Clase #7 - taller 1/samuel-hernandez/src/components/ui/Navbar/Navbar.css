@@ -1,16 +1,12 @@
 .navbar {
-  height: 6rem;
+  min-height: 8rem;
   padding-inline: 3rem;
-  padding-block: 1rem;
   font-family: "Rubik", sans-serif;
   background-color: black;
   color: #f5f5f5;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.navbar:has(ul):has(.hidden) {
-  justify-content: center;
 }
 .navbar__logo {
   display: flex;
@@ -76,14 +72,9 @@
 }
 
 .hidden {
-  width: 0;
   pointer-events: none;
   visibility: hidden;
   display: none;
-}
-.hidden li, .hidden a, .hidden button {
-  height: 0;
-  width: 0;
 }
 
 .selected {
