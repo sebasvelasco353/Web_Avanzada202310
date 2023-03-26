@@ -1,9 +1,8 @@
 @use "./../../../variables" as v;
 
 .navbar {
-  height: 6rem;
+  min-height: 8rem;
   padding-inline: 3rem;
-  padding-block: 1rem;
   font-family: "Rubik", sans-serif;
 
   background-color: black;
@@ -13,10 +12,6 @@
   align-items: center;
   justify-content: space-between;
 
-  // Coming up with this solution required a lot of thinking, but a shockingly small amount o time to properly write :D
-  &:has(ul):has(.hidden) {
-    justify-content: center;
-  }
 
   &__logo {
     display: flex;
@@ -92,15 +87,9 @@
 }
 
 .hidden {
-  width: 0;
   pointer-events: none;
   visibility: hidden;
   display: none;
-
-  li, a, button {
-    height: 0;
-    width: 0;
-  }
 }
 
 .selected {
