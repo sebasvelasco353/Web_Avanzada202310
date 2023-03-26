@@ -2,11 +2,15 @@
   height: 6rem;
   padding-inline: 3rem;
   padding-block: 1rem;
+  font-family: "Rubik", sans-serif;
   background-color: #002C3EFF;
   color: #F7F8F3FF;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+.navbar:has(ul):has(.hidden) {
+  justify-content: center;
 }
 .navbar__logo {
   display: flex;
@@ -36,7 +40,6 @@
   transition: width ease-in-out 1s;
 }
 .navbar__actions li {
-  font-family: "Rubik", sans-serif;
   display: grid;
   place-items: center;
 }
@@ -68,7 +71,6 @@
 
 .hidden {
   width: 0;
-  height: 0;
   pointer-events: none;
   visibility: hidden;
   display: none;

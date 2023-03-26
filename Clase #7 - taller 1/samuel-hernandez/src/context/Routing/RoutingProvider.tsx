@@ -8,7 +8,6 @@ interface IProps {
 export const RoutingProvider = (props: IProps) => {
 
     const [route, setRoute] : [Routes, Dispatch<SetStateAction<Routes>>] = useState("login" as Routes);
-
     const setCurrent = (next : Routes) : Routes => {
         setRoute(next);
         return route;

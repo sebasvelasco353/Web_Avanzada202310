@@ -1,0 +1,26 @@
+@use "./../../variables" as v;
+
+.login {
+  padding-block: 2rem;
+  padding-inline: 16rem;
+  height: 100%;
+  background-color: v.$neutral-100;
+
+  &__card {
+    background-color: v.$blue-50;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    place-items: center;
+    border-radius: 2rem;
+    background-color: v.$neutral-50;
+    filter: v.$drop-shadow-md;
+    overflow: clip;
+  }
+
+}

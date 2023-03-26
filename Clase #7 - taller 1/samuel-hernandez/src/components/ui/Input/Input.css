@@ -1,0 +1,45 @@
+.input {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 2px;
+  border-radius: 1rem;
+  color: #525252;
+  transition: all 300ms ease-in-out;
+}
+.input__focused {
+  color: #78BCC4FF;
+}
+.input__label {
+  position: absolute;
+  z-index: 3;
+  left: 1.5rem;
+  top: -0.625rem;
+  color: inherit;
+  background-color: #fafafa;
+  font-size: small;
+}
+.input__icon {
+  padding: 0.75rem;
+  width: 3.5rem;
+  height: 100%;
+}
+.input__box {
+  padding-inline: 4rem;
+  width: 100%;
+  height: 3.5rem;
+  background-color: transparent;
+  border: transparent;
+}
+.input__box.textarea {
+  resize: none;
+  height: 16rem;
+}
+.input__box:focus, .input__box *:focus {
+  border: none;
+  outline: none;
+}
+
+/*# sourceMappingURL=Input.css.map */
