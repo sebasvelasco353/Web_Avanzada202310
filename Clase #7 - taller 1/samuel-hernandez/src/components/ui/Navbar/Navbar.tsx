@@ -3,6 +3,7 @@ import {CupHot} from "react-bootstrap-icons";
 import React, {useContext, useState} from "react";
 import SessionContext from "../../../context/Session/SessionContext";
 import RoutingContext, {Routes} from "../../../context/Routing/RoutingContext";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
 
@@ -12,6 +13,7 @@ export const Navbar = (props: IProps) => {
 
     const {logged, logout} = useContext(SessionContext);
     const {current, setCurrent} = useContext(RoutingContext);
+    const navigate = useNavigate();
 
     const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
         setCurrent("login");
@@ -21,6 +23,7 @@ export const Navbar = (props: IProps) => {
     const handleRouteChange = (e: React.MouseEvent<HTMLAnchorElement>, next : Routes) => {
         e.preventDefault();
         setCurrent(next);
+        navigate(next !== "home" ? `/${next}` : "/");
     };
 
     return (

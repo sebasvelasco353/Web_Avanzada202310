@@ -3,4 +3,20 @@
   font-family: "Rubik", sans-serif;
 }
 
+html {
+  min-height: 100%;
+}
+
+body {
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: start;
+}
+
 /*# sourceMappingURL=index.css.map */

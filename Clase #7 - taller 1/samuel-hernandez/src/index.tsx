@@ -10,11 +10,7 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <SessionProvider>
-        <RoutingProvider>
-            <React.StrictMode>
-                <App/>
-            </React.StrictMode>
-        </RoutingProvider>
-    </SessionProvider>
+    <React.StrictMode>
+        <App/>
+    </React.StrictMode>
 );
