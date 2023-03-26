@@ -6,8 +6,8 @@
   padding-block: 1rem;
   font-family: "Rubik", sans-serif;
 
-  background-color: v.$primary-dark;
-  color: v.$off-white;
+  background-color: black;
+  color: v.$neutral-100;
 
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@
 
   &__actions {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(8.75rem, 1fr));
     gap: 0.5rem;
     transition: width ease-in-out 1s;
 
@@ -55,7 +55,7 @@
 
       &:hover {
         transition: 300ms ease-in-out ;
-        color: v.$primary-light;
+        color: v.$rose-300;
       }
 
       a {
@@ -69,11 +69,17 @@
         font-size: large;
         background-color: transparent;
         color: inherit;
-        border: solid 2px v.$off-white;
+        border: solid 2px v.$neutral-200;
         border-radius: 1rem;
         padding-inline: 2rem;
         padding-block: 0.5rem;
 
+        &:hover {
+          transition: all 200ms ease-in-out;
+          cursor: pointer;
+          border-color: v.$accent;
+          scale: 1.025;
+        }
       }
     }
   }

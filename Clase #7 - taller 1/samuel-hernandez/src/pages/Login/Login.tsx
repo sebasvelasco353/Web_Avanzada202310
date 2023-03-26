@@ -30,9 +30,9 @@ export const Login = (props : IProps) => {
 
                 </section>
                 <form className={"login__form"} onSubmit={handleSubmit}>
-                    <h2>Welcome back</h2>
-                    <Input type={"text"} label={"Username"} name={"loginUsername"} icon={<Person size={48} />}/>
-                    <Input type={"password"} label={"Password"} name={"loginPassword"} icon={<Key size={48} />} />
+                    <h2>Welcome back!</h2>
+                    <Input type={"text"} label={"Username"} name={"loginUsername"} icon={<Person size={12} className={"input__icon"}/>}/>
+                    <Input type={"password"} label={"Password"} name={"loginPassword"} icon={<Key size={12} className={"input__icon"}/>} />
                     <input type={"submit"} />
                     <p>Test mode | no data being processed</p>
                 </form>
