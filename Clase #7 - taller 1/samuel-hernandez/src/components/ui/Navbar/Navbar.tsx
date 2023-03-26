@@ -1,6 +1,8 @@
 import './Navbar.css';
 import {CupHot} from "react-bootstrap-icons";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import SessionContext from "../../../context/Session/SessionContext";
+import RoutingContext, {Routes} from "../../../context/Routing/RoutingContext";
 
 interface IProps {
 
@@ -8,10 +10,17 @@ interface IProps {
 
 export const Navbar = (props: IProps) => {
 
-    const [isLoggedIn, setLoggedIn] = useState(true); // This is a placeholder for auth context
+    const {logged, logout} = useContext(SessionContext);
+    const {current, setCurrent} = useContext(RoutingContext);
 
     const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
-        setLoggedIn(!isLoggedIn);
+        setCurrent("login");
+        logout();
+    };
+
+    const handleRouteChange = (e: React.MouseEvent<HTMLAnchorElement>, next : Routes) => {
+        e.preventDefault();
+        setCurrent(next);
     };
 
     return (
@@ -23,18 +32,18 @@ export const Navbar = (props: IProps) => {
                     <p>brewed for you</p>
                 </section>
             </section>
-            <ul className={"navbar__actions"}>
-                <li className={`${isLoggedIn ? "shown" : "hidden"} selected`}>
-                    <a href={"/"}>Home</a>
+            <ul className={`navbar__actions ${logged ? "shown" : "hidden"}`}>
+                <li className={current === "home" ? "selected" : ""}>
+                    <a onClick={e => handleRouteChange(e, "home")} href={"/"}>Home</a>
                 </li>
-                <li className={isLoggedIn ? "shown" : "hidden"}>
-                    <a href={"/cart"}>Cart</a>
+                <li className={current === "cart" ? "selected" : ""}>
+                    <a onClick={e => handleRouteChange(e, "cart")} href={"/cart"}>Cart</a>
                 </li>
-                <li className={isLoggedIn ? "shown" : "hidden"}>
-                    <a href={"/profile"}>Profile</a>
+                <li className={current === "profile" ? "selected" : ""}>
+                    <a onClick={e => handleRouteChange(e, "profile")} href={"/profile"}>Profile</a>
                 </li>
                 <li>
-                    <button onClick={handleLogout} >{isLoggedIn ? "Logout" : "Login"}</button>
+                    <button onClick={handleLogout} >Logout</button>
                 </li>
             </ul>
         </nav>
