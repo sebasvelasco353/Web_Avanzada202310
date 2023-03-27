@@ -1,0 +1,13 @@
+@use "../../variables" as v;
+
+.item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: end;
+  border-radius: 0.75rem;
+  background-color: transparentize(v.$neutral-600, 0.2);
+  backdrop-filter: blur(1rem);
+  filter: v.$drop-shadow-md;
+  height: 32rem;
+}
