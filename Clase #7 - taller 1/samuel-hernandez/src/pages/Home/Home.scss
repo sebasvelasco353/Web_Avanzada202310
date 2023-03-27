@@ -1,6 +1,7 @@
 @use "./../../variables" as v;
 
 .home {
+  position: relative;
   background: linear-gradient(to bottom, v.$rose-800 0%, v.$rose-700 5%, v.$neutral-800 15%);
 
   &__wrapper {
