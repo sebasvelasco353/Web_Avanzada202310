@@ -47,9 +47,9 @@
     li {
       display: grid;
       place-items: center;
+      transition: 300ms ease-in-out ;
 
       &:hover {
-        transition: 300ms ease-in-out ;
         color: v.$rose-300;
       }
 
