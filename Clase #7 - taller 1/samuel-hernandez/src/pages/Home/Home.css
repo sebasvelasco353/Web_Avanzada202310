@@ -1,4 +1,5 @@
 .home {
+  position: relative;
   background: linear-gradient(to bottom, #9f1239 0%, #be123c 5%, #262626 15%);
 }
 .home__wrapper {

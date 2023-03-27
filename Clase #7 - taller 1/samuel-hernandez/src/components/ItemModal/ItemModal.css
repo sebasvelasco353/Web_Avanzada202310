@@ -1,0 +1,135 @@
+.item-modal {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  top: 1rem;
+  width: 35vw;
+  height: 70vh;
+  background-color: #171717;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+  color: #f5f5f5;
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06));
+  padding-inline: 2rem;
+  padding-block: 3rem;
+}
+.item-modal::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(23, 23, 23, 0.6);
+}
+.item-modal h2 {
+  font-weight: bold;
+  font-size: xxx-large;
+  margin-bottom: 1rem;
+}
+.item-modal h4 {
+  font-weight: 300;
+  font-size: medium;
+  margin-bottom: 5rem;
+}
+.item-modal__description {
+  font-weight: normal;
+  font-size: large;
+  min-height: 16rem;
+  text-align: justify;
+}
+.item-modal h3 {
+  font-weight: bold;
+  font-size: x-large;
+  margin-bottom: 0.5rem;
+}
+.item-modal__shipping {
+  font-weight: 300;
+  font-size: small;
+  color: #a3a3a3;
+}
+.item-modal__add {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: end;
+  gap: 2rem;
+}
+.item-modal__add__quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 3rem;
+}
+.item-modal__add__quantity__number {
+  border: solid 2px #525252;
+  border-radius: 0.75rem;
+  padding-inline: 1rem;
+  height: 100%;
+  width: 7rem;
+  text-align: center;
+  font-size: large;
+  background-color: transparent;
+  color: #e5e5e5;
+}
+.item-modal__add__quantity__number::-webkit-outer-spin-button, .item-modal__add__quantity__number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.item-modal__add__quantity__number[type=number] {
+  -moz-appearance: textfield;
+}
+.item-modal__add__quantity button {
+  height: 100%;
+  border-radius: 0.75rem;
+  aspect-ratio: 1;
+  border: none;
+}
+.item-modal__add__quantity button:disabled {
+  filter: brightness(40%);
+}
+.item-modal__add__quantity__add {
+  background-color: #F7444EFF;
+  color: #fff1f2;
+}
+.item-modal__add__quantity__remove {
+  background-color: #737373;
+  color: #f5f5f5;
+}
+.item-modal__add__button-bar {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 2rem;
+}
+.item-modal__add__button-bar button {
+  padding-block: 1rem;
+  padding-inline: 4rem;
+  min-width: 12rem;
+  border-radius: 0.75rem;
+  border: none;
+  font-size: large;
+}
+.item-modal__add__button-bar__confirm {
+  background-color: #F7444EFF;
+  color: #fff1f2;
+}
+.item-modal__add__button-bar__cancel {
+  background-color: #737373;
+  color: #f5f5f5;
+}
+
+.available {
+  color: #86efac;
+}
+
+.unavailable {
+  color: #fca5a5;
+}
+
+/*# sourceMappingURL=ItemModal.css.map */

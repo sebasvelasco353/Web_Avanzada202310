@@ -1,12 +1,14 @@
 import "./Home.css";
 import {AvailableItems} from "../../data/AvailableItems";
 import {ItemCard} from "../../components/ItemCard/ItemCard";
+import {ItemModal} from "../../components/ItemModal/ItemModal";
 interface IProps {
 
 }
 
 export const Home = (props: IProps) => {
 
+    const modalOpen = true;
 
     return <main className={"home"}>
         <header className={"home__header"}>
@@ -19,5 +21,6 @@ export const Home = (props: IProps) => {
                 })}
             </section>
         </section>
+        <ItemModal />
     </main>;
 }
