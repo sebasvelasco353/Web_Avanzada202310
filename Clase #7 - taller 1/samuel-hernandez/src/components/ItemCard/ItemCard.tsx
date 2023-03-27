@@ -1,6 +1,8 @@
 import {Item} from "../../interfaces/interfaces";
 import "./ItemCard.css";
 import {Basket, CartPlus} from "react-bootstrap-icons";
+import React, {useContext} from "react";
+import CartContext from "../../context/Cart/CartContext";
 
 interface IProps {
     item : Item;
@@ -9,14 +11,34 @@ interface IProps {
 
 export const ItemCard = (props: IProps) => {
 
-    const quantity = "n";
+    const { addItem, updateItem, findItemById } = useContext(CartContext);
     const available = props.item.stock > 0;
+
+    const itemInCart = findItemById(props.item.id);
+    const quantity = itemInCart !== undefined ? itemInCart.quantity : 0;
+
+    const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        if (itemInCart === undefined) { // Item not found, add to cart
+            addItem({
+                ...props.item,
+                quantity: 1
+            });
+        } else { // Item found, increase quantity by 1
+            updateItem(itemInCart.id, {
+                ...itemInCart,
+                quantity: (itemInCart.quantity + 1)
+            });
+        }
+    };
 
     return (
         <article className={"item-card"}>
             <span className={"item-card__overlay"} />
             <section className={"item-card__info"}>
-                <button className={`item-card__info__add ${available ? "item-card__info__add__enable" : "item-card__info__add__disable"}`} disabled={!available}>
+                <p>{quantity !== 0 ? `${quantity} in cart` : ""}</p>
+                <button onClick={handleAddToCart} className={`item-card__info__add ${available ? "item-card__info__add__enable" : "item-card__info__add__disable"}`} disabled={!available}>
                     <CartPlus size={32}/>
                 </button>
                 <h2>{props.item.name}</h2>

@@ -73,9 +73,18 @@
   color: #F7444EFF;
 }
 .item-card__info__add__enable:active {
-  background-color: #F7444EFF;
+  background-color: #ffe4e6;
   color: #fecaca;
   filter: brightness(75%);
+}
+.item-card__info p {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: large;
+  text-align: right;
+  color: #F7444EFF;
+  font-weight: bold;
 }
 .item-card__info h2 {
   font-size: xxx-large;
