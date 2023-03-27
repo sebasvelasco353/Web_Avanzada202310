@@ -3,7 +3,7 @@
   z-index: 1;
   right: 1rem;
   top: 1rem;
-  width: 35vw;
+  max-width: 24vw;
   height: 70vh;
   background-color: #171717;
   display: flex;
@@ -15,6 +15,7 @@
   filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06));
   padding-inline: 2rem;
   padding-block: 3rem;
+  transition: opacity 300ms ease-in-out;
 }
 .item-modal::before {
   content: "";
@@ -130,6 +131,16 @@
 
 .unavailable {
   color: #fca5a5;
+}
+
+.shown {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /*# sourceMappingURL=ItemModal.css.map */

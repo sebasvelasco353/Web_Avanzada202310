@@ -3,6 +3,7 @@ import "./ItemCard.css";
 import {Basket, CartPlus} from "react-bootstrap-icons";
 import React, {useContext} from "react";
 import CartContext from "../../context/Cart/CartContext";
+import ModalContext from "../../context/Modal/ModalContext";
 
 interface IProps {
     item : Item;
@@ -10,7 +11,7 @@ interface IProps {
 }
 
 export const ItemCard = (props: IProps) => {
-
+    const {setItem, toggleModal} = useContext(ModalContext);
     const { addItem, updateItem, findItemById } = useContext(CartContext);
     const available = props.item.stock > 0;
 
@@ -19,6 +20,7 @@ export const ItemCard = (props: IProps) => {
 
     const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
+        e.stopPropagation();
 
         if (itemInCart === undefined) { // Item not found, add to cart
             addItem({
@@ -33,8 +35,17 @@ export const ItemCard = (props: IProps) => {
         }
     };
 
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        setItem({
+            ...props.item,
+            quantity: 0
+        });
+        toggleModal();
+    };
+
     return (
-        <article className={"item-card"}>
+        <article className={"item-card"} onClick={handleClick}>
             <span className={"item-card__overlay"} />
             <section className={"item-card__info"}>
                 <p>{quantity !== 0 ? `${quantity} in cart` : ""}</p>
