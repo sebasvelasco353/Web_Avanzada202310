@@ -38,9 +38,9 @@
 .navbar__actions li {
   display: grid;
   place-items: center;
+  transition: 300ms ease-in-out;
 }
 .navbar__actions li:hover {
-  transition: 300ms ease-in-out;
   color: #fda4af;
 }
 .navbar__actions li a {
