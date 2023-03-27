@@ -5,6 +5,7 @@ import SessionContext from "../../../context/Session/SessionContext";
 import RoutingContext, {Routes} from "../../../context/Routing/RoutingContext";
 import {useNavigate} from "react-router-dom";
 import UserContext from "../../../context/User/UserContext";
+import CartContext from "../../../context/Cart/CartContext";
 
 interface IProps {
 
@@ -15,10 +16,12 @@ export const Navbar = (props: IProps) => {
     const {logged, logout} = useContext(SessionContext);
     const {current, setCurrent} = useContext(RoutingContext);
     const {username} = useContext(UserContext);
+    const {clear: clearCart} = useContext(CartContext);
     const navigate = useNavigate();
 
     const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
         setCurrent("login");
+        clearCart();
         logout();
     };
 

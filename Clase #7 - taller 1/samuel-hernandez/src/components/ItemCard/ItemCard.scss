@@ -84,11 +84,21 @@
         }
 
         &:active {
-          background-color: v.$accent;
+          background-color: v.$rose-100;
           color: v.$red-200;
           filter: brightness(75%);
         }
       }
+    }
+
+    p {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: large;
+      text-align: right;
+      color: v.$accent;
+      font-weight: bold;
     }
 
     h2 {
