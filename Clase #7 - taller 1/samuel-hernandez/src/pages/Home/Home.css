@@ -1,3 +1,18 @@
-
+.home {
+  background: linear-gradient(to bottom, #9f1239 0%, #be123c 5%, #262626 15%);
+}
+.home__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: start;
+  padding-block: 4rem;
+  padding-inline: 8rem;
+}
+.home__content {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: repeat(3, 1fr);
+}
 
 /*# sourceMappingURL=Home.css.map */

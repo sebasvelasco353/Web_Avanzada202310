@@ -11,6 +11,10 @@ body {
   height: 100vh;
 }
 
+main {
+  background-color: #262626;
+}
+
 #root {
   height: 100%;
   display: flex;
