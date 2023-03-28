@@ -14,11 +14,11 @@
   
   .product_info__bar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 10px;
   }
   
-  .product_info__bar--button_ {
+  .product_info__bar--AddButton {
     width: 30px;
     height: 30px;
     background-color: transparent;
@@ -26,6 +26,19 @@
     outline: none;
     cursor: pointer;
     background-image: url('./agregar-carrito.png');
+    background-size: cover;
+  }
+
+  .product_info__bar--CloseButton {
+    
+    width: 23px;
+    height: 23px;
+    margin-top: 4px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-image: url('./close.png');
     background-size: cover;
   }
   
