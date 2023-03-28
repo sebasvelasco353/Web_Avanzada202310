@@ -2,7 +2,6 @@ import "./Login.css";
 import {Input} from "../../components/ui/Input/Input";
 import React, {useContext} from "react";
 import {useNavigate} from "react-router-dom";
-import RoutingContext from "../../context/Routing/RoutingContext";
 import SessionContext from "../../context/Session/SessionContext";
 import {Key, Person} from "react-bootstrap-icons";
 import UserContext from "../../context/User/UserContext";
@@ -14,16 +13,13 @@ interface IProps {
 export const Login = (props : IProps) => {
 
     const navigate = useNavigate();
-    const { setCurrent } = useContext(RoutingContext);
     const { setUsername } = useContext(UserContext);
     const { login } = useContext(SessionContext);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const username : HTMLInputElement = (e.target as HTMLFormElement).loginUsername;
-        setCurrent("home");
         login();
-        console.log(username.value);
         setUsername(username.value);
         navigate("/");
     };
