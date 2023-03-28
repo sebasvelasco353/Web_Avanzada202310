@@ -13,6 +13,7 @@ import Cart from "./components/cart";
 import UserInfo from "./components/user";
 import LogIn from "./components/logIn";
 import reducer, {initialState} from "./AppContext";
+import { v4 as uuidv4 } from 'uuid';
 
 export const EcommerceContext = React.createContext();
 
@@ -23,72 +24,50 @@ function App(){
     const [productsInCart, setProductsInCart] = useState([])
     const [products, setProducts] = useState([
         {
-            name: "Chain saw Man tomo 1",
+            id: uuidv4(),
+            name: "Chain saw Man volumen 1",
             description: "",
             price: "40000"
         },
         {
-            name: "Chain saw Man tomo 1",
+            id: uuidv4(),
+            name: "Oyasumi pum pum volumen 1",
             description: "",
             price: "40000"
         },
         {
-            name: "Chain saw Man tomo 1",
+            id: uuidv4(),
+            name: "Baki volumen 2",
             description: "",
             price: "40000"
         },
         {
-            name: "Chain saw Man tomo 1",
+            id: uuidv4(),
+            name: "Jujutsu kaisen volumen 3",
             description: "",
             price: "40000"
         },
         {
-            name: "Chain saw Man tomo 1",
+            id: uuidv4(),
+            name: "One piece volumen 1",
             description: "",
             price: "40000"
         },
         {
-            name: "Chain saw Man tomo 1",
+            id: uuidv4(),
+            name: "Nana",
             description: "",
             price: "40000"
         },
         {
-            name: "Chain saw Man tomo 1",
+            id: uuidv4(),
+            name: "Hunter X Hunter volumen 5",
             description: "",
             price: "40000"
         },
         {
-            name: "Chain saw Man tomo 1",
-            description: "",
-            price: "40000"
-        },
-        {
-            name: "Chain saw Man tomo 1",
-            description: "",
-            price: "40000"
-        },
-        {
-            name: "Chain saw Man tomo 1",
-            description: "",
-            price: "40000"
-        },
-        {
-            name: "Chain saw Man tomo 1",
-            description: "",
-            price: "40000"
-        },
-        {
-            name: "Chain saw Man tomo 1",
-            description: "",
-            price: "40000"
-        },
-        {
-            name: "Chain saw Man tomo 1",
-            description: "",
-            price: "40000"
-        },
-        {
-            name: "Chain saw Man tomo 1",
+            id: uuidv4(),
+            name: "Afro samurai",
             description: "",
             price: "40000"
         }
@@ -107,6 +86,19 @@ function App(){
         }
     }
 
+    const handleAddToCart = (manga) => {
+        if(!productsInCart.includes(manga)){
+            const newCart = [...productsInCart, manga];
+            setProductsInCart(newCart);
+        }
+    }
+
+    const deleteMangaFromCart = (manga) => {
+        const mangaIndex = productsInCart.findIndex((toDelete) => toDelete.id === manga.id);
+        if (mangaIndex !== -1) {
+            productsInCart.splice(mangaIndex, 1);
+        }
+    }
 
     return(
         <HashRouter>
@@ -126,9 +118,9 @@ function App(){
             <EcommerceContext.Provider value={products}>
                 <div className="content">
                     <Routes>
-                        <Route path="/products" element={<Products/>}/>
-                        <Route path="/" element={<Products/>}/>
-                        <Route path="/cart" element={<Cart cart = {productsInCart}/>}/>
+                        <Route path="/products" element={<Products addToCart = {handleAddToCart}/>}/>
+                        <Route path="/" element={<Products addToCart = {handleAddToCart}/>}/>
+                        <Route path="/cart" element={<Cart cart = {productsInCart} handleDelete = {deleteMangaFromCart}  /> }/>
                         <Route path="/usuario" element={<UserInfo/>}/>
                         <Route path="/login" element={<LogIn/>}/>
                     </Routes>

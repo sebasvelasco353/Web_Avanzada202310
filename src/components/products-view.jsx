@@ -2,7 +2,7 @@ import React from "react";
 import { EcommerceContext } from "../App";
 import "./products-view.css"
 
-function Products(){
+function Products({addToCart}){
   const products = React.useContext(EcommerceContext)
 
   const productGroups = products.reduce((groups, product, index) => {
@@ -22,7 +22,7 @@ function Products(){
               <div className="container">
                 <h4><b>{product.name}</b></h4>
                 <p>{product.price}</p>
-                <button>Agregar al carrito</button>
+                <button onClick={() => addToCart(product)}>Agregar al carrito</button>
               </div>
             </div>
           ))}
