@@ -9,16 +9,18 @@ function Product (props){
     const dispatch = useDispatch();
 
     const clickProductCard =()=>{
+
         if(showModal){
             dispatch({type: 'HideModal'});
         } else {
             dispatch({type: 'ShowModal'})
+            dispatch({type: 'SetProduct', payload: props})
         }
     }
 
     const displayModal = ()=> {
         if(showModal){
-            return <Modal name={props.name} price={props.price} description={props.description}/>
+            return <Modal name={props.name} price={props.price} description={props.description} showModal={showModal}/>
         }
     }
 

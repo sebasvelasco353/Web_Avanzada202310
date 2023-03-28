@@ -1,23 +1,36 @@
-import {createStore} from 'redux';
+import {configureStore} from '@reduxjs/toolkit'
 
 const initialState = {
-    showModal: false
+    showModal: false,
+    product: {},
+    products: []
 }
 
 const showModal = 'ShowModal'
 const hideModal = 'HideModal'
+const setProduct = 'SetProduct'
+const addProduct = 'AddProduct'
+const removeProduct = 'RemoveProduct'
 
-function counterReducer(state = initialState, action){
+function modalReducer(state = initialState, action){
     switch(action.type) {
-        case 'ShowModal':
+        case showModal:
             return {...state, showModal: true};
-        case 'HideModal':
+        case hideModal:
             return {...state, showModal: false};
-        default:
+        case setProduct:
+            return {...state, product: action.payload};
+        case addProduct:
+            return { ...state, products: [ ...state.products, action.payload ] };
+        case removeProduct:
+            return { ...state, products: state.products.filter(product => product.id !== action.payload.id) };
+            default:
         return state;
     }
 }
 
-const store = createStore(counterReducer);
+const store = configureStore({
+    reducer: modalReducer
+});
 
 export default store

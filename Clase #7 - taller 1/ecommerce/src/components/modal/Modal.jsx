@@ -1,13 +1,18 @@
 import "./Modal.css"
 import { useSelector, useDispatch } from "react-redux"
+import { useState } from "react";
+import { compose } from "redux";
 
-function Modal(props){
+function Modal(){
 
-    const showModal = useSelector(state => state.showModal);
+    const props = useSelector(state=>state.product)
+    const products = useSelector(state=>state.products)
     const dispatch = useDispatch();
 
-    const addProduct = () =>{
-        
+    const addProductToShopping = () =>{
+        dispatch({type:'addProduct', payload: props})
+        console.log(products)
+        console.log(props)
     }
 
     const closeModal = (e) => {
@@ -17,7 +22,7 @@ function Modal(props){
     return(
         <div className="product_info" onClick={(e)=> e.stopPropagation()}>
             <div className="product_info__bar">
-                <button className="product_info__bar--AddButton" onClick={addProduct}></button>
+                <button className="product_info__bar--AddButton" onClick={addProductToShopping}></button>
                 <button className="product_info__bar--CloseButton" onClick={closeModal}></button>
             </div>
 
