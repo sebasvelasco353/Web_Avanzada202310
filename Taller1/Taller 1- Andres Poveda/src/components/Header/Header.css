@@ -1,0 +1,82 @@
+@import '../../App.css';
+
+header img {
+    width: 60px;
+    object-fit: contain;
+    margin: 0 2px;
+}
+
+header p {
+  
+    padding: 0 5px;
+}
+
+header {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header button {
+    padding: 10px 20px;
+    margin: 10px 10px;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 5px;
+    background-color: var(--mora-oscuro);
+    color: white;
+    cursor: pointer;
+}
+
+.not-showing{
+ display: none;
+}
+
+.log-out-button{
+    background-color: red;
+}
+
+.log-out-button:hover{
+    transition: background-color 0.5s;
+    transition: color 0.5;
+    background-color: rgb(255, 147, 147);
+    cursor: pointer;
+}
+
+header button:hover {
+    transition: background-color 0.5s;
+    transition: color 0.5;
+    color: black;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgb(47, 255, 61);
+}
+
+header div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .admin-header-section  p {
+    margin-left: 30px;
+}
+
+.admin-header-section {
+    display: none;
+}
+
+.admin-header-style {
+ display: flex;
+ flex-direction: row;
+}
+
+.group-div{
+    margin-right: 55px;
+    font-weight: 100;
+    width: 2px;
+    background-color:black;
+}
