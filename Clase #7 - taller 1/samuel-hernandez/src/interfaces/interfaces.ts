@@ -20,7 +20,8 @@ export interface CartState {
 
 export interface ModalState {
     isOpen: boolean,
-    item : Item
+    item : Item,
+    initialQuantity: number,
 }
 
 // Session and User

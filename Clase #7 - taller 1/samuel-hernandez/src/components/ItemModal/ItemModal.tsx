@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 import {Plus, Dash} from "react-bootstrap-icons";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import ModalContext from "../../context/Modal/ModalContext";
 import CartContext from "../../context/Cart/CartContext";
 
@@ -9,10 +9,10 @@ interface IProps {
 }
 
 export const ItemModal = (props: IProps) => {
-    const {isOpen, item, close} = useContext(ModalContext);
+    const {isOpen, item, initialQuantity, close} = useContext(ModalContext);
     const {addItem, updateItem, removeItem, findItemById} = useContext(CartContext);
     const itemInCart = findItemById(item.id);
-    const [quantity, setQuantity] = useState(itemInCart ? itemInCart.quantity : 0);
+    const [quantity, setQuantity] = useState(initialQuantity);
     const addDisable = quantity === 100;
     const removeDisable = quantity === 0;
 
@@ -60,6 +60,7 @@ export const ItemModal = (props: IProps) => {
             }
         }
 
+        setQuantity(0);
         dismiss();
     };
 
@@ -83,18 +84,22 @@ export const ItemModal = (props: IProps) => {
             <section>
                 <section className={"item-modal__add"}>
                     <section className={"item-modal__add__quantity"}>
-                        <button className={"item-modal__add__quantity__add"} disabled={addDisable} onClick={add}>
+                        <button className={"item-modal__add__quantity__add"} disabled={addDisable || !inStock}
+                                onClick={add}>
                             <Plus size={32}/>
                         </button>
-                        <input type={"number"} max={100} min={0} className={"item-modal__add__quantity__number"}
+                        <input disabled={!inStock} type={"number"} max={100} min={0}
+                               className={"item-modal__add__quantity__number"}
                                onChange={handleChange} value={quantity} onBlur={handleBlur}/>
-                        <button className={"item-modal__add__quantity__remove"} disabled={removeDisable}
+                        <button className={"item-modal__add__quantity__remove"} disabled={removeDisable || !inStock}
                                 onClick={remove}>
                             <Dash size={32}/>
                         </button>
                     </section>
                     <section className={"item-modal__add__button-bar"}>
-                        <button onClick={handleConfirm} className={"item-modal__add__button-bar__confirm"}>Confirm</button>
+                        <button disabled={!inStock} onClick={handleConfirm}
+                                className={"item-modal__add__button-bar__confirm"}>Confirm
+                        </button>
                         <button onClick={handleCancel} className={"item-modal__add__button-bar__cancel"}>Cancel</button>
                     </section>
                 </section>

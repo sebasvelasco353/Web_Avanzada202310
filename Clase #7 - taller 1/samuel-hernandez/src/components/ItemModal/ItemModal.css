@@ -85,6 +85,12 @@
 .item-modal__add__quantity__number[type=number] {
   -moz-appearance: textfield;
 }
+.item-modal__add__quantity__number[type=number]:disabled {
+  filter: grayscale(65%) brightness(50%);
+}
+.item-modal__add__quantity__number[type=number]:disabled:hover {
+  cursor: not-allowed;
+}
 .item-modal__add__quantity button {
   height: 100%;
   border-radius: 0.75rem;
@@ -92,7 +98,10 @@
   border: none;
 }
 .item-modal__add__quantity button:disabled {
-  filter: brightness(40%);
+  filter: grayscale(65%) brightness(50%);
+}
+.item-modal__add__quantity button:disabled:hover {
+  cursor: not-allowed;
 }
 .item-modal__add__quantity__add {
   background-color: #F7444EFF;
@@ -115,6 +124,12 @@
   border-radius: 0.75rem;
   border: none;
   font-size: large;
+}
+.item-modal__add__button-bar button:disabled {
+  filter: grayscale(65%) brightness(50%);
+}
+.item-modal__add__button-bar button:disabled:hover {
+  cursor: not-allowed;
 }
 .item-modal__add__button-bar__confirm {
   background-color: #F7444EFF;
