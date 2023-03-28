@@ -37,7 +37,9 @@ export const ItemCard = (props: IProps) => {
 
     const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        open(props.item);
+        const itemValue = findItemById(props.item.id);
+        const quantity = itemValue !== undefined ? itemValue.quantity : 0;
+        open(props.item, quantity);
     };
 
     return (

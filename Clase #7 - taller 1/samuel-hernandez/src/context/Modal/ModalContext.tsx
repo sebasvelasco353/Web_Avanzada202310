@@ -4,7 +4,8 @@ import {Item} from "../../interfaces/interfaces";
 interface IModalContext {
     isOpen: boolean,
     item: Item,
-    open: (item: Item) => void,
+    initialQuantity : number,
+    open: (item: Item, quantity: number) => void,
     close: () => void,
 }
 

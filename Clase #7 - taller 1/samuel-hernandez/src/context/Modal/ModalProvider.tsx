@@ -8,12 +8,13 @@ export const ModalProvider = ({children}: { children: ReactNode[] | ReactNode })
     const defaultState :ModalState = {
         isOpen: false,
         item : {} as Item,
+        initialQuantity: 0,
     }
 
     const [modal, dispatch] = useReducer(modalReducer, defaultState);
 
-    const open = (item: Item) => {
-        dispatch({type: "set", payload: item});
+    const open = (item: Item, quantity: number) => {
+        dispatch({type: "set", payload: {item, initQ: quantity}});
     }
 
     const close = () => {
