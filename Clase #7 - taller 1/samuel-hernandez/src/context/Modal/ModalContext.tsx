@@ -1,22 +1,13 @@
-import {createContext, Dispatch, SetStateAction} from "react";
-import {CartItem} from "../../interfaces/interfaces";
+import {createContext} from "react";
+import {Item} from "../../interfaces/interfaces";
 
 interface IModalContext {
-    isOpen : boolean,
-    toggleModal : () => boolean,
-    item : CartItem,
-    setItem: Dispatch<SetStateAction<CartItem>>
-    clearItem : () => void
+    isOpen: boolean,
+    item: Item,
+    open: (item: Item) => void,
+    close: () => void,
 }
 
-const defaultState :IModalContext = {
-    isOpen: false,
-    toggleModal: () => false,
-    item : {} as CartItem,
-    setItem : (item) => {},
-    clearItem: () => {}
-}
-
-const ModalContext = createContext<IModalContext>(defaultState);
+const ModalContext = createContext<IModalContext>({} as IModalContext);
 
 export default ModalContext;

@@ -1,6 +1,6 @@
 import {Item} from "../../interfaces/interfaces";
 import "./ItemCard.css";
-import {Basket, CartPlus} from "react-bootstrap-icons";
+import {CartPlus} from "react-bootstrap-icons";
 import React, {useContext} from "react";
 import CartContext from "../../context/Cart/CartContext";
 import ModalContext from "../../context/Modal/ModalContext";
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const ItemCard = (props: IProps) => {
-    const {setItem, toggleModal} = useContext(ModalContext);
+    const {open} = useContext(ModalContext);
     const { addItem, updateItem, findItemById } = useContext(CartContext);
     const available = props.item.stock > 0;
 
@@ -37,11 +37,7 @@ export const ItemCard = (props: IProps) => {
 
     const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        setItem({
-            ...props.item,
-            quantity: 0
-        });
-        toggleModal();
+        open(props.item);
     };
 
     return (
