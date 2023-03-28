@@ -1,9 +1,8 @@
 import './Navbar.css';
 import {CupHot} from "react-bootstrap-icons";
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import SessionContext from "../../../context/Session/SessionContext";
-import RoutingContext, {Routes} from "../../../context/Routing/RoutingContext";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import UserContext from "../../../context/User/UserContext";
 import CartContext from "../../../context/Cart/CartContext";
 
@@ -15,22 +14,21 @@ export const Navbar = (props: IProps) => {
 
     const {sessionState , logout} = useContext(SessionContext);
     const {logged} = sessionState;
-    const {current, setCurrent} = useContext(RoutingContext);
     const {username} = useContext(UserContext);
     const {clear: clearCart} = useContext(CartContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    const current  = location.pathname;
 
     const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
-        setCurrent("login");
         clearCart();
         logout();
     };
 
-    const handleRouteChange = (e: React.MouseEvent<HTMLAnchorElement>, next : Routes) => {
+    function handleChange(e: React.MouseEvent<HTMLAnchorElement>) {
         e.preventDefault();
-        setCurrent(next);
-        navigate(next !== "home" ? `/${next}` : "/");
-    };
+        navigate((e.target as HTMLAnchorElement).href.replaceAll("http://localhost:3000", ""));
+    }
 
     return (
         <nav className={"navbar"}>
@@ -42,14 +40,14 @@ export const Navbar = (props: IProps) => {
                 </section>
             </section>
             <ul className={"navbar__actions"}>
-                <li className={`${current === "home" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
-                    <a onClick={e => handleRouteChange(e, "home")} href={"/"}>Home</a>
+                <li className={`${current === "/" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
+                    <a href={"/"} onClick={handleChange}>Home</a>
                 </li>
-                <li className={`${current === "cart" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
-                    <a onClick={e => handleRouteChange(e, "cart")} href={"/cart"}>Cart</a>
+                <li className={`${current === "/cart" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
+                    <a href={"/cart"} onClick={handleChange}>Cart</a>
                 </li>
-                <li className={`${current === "profile" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
-                    <a onClick={e => handleRouteChange(e, "profile")} href={"/profile"}>{username ? username : "Profile"}</a>
+                <li className={`${current === "/profile" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
+                    <a href={"/profile"} onClick={handleChange}>{username ? username : "Profile"}</a>
                 </li>
                 <li>
                     <button onClick={handleLogout} >{logged ? "Logout" : "Login"}</button>
