@@ -13,14 +13,14 @@ interface IProps {
 export const Login = (props : IProps) => {
 
     const navigate = useNavigate();
-    const { setUsername } = useContext(UserContext);
+    const { id, setUser } = useContext(UserContext);
     const { login } = useContext(SessionContext);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const username : HTMLInputElement = (e.target as HTMLFormElement).loginUsername;
         login();
-        setUsername(username.value);
+        setUser({id, username: username.value});
         navigate("/");
     };
 

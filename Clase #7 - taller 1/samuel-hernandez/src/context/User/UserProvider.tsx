@@ -1,5 +1,7 @@
 import UserContext from "./UserContext";
-import {useState} from "react";
+import {useReducer, useState} from "react";
+import {CartItem, User} from "../../interfaces/interfaces";
+import {userReducer} from "./userReducer";
 
 interface IProps {
     children : JSX.Element | JSX.Element[]
@@ -7,11 +9,23 @@ interface IProps {
 
 export const UserProvider = (props: IProps) => {
 
-    const [id, setId] = useState("invalid");
-    const [username, setUsername] = useState("none");
+    const defaultState :User = {
+        id : "INVALID",
+        username: "none"
+    }
+
+    const [userState, dispatch] = useReducer(userReducer, defaultState);
+
+    const setUser = (user: User) => {
+        dispatch({type: "set", payload: user});
+    }
+
+    const clear = () => {
+        dispatch({type: "clear", payload: null});
+    }
 
     return (
-        <UserContext.Provider value={{id, username, setId, setUsername}} >
+        <UserContext.Provider value={{...userState, setUser, clear}} >
             { props.children }
         </UserContext.Provider>
     );

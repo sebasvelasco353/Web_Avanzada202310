@@ -18,10 +18,6 @@ export interface User {
     username : string,
 }
 
-export interface UserState extends User {
-    cart : CartItem[],
-}
-
 export interface SessionState {
     logged : boolean
 }
