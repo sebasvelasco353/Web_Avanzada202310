@@ -1,0 +1,32 @@
+.entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.6fr 3fr 1fr 1fr;
+  place-items: center;
+}
+.entry__trash {
+  border: none;
+  background: transparent;
+  color: #a3a3a3;
+  transition: all 200ms ease-in-out;
+  padding: 2rem;
+  border-radius: 0.75rem;
+}
+.entry__trash:hover {
+  background-color: rgba(253, 164, 175, 0.4);
+  color: #b91c1c;
+  cursor: pointer;
+}
+.entry h2 {
+  font-size: medium;
+  letter-spacing: normal;
+  font-weight: normal;
+  text-transform: none;
+}
+.entry__name {
+  width: 100%;
+  text-align: start;
+  text-overflow: fade;
+}
+
+/*# sourceMappingURL=CartEntry.css.map */

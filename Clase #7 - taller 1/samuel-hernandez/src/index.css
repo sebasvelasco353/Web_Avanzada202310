@@ -30,6 +30,7 @@ main {
   flex-direction: column;
   align-items: stretch;
   justify-content: start;
+  background-color: #262626;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,7 +1,7 @@
 @use "./../../variables" as v;
 
 .item-modal {
-  position: absolute;
+  position: fixed;
   z-index: 1;
   right: 1rem;
   top: 1rem;

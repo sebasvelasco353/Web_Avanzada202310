@@ -1,0 +1,177 @@
+@use "./../../variables" as v;
+
+.cart {
+  position: relative;
+  min-height: 62rem;
+  width: 100%;
+
+  &__background {
+    position: absolute;
+    overflow-x: clip;
+    pointer-events: none;
+    user-select: none;
+    height: 62rem;
+    width: 100vw;
+
+    &__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0.8;
+      mix-blend-mode: soft-light;
+      background-image: url("./../../../src/assets/images/backgroundLogged.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+    }
+
+    &__overlay {
+      background: linear-gradient(to bottom, transparentize(v.$rose-700, 0.4) 0%, transparentize(v.$neutral-700, 0.3) 25%, transparentize(v.$neutral-800, 0.2) 45%, v.$neutral-800 60%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    padding-top: 8rem;
+    padding-inline: 4rem;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 2rem;
+
+    h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.25rem;
+      color: v.$neutral-50;
+      font-size: xx-large;
+      font-weight: 300;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    background-color: transparentize(v.$rose-50, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: start;
+    gap: 2rem;
+
+    &__heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: start;
+      gap: 1.25rem;
+
+      li {
+        filter: v.$drop-shadow-md;
+        backdrop-filter: blur(0.25rem);
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+
+      p {
+        color: v.$neutral-400;
+      }
+    }
+  }
+
+  &__billing {
+    min-width: 26rem;
+    height: 32rem;
+    background-color: transparentize(v.$neutral-900, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: end;
+      gap: 20rem;
+      width: 100%;
+      height: 100%;
+      color: v.$neutral-200;
+      font-size: large;
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: start;
+      gap: 1rem;
+
+      width: 100%;
+      &__group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__data {
+          font-weight: bold;
+        }
+      }
+    }
+
+    &__buttons {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      button {
+        padding-inline: 1rem;
+        width: 12rem;
+        display: grid;
+        place-items: center;
+        padding-block: 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        font-size: large;
+
+        &:disabled {
+          filter: grayscale(65%) brightness(50%);
+
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
+
+        &.checkout {
+          background-color: v.$accent;
+          color: v.$rose-50;
+        }
+
+        &.cancel {
+          background-color: v.$neutral-500;
+          color: v.$neutral-100;
+        }
+      }
+    }
+  }
+
+}
+
+.glass {
+  padding: 2rem;
+  backdrop-filter: blur(1rem);
+  border-radius: 0.75rem;
+}
