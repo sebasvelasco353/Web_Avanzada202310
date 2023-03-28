@@ -13,8 +13,8 @@ function Product (props){
         if(showModal){
             dispatch({type: 'HideModal'});
         } else {
-            dispatch({type: 'ShowModal'})
             dispatch({type: 'SetProduct', payload: props})
+            dispatch({type: 'ShowModal'})
         }
     }
 

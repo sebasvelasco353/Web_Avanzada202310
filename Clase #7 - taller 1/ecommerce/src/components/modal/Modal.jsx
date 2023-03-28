@@ -10,7 +10,7 @@ function Modal(){
     const dispatch = useDispatch();
 
     const addProductToShopping = () =>{
-        dispatch({type:'addProduct', payload: props})
+        dispatch({type: 'AddProduct', payload: props})
         console.log(products)
         console.log(props)
     }
