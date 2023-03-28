@@ -11,6 +11,7 @@ function Modal(){
 
     const addProductToShopping = () =>{
         dispatch({type: 'AddProduct', payload: props})
+        alert("El producto fue agregado con éxito!")
         console.log(products)
         console.log(props)
     }

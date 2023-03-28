@@ -38,7 +38,7 @@
     border: none;
     outline: none;
     cursor: pointer;
-    background-image: url('./close.png');
+    background-image: url('../../imgs/close.png');
     background-size: cover;
   }
   
