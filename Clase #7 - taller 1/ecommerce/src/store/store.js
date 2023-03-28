@@ -10,7 +10,8 @@ const initialState = {
 const showModal = 'ShowModal'
 const hideModal = 'HideModal'
 const showShopping = 'ShowShopping'
-const hideShopping = 'HideShooping'
+const hideShopping = 'HideShopping'
+const deleteProducts = 'DeleteProducts'
 const setProduct = 'SetProduct'
 const addProduct = 'AddProduct'
 const removeProduct = 'RemoveProduct'
@@ -32,6 +33,8 @@ function modalReducer(state = initialState, action){
             return { ...state, showShopping: true}
         case hideShopping:
             return { ...state, showShopping: false}
+        case deleteProducts:
+            return { ...state, products: []}
             default:
         return state;
     }

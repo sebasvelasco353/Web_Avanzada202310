@@ -9,7 +9,7 @@
     background-size: cover;
   }
 
-  .cotainer_home__bar{
+  .container_home__bar{
     display: flex;
     justify-content: right;
     padding: 10px; 

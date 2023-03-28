@@ -5,7 +5,7 @@
   transform: translate(-50%, -50%);
   width: 80%;
   max-width: 600px;
-  min-height: 500px;
+  height: 500px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -14,17 +14,29 @@
 
 .container-products__bar {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
+  justify-content: space-between;
+  padding: 10px;
 }
 
-.container-products__pay-button {
+.container-products__bar--payButton {
   background-color: #2196F3;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.container-products__bar--closeButton{
+    width: 23px;
+    height: 23px;
+    margin-top: 4px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-image: url('../../imgs/close.png');
+    background-size: cover;
 }
 
 .container-products__product-list {

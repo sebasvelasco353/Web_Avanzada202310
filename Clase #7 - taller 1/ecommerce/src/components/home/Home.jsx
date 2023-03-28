@@ -25,7 +25,7 @@ function Home (){
 
     return(
         <div className='container_home'>
-          <div className='cotainer_home__bar'>
+          <div className='container_home__bar'>
             <button className='container_home__bar__shopping_button' onClick={openShopping}></button>
           </div>
           {displayShopping()}
