@@ -1,0 +1,30 @@
+.Home__feed__div{
+    display: flex;
+    margin: 32px 16px 8px 16px;
+
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    row-gap: 3rem;
+    column-gap: 6rem;
+    justify-content: center;
+}
+
+.Home__add__button{
+    max-height: 4rem;
+    aspect-ratio: 1;
+
+    position: absolute;
+    right: 3rem;
+    bottom: 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-style: none;
+    border-radius: 50%;
+
+    filter: drop-shadow(-1px 6px 8px #065f46)
+
+}

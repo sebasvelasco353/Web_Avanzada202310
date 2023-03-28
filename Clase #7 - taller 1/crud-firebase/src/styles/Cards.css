@@ -1,0 +1,61 @@
+.Card{
+    border-radius: 16px;
+    background-color: #ecfdf5;
+
+    width: 16rem;
+    height: 20rem;
+    
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    justify-content: center;
+
+    display: flex;
+    flex-direction: column;
+
+    
+}
+
+.Card__title{
+    margin-top: 10px;
+    color: #065f46;
+
+}
+
+.Card__description{
+    font-size: medium;
+
+    align-self: center;
+    width: 18rem;
+    flex-wrap: wrap;
+    color: #047857;
+}
+
+.Card__dates{
+    text-align: justify;
+    margin-left: 3rem;
+
+    color: #a7f3d0;
+
+}
+
+.Card__button{
+    border-radius: 8px;
+    border-style: none;
+
+    padding: 8px 16px 8px 16px;
+    width: 10rem;
+    align-self: center;
+
+
+    background-color: #059669;
+    color: #f5f5f5;
+
+    filter: drop-shadow(-4px 8px 8px #065F46);
+}
+
+.Card__remove__button{
+    border-style: none;
+    background-color: transparent;
+    color: #dc2626;
+}
