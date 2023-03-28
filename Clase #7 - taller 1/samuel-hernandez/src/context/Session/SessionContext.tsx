@@ -1,17 +1,12 @@
 import {createContext} from "react";
+import {SessionState} from "../../interfaces/interfaces";
 
 interface ISessionContext {
-    logged : boolean
-    login : () => boolean
-    logout : () => boolean,
+    sessionState: SessionState
+    login : () => void
+    logout : () => void,
 }
 
-const defaultState :ISessionContext = {
-    logged : false,
-    login: () => false,
-    logout: () => false,
-}
-
-const SessionContext = createContext<ISessionContext>(defaultState);
+const SessionContext = createContext<ISessionContext>({} as ISessionContext);
 
 export default SessionContext;

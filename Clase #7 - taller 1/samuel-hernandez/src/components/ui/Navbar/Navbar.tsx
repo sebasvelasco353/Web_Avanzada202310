@@ -13,7 +13,8 @@ interface IProps {
 
 export const Navbar = (props: IProps) => {
 
-    const {logged, logout} = useContext(SessionContext);
+    const {sessionState , logout} = useContext(SessionContext);
+    const {logged} = sessionState;
     const {current, setCurrent} = useContext(RoutingContext);
     const {username} = useContext(UserContext);
     const {clear: clearCart} = useContext(CartContext);

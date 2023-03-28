@@ -3,13 +3,14 @@ import {AvailableItems} from "../../data/AvailableItems";
 import {ItemCard} from "../../components/ItemCard/ItemCard";
 import {ItemModal} from "../../components/ItemModal/ItemModal";
 import {ModalProvider} from "../../context/Modal/ModalProvider";
+import {useContext} from "react";
+import SessionContext from "../../context/Session/SessionContext";
 
 interface IProps {
 
 }
 
 export const Home = (props: IProps) => {
-
     return (
         <ModalProvider>
             <main className={"home"}>
