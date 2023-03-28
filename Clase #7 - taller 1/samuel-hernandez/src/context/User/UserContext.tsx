@@ -1,19 +1,13 @@
 import {createContext, Dispatch, SetStateAction} from "react";
+import {User} from "../../interfaces/interfaces";
 
 interface IUserContext {
-    id : string,
-    username : string,
-    setId : Dispatch<SetStateAction<string>>,
-    setUsername : Dispatch<SetStateAction<string>>,
+    id: string,
+    username: string,
+    setUser: (user : User) => void,
+    clear: () => void,
 }
 
-const defaultState :IUserContext = {
-    id : "",
-    username: "none",
-    setId: (i ) => "none",
-    setUsername: (u ) => "none",
-}
-
-const UserContext = createContext<IUserContext>(defaultState);
+const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export default UserContext;
