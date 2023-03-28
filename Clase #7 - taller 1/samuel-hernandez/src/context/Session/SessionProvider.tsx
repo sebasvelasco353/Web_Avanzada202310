@@ -1,6 +1,9 @@
 import SessionContext from "./SessionContext";
-import {useState} from "react";
+import {useReducer, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {sessionReducer} from "./sessionReducer";
+import {SessionState} from "../../interfaces/interfaces";
+import {Session} from "inspector";
 
 interface IProps {
     children : JSX.Element | JSX.Element[]
@@ -8,23 +11,25 @@ interface IProps {
 
 export const SessionProvider = (props: IProps) => {
 
-    const [logged, setLogged] = useState(false);
+    const defaultState :SessionState = {
+        logged : false,
+    }
+
+    const [sessionState, dispatch] = useReducer(sessionReducer, defaultState);
     const navigate = useNavigate();
 
-    const login = () : boolean => {
-        setLogged(true);
+    const login = () => {
+        dispatch({type: "toggle", payload: true});
         navigate("/");
-        return logged;
     };
 
-    const logout = () : boolean => {
-        setLogged(false);
+    const logout = () => {
+        dispatch({type: "toggle", payload: false});
         navigate("/login");
-        return logged;
     };
 
     return (
-        <SessionContext.Provider value={{logged, login, logout}} >
+        <SessionContext.Provider value={{sessionState, login, logout}} >
             { props.children }
         </SessionContext.Provider>
     );

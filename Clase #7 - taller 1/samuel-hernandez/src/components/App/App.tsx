@@ -14,6 +14,9 @@ import {UserProvider} from "../../context/User/UserProvider";
 import {CartProvider} from "../../context/Cart/CartProvider";
 
 function App() {
+
+    //TODO: change context to useReducer
+
     return (
         <BrowserRouter>
             <UserProvider>

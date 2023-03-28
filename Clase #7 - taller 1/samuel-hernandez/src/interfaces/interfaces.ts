@@ -1,5 +1,5 @@
-import exp from "constants";
 
+// Items and Cart
 export interface Item {
     id : string,
     name : string,
@@ -12,6 +12,7 @@ export interface CartItem extends Item {
     quantity : number
 }
 
+// Session and User
 export interface User {
     id : string,
     username : string,
