@@ -11,9 +11,9 @@ function Home (){
 
     const openShopping =()=>{
       if(showShopping){
-        dispatch({type: 'HideShooping'})
+        dispatch({type: 'HideShopping'})
       } else {
-        dispatch({type: 'ShowShooping'})
+        dispatch({type: 'ShowShopping'})
       }
     }
 
