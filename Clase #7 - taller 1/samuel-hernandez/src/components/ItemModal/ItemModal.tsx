@@ -9,9 +9,10 @@ interface IProps {
 }
 
 export const ItemModal = (props: IProps) => {
-    const {isOpen, item, clearItem, toggleModal} = useContext(ModalContext);
+    const {isOpen, item, close} = useContext(ModalContext);
     const {addItem, updateItem, removeItem, findItemById} = useContext(CartContext);
-    const [quantity, setQuantity] = useState(item.quantity === undefined ? 0 : item.quantity);
+    const itemInCart = findItemById(item.id);
+    const [quantity, setQuantity] = useState(itemInCart ? itemInCart.quantity : 0);
     const addDisable = quantity === 100;
     const removeDisable = quantity === 0;
 
@@ -37,15 +38,13 @@ export const ItemModal = (props: IProps) => {
     };
 
     const dismiss = () => {
-        clearItem();
-        toggleModal();
+        close();
     }
 
     const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        const itemInCart = findItemById(item.id);
-        if (item.quantity === 0) { // Remove item from cart entirely
+        if (quantity === 0) { // Remove item from cart entirely
             if (itemInCart) removeItem(itemInCart.id);
         } else {
             if (itemInCart) { // Item was already in cart, update it

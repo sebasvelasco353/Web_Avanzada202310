@@ -18,6 +18,11 @@ export interface CartState {
     itemNumber: number,
 }
 
+export interface ModalState {
+    isOpen: boolean,
+    item : Item
+}
+
 // Session and User
 export interface User {
     id : string,

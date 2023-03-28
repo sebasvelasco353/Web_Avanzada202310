@@ -1,27 +1,30 @@
-import React, {ReactNode, useState} from 'react';
-import {CartItem} from "../../interfaces/interfaces";
+import React, {ReactNode, useReducer} from 'react';
+import {Item, ModalState} from "../../interfaces/interfaces";
 import ModalContext from "./ModalContext";
+import {modalReducer} from "./modalReducer";
 
 export const ModalProvider = ({children}: { children: ReactNode[] | ReactNode }) => {
-    const [open, setOpen] = useState(false);
-    const [item, setItem] = useState({} as CartItem);
 
-    const toggleModal = () => {
-        setOpen(!open);
-        return open;
+    const defaultState :ModalState = {
+        isOpen: false,
+        item : {} as Item,
     }
 
-    const clearItem = () => {
-        setItem({} as CartItem);
+    const [modal, dispatch] = useReducer(modalReducer, defaultState);
+
+    const open = (item: Item) => {
+        dispatch({type: "set", payload: item});
+    }
+
+    const close = () => {
+        dispatch({type: "clear"})
     }
 
     return (
         <ModalContext.Provider value={{
-            isOpen: open,
-            toggleModal,
-            item,
-            setItem,
-            clearItem
+            ...modal,
+            open,
+            close
         }}>
             {children}
         </ModalContext.Provider>
