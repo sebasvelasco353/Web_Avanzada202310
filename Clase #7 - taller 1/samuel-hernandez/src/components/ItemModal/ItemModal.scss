@@ -2,9 +2,9 @@
 
 .item-modal {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   right: 1rem;
-  top: 1rem;
+  top: 10rem;
   max-width: 24vw;
   height: 70vh;
   background-color: v.$neutral-900;
@@ -19,12 +19,11 @@
   padding-block: 3rem;
   transition: opacity 300ms ease-in-out;
 
-  &::before {
-    content: "";
-    z-index: -1;
-    position: absolute;
-    right: -1rem;
-    top: -1rem;
+  &__overlay {
+    z-index: 1;
+    position: fixed;
+    right: 0;
+    top: 0;
     width: 100vw;
     height: 100vh;
     background-color: transparentize(v.$neutral-900, 0.4);
@@ -176,12 +175,12 @@
   color: v.$red-300;
 }
 
-.shown {
+.modal-shown {
   opacity: 1;
   pointer-events: auto;
 }
 
-.hidden {
+.modal-hidden {
   opacity: 0;
   pointer-events: none;
 }

@@ -1,8 +1,12 @@
 @use "./../../../variables" as v;
 
 .navbar {
+  position: fixed;
+  z-index: 5;
+  width: 100%;
+  top: 0;
+  left: 0;
   min-height: 8rem;
-  padding-inline: 3rem;
   font-family: "Rubik", sans-serif;
 
   background-color: black;
@@ -14,6 +18,7 @@
 
 
   &__logo {
+    margin-left: 4rem;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -39,6 +44,7 @@
   }
 
   &__actions {
+    margin-right: 4rem;
     display: grid;
     grid-template-columns: repeat(4, minmax(8.75rem, 1fr));
     gap: 0.5rem;
