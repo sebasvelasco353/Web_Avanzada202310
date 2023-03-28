@@ -10,8 +10,9 @@ function UserInfo(){
             <div>
                 <div class="card">
                     <div class="info">
-                      <h4><b>{state.user[0]}</b></h4>
-                      <p>{state.user[1]}</p>
+                      <h4><b>Bienvenido</b></h4>
+                      <p>Nombre: {state.user[0]}</p>
+                      <p>Alias: {state.user[1]}</p>
                     </div>
                   </div>
             </div>

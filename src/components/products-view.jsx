@@ -22,6 +22,7 @@ function Products(){
               <div className="container">
                 <h4><b>{product.name}</b></h4>
                 <p>{product.price}</p>
+                <button>Agregar al carrito</button>
               </div>
             </div>
           ))}
@@ -29,21 +30,6 @@ function Products(){
       ))}
     </div>
   );
-
-   /* return(
-        <div>
-          {
-            products.map((product) => (
-              <div class="card">
-                <div class="container">
-                  <h4><b>{product.name}</b></h4>
-                  <p>{product.price}</p>
-                </div>
-              </div>
-            ))
-          } 
-        </div>
-    );*/
 }
 
 export default Products;

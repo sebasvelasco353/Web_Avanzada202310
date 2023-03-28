@@ -1,0 +1,45 @@
+.form-table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-btns {
+  text-align: center;
+  padding-top: 20px;
+}
+
+button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #0099FF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #046aad;
+}

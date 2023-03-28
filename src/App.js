@@ -11,6 +11,7 @@ import {
 import Products from "./components/products-view";
 import Cart from "./components/cart";
 import UserInfo from "./components/user";
+import LogIn from "./components/logIn";
 import reducer, {initialState} from "./AppContext";
 
 export const EcommerceContext = React.createContext();
@@ -19,6 +20,7 @@ function App(){
 
     const [state, dispatch] = React.useReducer(reducer, initialState )
     const [logBtnText, setText] = useState("")
+    const [productsInCart, setProductsInCart] = useState([])
     const [products, setProducts] = useState([
         {
             name: "Chain saw Man tomo 1",
@@ -97,8 +99,12 @@ function App(){
     }, []);
 
     const handleLog = (e) => {
-        dispatch({type: (!state.isLoggedIn)?'LOGIN':'LOGOUT', user: []});
-        setText((state.isLoggedIn)?"Log out":"Log in");
+        if(state.isLoggedIn){
+            dispatch({type: 'LOGOUT', user: null});
+            setText((state.isLoggedIn)?"Log out":"Log in");
+        }else{
+            window.location.href = "#/login";
+        }
     }
 
 
@@ -121,8 +127,10 @@ function App(){
                 <div className="content">
                     <Routes>
                         <Route path="/products" element={<Products/>}/>
-                        <Route path="/cart" element={<Cart/>}/>
+                        <Route path="/" element={<Products/>}/>
+                        <Route path="/cart" element={<Cart cart = {productsInCart}/>}/>
                         <Route path="/usuario" element={<UserInfo/>}/>
+                        <Route path="/login" element={<LogIn/>}/>
                     </Routes>
                 </div>
             </EcommerceContext.Provider>
