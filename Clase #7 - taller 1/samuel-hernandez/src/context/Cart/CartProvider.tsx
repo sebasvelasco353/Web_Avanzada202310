@@ -1,57 +1,55 @@
-import React, {ReactNode, useState} from 'react';
-import {CartItem} from "../../interfaces/interfaces";
+import React, {ReactNode, useReducer, useState} from 'react';
+import {CartItem, CartState} from "../../interfaces/interfaces";
 import CartContext from "./CartContext";
+import {cartReducer} from "./cartReducer";
 
 export const CartProvider = ({children}: { children: ReactNode[] | ReactNode }) => {
-    const initial: CartItem[] = [] as CartItem[]
-    const [cart, setCart] = useState(initial);
+
+    const defaultState : CartState = {
+        items: [],
+        productNumber: 0,
+        itemNumber: 0,
+    }
+
+    const [cartState, dispatch] = useReducer(cartReducer, defaultState);
 
     const addItem = (item: CartItem) => {
         const id = item.id;
-        const itemExists = cart.find(s => s.id === id) !== undefined;
+        const itemExists = cartState.items.find(s => s.id === id) !== undefined;
         if (itemExists) return false;
-        setCart([
-            ...cart,
-            item
-        ]);
+        dispatch({type: "add", payload: item});
         return true;
     }
 
     const removeItem = (id: string) => {
-        const itemNotExists = cart.find(s => s.id === id) === undefined;
-        if (itemNotExists) return false;
-        setCart(
-            cart.filter(it => it.id !== id)
-        );
+        const lookUpItem = cartState.items.find(s => s.id === id);
+        if (!lookUpItem) return false;
+        dispatch({type: "remove", payload: {id, item: lookUpItem}});
         return true;
     }
 
     const updateItem = (id: string, item: CartItem) => {
-        const itemNotExists = cart.find(it => it.id === id) === undefined;
+        const itemNotExists = cartState.items.find(it => it.id === id) === undefined;
         if (itemNotExists) return false;
-        const newCart = cart.map((it, i) => {
-            if (it.id === id) return item;
-            else return it;
-        });
-        setCart(newCart);
+        dispatch({type: "update", payload: {id, item}});
         return true;
     }
 
     const findItemById = (id: string) => {
-        return cart.find(it => it.id === id);
+        return cartState.items.find(it => it.id === id);
     }
 
     const findItemByName = (name: string) => {
-        return cart.find(it => it.name === name);
+        return cartState.items.find(it => it.name === name);
     }
 
     const clear = () => {
-        setCart(initial);
+        dispatch({type: "clear"});
     }
 
     return (
         <CartContext.Provider value={{
-            items: cart,
+            ...cartState,
             addItem,
             removeItem,
             updateItem,

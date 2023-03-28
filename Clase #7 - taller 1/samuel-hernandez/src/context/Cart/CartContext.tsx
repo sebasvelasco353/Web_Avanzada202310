@@ -1,8 +1,10 @@
-import {createContext, Dispatch, SetStateAction} from "react";
+import {createContext} from "react";
 import {CartItem} from "../../interfaces/interfaces";
 
 interface ICartContext {
     items: CartItem[],
+    productNumber : number,
+    itemNumber : number,
     addItem : (item : CartItem) => boolean,
     removeItem : (id : string) => boolean,
     updateItem : (id : string, item : CartItem) => boolean,
@@ -11,16 +13,6 @@ interface ICartContext {
     clear: () => void,
 }
 
-const defaultState :ICartContext = {
-    items: [],
-    addItem: (item: CartItem) => false,
-    removeItem: (id: string) => false,
-    updateItem: (id: string, item: CartItem) => false,
-    findItemById: (id: string) => undefined,
-    findItemByName: (name: string) => undefined,
-    clear: () => {}
-}
-
-const CartContext = createContext<ICartContext>(defaultState);
+const CartContext = createContext<ICartContext>({} as ICartContext);
 
 export default CartContext;

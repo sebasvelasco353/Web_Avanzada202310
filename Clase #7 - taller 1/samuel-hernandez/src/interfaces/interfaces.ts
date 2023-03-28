@@ -12,6 +12,12 @@ export interface CartItem extends Item {
     quantity : number
 }
 
+export interface CartState {
+    items : CartItem[]
+    productNumber : number,
+    itemNumber: number,
+}
+
 // Session and User
 export interface User {
     id : string,
