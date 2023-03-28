@@ -3,16 +3,14 @@ import {AvailableItems} from "../../data/AvailableItems";
 import {ItemCard} from "../../components/ItemCard/ItemCard";
 import {ItemModal} from "../../components/ItemModal/ItemModal";
 import {ModalProvider} from "../../context/Modal/ModalProvider";
-import {useContext} from "react";
-import SessionContext from "../../context/Session/SessionContext";
+import {Helmet} from "react-helmet";
 
-interface IProps {
-
-}
-
-export const Home = (props: IProps) => {
+export const Home = () => {
     return (
         <ModalProvider>
+            <Helmet>
+                <title>Hotshop | Home</title>
+            </Helmet>
             <main className={"home"}>
                 <header className={"home__header"}>
 

@@ -5,6 +5,7 @@ interface ICartContext {
     items: CartItem[],
     productNumber : number,
     itemNumber : number,
+    total : number,
     addItem : (item : CartItem) => boolean,
     removeItem : (id : string) => boolean,
     updateItem : (id : string, item : CartItem) => boolean,

@@ -1,4 +1,4 @@
-import React, {ReactNode, useReducer, useState} from 'react';
+import React, {ReactNode, useReducer} from 'react';
 import {CartItem, CartState} from "../../interfaces/interfaces";
 import CartContext from "./CartContext";
 import {cartReducer} from "./cartReducer";
@@ -9,6 +9,7 @@ export const CartProvider = ({children}: { children: ReactNode[] | ReactNode }) 
         items: [],
         productNumber: 0,
         itemNumber: 0,
+        total: 0,
     }
 
     const [cartState, dispatch] = useReducer(cartReducer, defaultState);

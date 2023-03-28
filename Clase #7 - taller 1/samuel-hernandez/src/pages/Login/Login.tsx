@@ -5,12 +5,9 @@ import {useNavigate} from "react-router-dom";
 import SessionContext from "../../context/Session/SessionContext";
 import {Key, Person} from "react-bootstrap-icons";
 import UserContext from "../../context/User/UserContext";
+import {Helmet} from "react-helmet";
 
-interface IProps {
-
-}
-
-export const Login = (props : IProps) => {
+export const Login = () => {
 
     const navigate = useNavigate();
     const { id, setUser } = useContext(UserContext);
@@ -26,6 +23,9 @@ export const Login = (props : IProps) => {
 
     return  (
         <main className={"login"}>
+            <Helmet>
+                <title>Hotshop: brewed for you | Find all sorts of items</title>
+            </Helmet>
             <section className={"login__container"}>
                 <section className={"login__card"}>
 

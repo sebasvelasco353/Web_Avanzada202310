@@ -16,6 +16,7 @@ export interface CartState {
     items : CartItem[]
     productNumber : number,
     itemNumber: number,
+    total: number,
 }
 
 export interface ModalState {
