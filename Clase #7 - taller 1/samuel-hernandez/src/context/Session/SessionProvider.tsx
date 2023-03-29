@@ -1,9 +1,8 @@
 import SessionContext from "./SessionContext";
-import {useReducer, useState} from "react";
+import {useReducer} from "react";
 import {useNavigate} from "react-router-dom";
 import {sessionReducer} from "./sessionReducer";
 import {SessionState} from "../../interfaces/interfaces";
-import {Session} from "inspector";
 
 interface IProps {
     children : JSX.Element | JSX.Element[]

@@ -96,6 +96,11 @@
   aspect-ratio: 1;
   border: none;
 }
+.item-modal__add__quantity button:hover {
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+  scale: 1.025;
+}
 .item-modal__add__quantity button:disabled {
   filter: grayscale(65%) brightness(50%);
 }
@@ -123,6 +128,11 @@
   border-radius: 0.75rem;
   border: none;
   font-size: large;
+}
+.item-modal__add__button-bar button:hover {
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+  scale: 1.025;
 }
 .item-modal__add__button-bar button:disabled {
   filter: grayscale(65%) brightness(50%);

@@ -110,6 +110,12 @@
         aspect-ratio: 1;
         border: none;
 
+        &:hover {
+          transition: all 200ms ease-in-out;
+          cursor: pointer;
+          scale: 1.025;
+        }
+
         &:disabled {
           filter: grayscale(65%) brightness(50%);
 
@@ -143,6 +149,12 @@
         border-radius: 0.75rem;
         border: none;
         font-size: large;
+
+        &:hover {
+          transition: all 200ms ease-in-out;
+          cursor: pointer;
+          scale: 1.025;
+        }
 
         &:disabled {
           filter: grayscale(65%) brightness(50%);

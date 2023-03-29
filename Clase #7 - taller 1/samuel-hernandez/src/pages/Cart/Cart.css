@@ -131,6 +131,11 @@
   border: none;
   font-size: large;
 }
+.cart__billing__buttons button:hover {
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+  scale: 1.025;
+}
 .cart__billing__buttons button:disabled {
   filter: grayscale(65%) brightness(50%);
 }

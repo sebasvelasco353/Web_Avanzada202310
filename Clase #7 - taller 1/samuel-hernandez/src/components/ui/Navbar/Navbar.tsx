@@ -6,11 +6,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import UserContext from "../../../context/User/UserContext";
 import CartContext from "../../../context/Cart/CartContext";
 
-interface IProps {
-
-}
-
-export const Navbar = (props: IProps) => {
+export const Navbar = () => {
 
     const {sessionState , logout} = useContext(SessionContext);
     const {logged} = sessionState;
@@ -21,6 +17,7 @@ export const Navbar = (props: IProps) => {
     const current  = location.pathname;
 
     const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
         clearCart();
         logout();
     };
