@@ -10,9 +10,9 @@
     border: none;
     background: transparent;
     color: v.$neutral-400;
-    transition: all 200ms ease-in-out;
     padding: 2rem;
     border-radius: 0.75rem;
+    transition: all 200ms ease-in-out;
 
     &:hover {
       background-color: transparentize(v.$rose-300, 0.6);

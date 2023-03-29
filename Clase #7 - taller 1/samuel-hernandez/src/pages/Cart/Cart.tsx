@@ -1,14 +1,36 @@
 import {Helmet} from "react-helmet";
 import "./Cart.css";
-import {useContext} from "react";
+import React, {useContext} from "react";
 import CartContext from "../../context/Cart/CartContext";
 import {CartEntry} from "../../components/CartEntry/CartEntry";
 import UserContext from "../../context/User/UserContext";
+import {useNavigate} from "react-router-dom";
 
 export const Cart = () => {
 
-    const {items, productNumber, total} = useContext(CartContext);
+    const {items, clear, updateItem, productNumber, total} = useContext(CartContext);
     const {username} = useContext(UserContext);
+    const renderedTotal = ((Math.round(total) * 100) / 100).toFixed(2);
+    const navigate = useNavigate();
+
+    const cancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        navigate("/");
+    };
+
+    const checkout = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        // Update stocks won't work because tiny little Samuel loaded everything from a JSON array
+        items.forEach(it => {
+            const newStock = it.stock - it.quantity;
+            updateItem(it.id, {...it, stock: newStock});
+        });
+
+        // Clear cart
+        clear();
+        alert(`You have successfully paid $${renderedTotal} to the Chinese government and have now been deducted -198327212 social points 🫡🥶😱🥸`);
+        navigate("/");
+    };
 
     return (
         <main className={"cart"}>
@@ -49,13 +71,15 @@ export const Cart = () => {
                                 </section>
                                 <section className={"cart__billing__details__group"}>
                                     <h3>Order total</h3>
-                                    <h3 className={"cart__billing__details__group__data"}>{((Math.round(total) * 100) / 100).toFixed(2)}</h3>
+                                    <h3 className={"cart__billing__details__group__data"}>{renderedTotal}</h3>
                                 </section>
                             </section>
                         )}
                         <section className={"cart__billing__buttons"}>
-                            <button className={"checkout"} disabled={productNumber <= 0} >Checkout</button>
-                            <button className={"cancel"}>Cancel</button>
+                            <button onClick={e => checkout(e)} className={"checkout"}
+                                    disabled={productNumber <= 0}>Checkout
+                            </button>
+                            <button onClick={e => cancel(e)} className={"cancel"}>Cancel</button>
                         </section>
                     </section>
                 </section>

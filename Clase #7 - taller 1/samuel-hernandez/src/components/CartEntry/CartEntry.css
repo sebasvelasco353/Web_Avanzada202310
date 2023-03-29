@@ -8,9 +8,9 @@
   border: none;
   background: transparent;
   color: #a3a3a3;
-  transition: all 200ms ease-in-out;
   padding: 2rem;
   border-radius: 0.75rem;
+  transition: all 200ms ease-in-out;
 }
 .entry__trash:hover {
   background-color: rgba(253, 164, 175, 0.4);

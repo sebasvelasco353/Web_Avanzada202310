@@ -1,6 +1,6 @@
 import UserContext from "./UserContext";
-import {useReducer, useState} from "react";
-import {CartItem, User} from "../../interfaces/interfaces";
+import {useReducer} from "react";
+import {User} from "../../interfaces/interfaces";
 import {userReducer} from "./userReducer";
 
 interface IProps {
