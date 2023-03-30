@@ -1,34 +1,53 @@
 import React from 'react'
 import { useRef } from 'react'
 
+import './../styles/Home.css'
+import { useState } from 'react';
 
-export default function UpdatePrompt() {
-  
-    const titleInput = useRef();
-    const descriptionInput = useRef();
-    const datesInput = useRef();
-
-    const divInput = useRef();
+export default function UpdatePrompt(props) {
+      
+    const [title, setTitle] = useState(props.title);
+    const [description, setDescription] = useState(props.description);
+    const [dates, setDates] = useState(props.dates);  
 
     const saveData = () => {
+        if(props.updateType === 1){
+            props.updateHandler(props.index, title, description, dates);
+        }else{
 
-        divInput.current.style.visibility = 'hidden';
+            props.createHandler(title, description, dates)
+        }
+        props.visibilityHandler(false, '', '', '');
     }
 
     const cancel = () => {
-        titleInput.current.value = '';
-        descriptionInput.current.value = '';
-        datesInput.current.value = '';
+        setTitle('');
+        setDescription('');
+        setDates('');
 
-        divInput.current.style.visibility = 'hidden';
+        props.visibilityHandler(false, '', '', '');
+    }
+
+    function defineVisibility(){
+        if(props.modalOpen !== '') return 'block';
+        return 'none'
     }
 
     return (
-    <div ref={divInput}>
-        <input ref={titleInput} type="text" name="inputTitle"/>
-        <input ref={descriptionInput} type="text" name="inputDescription"/>
-        <input ref={datesInput} type="text" name="inputDates"/>
-        <button onClick={()=>cancel()}>Ca</button>
+    <div className='Update__prompt__container' style={{display: `${()=>defineVisibility()}`}}>
+        <div className='Update__prompt__container__div'>
+            
+            <section className="Update__prompt__input__section">
+                <input className='Update__prompt__input' type="text" placeholder = 'Título' name="inputTitle" value={title} onChange={(e)=>setTitle(e.target.value)}/>
+                <input className='Update__prompt__input' type="text"  placeholder = 'Descripción' name="inputDescription" value={description} onChange={(e)=>setDescription(e.target.value)}/>
+                <input className='Update__prompt__input' type="text"  placeholder = 'Fecha inicio - Fecha fin' name="inputDates" value={dates} onChange={(e)=>setDates(e.target.value)}/>
+            </section>
+
+            <section className="Update__prompt__buttons__section">
+                <button className='Update__prompt__buttons__cancel' onClick={()=>cancel()}>Cancel</button>
+                <button className='Update__prompt__buttons__save'onClick={()=>saveData()}>Save</button>
+            </section>
+        </div>
     </div>
   )
 }

@@ -1,7 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import "./../styles/Login.css"
 
 export default function LoginForm() {
+
+  const navigate = useNavigate();
+  const logIn = () => {
+    navigate('/Home');
+  }
+
   return (
         <section className="login__input__section">
             
@@ -21,7 +28,7 @@ export default function LoginForm() {
             <br />
             
             { /* TODO: make the button have red background and be disable when the input its not valid. Make it green once the input its valid. */}
-            <button type='submit' className='login__button'>Iniciar sesión</button>
+            <button onClick={logIn} type='submit' className='login__button'>Iniciar sesión</button>
         </section>
   )
 }

@@ -8,10 +8,8 @@ import './../styles/Home.css'
 
 import { Plus } from 'react-bootstrap-icons';
 import { useState } from 'react';
+
 export default function HomePage() {
-
-
-  const [indexEvent, setIndexevent] = useState(0);
   
   let dummyEvents = [
     {
@@ -25,9 +23,9 @@ export default function HomePage() {
       dates: '30/03/2023 - 30/03/2023'
     },
     {
-      title: 'Ingesta de productos recreativos. c:',
-      description: 'Se va a celebrar una ingesta de productos recreativos.',
-      dates: '30/03/2023 - 31/03/2023'
+      title: 'Toque SON CUBANO ICESI.',
+      description: 'Son cubano va a tocar, por eso se llama así el evento.',
+      dates: '30/03/2023 - 30/03/2023'
     },
     {
       title: 'Ya no tengo ideas, ayuda.',
@@ -36,13 +34,24 @@ export default function HomePage() {
     }
   ];
 
+  // The update type that the dispatcher uses
+  const creationType = 2;
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [titleToUpdate, setTitleToUpdate] = useState();
+  const [descriptionToUpdate, setDescriptionToUpdate] = useState();
+  const [datesToUpdate, setDatesToUpdate] = useState();
+  const [updateTypeState, setUpdateTypeState] = useState(0);
+  const [indexToUpdate, setIndexToUpdate] = useState(0);
+
+
   const [events, dispatch] = useReducer(( state = [], action) => {
-    
+
     switch(action.type){
       case 'add_event' : {
         return[
           ...state,
-          {title: action.title, description: action.description, dates: action.date}
+          {title: action.title, description: action.description, dates: action.dates}
         ];
       } 
 
@@ -53,12 +62,15 @@ export default function HomePage() {
 
       case 'update_event' : { 
         let updatedEvents = [...state];
-        
-        //Remove element with the given index
-        updatedEvents.splice(action.index, 1);
 
-        //Add element at the given index.
-        updatedEvents.splice(action.updatedEvent, action.index, 0)
+        let updatedEvent = updatedEvents[action.arrayIndex];
+
+        updatedEvent.title = action.title;
+        updatedEvent.description = action.description;
+        updatedEvent.dates = action.dates;
+
+        //Updates the array with the new event
+        updatedEvents.splice(updatedEvent, 0);
 
         return updatedEvents;
       }
@@ -71,33 +83,73 @@ export default function HomePage() {
   }, dummyEvents
   );
 
-  const updatePrompt = (title, description, dates) => {
-    alert("juas juas")
+  function updateEventDispatch(cardIndex, eventTitle, eventDescription, eventDates) {
+    dispatch(
+      {
+      type:'update_event',
+      arrayIndex: cardIndex,
+      title: eventTitle,
+      description: eventDescription,
+      dates: eventDates
+    })
   }
 
-  function removeEvent (eventIndex){
+  function createEventDispatch(eventTitle, eventDescription, eventDates) {
+    dispatch(
+      {
+      type:'add_event',
+      title: eventTitle,
+      description: eventDescription,
+      dates: eventDates
+    }
+    )
+  }
+
+  function removeEventDispatch(eventIndex){
     dispatch(
       {
         type: 'remove_event',
         index: eventIndex
       }
-    )
+    );
+  }
+  
+  function setModalState(closeModal, updateType, cardIndex, title, description, date){
+    setTitleToUpdate(title);
+    setDescriptionToUpdate(description);
+    setDatesToUpdate(date);
+    setUpdateTypeState(updateType);
+    setIndexToUpdate(cardIndex);
 
+    setModalOpen(closeModal);
+  }
+
+  function renderUpdatePrompt(){
+    if(modalOpen) return <UpdatePrompt
+      title = {titleToUpdate}
+      description = {descriptionToUpdate}
+      dates = {datesToUpdate}
+      index = {indexToUpdate}
+      updateType = {updateTypeState}
+      updateHandler = {updateEventDispatch}
+      createHandler = {createEventDispatch}
+      visibilityHandler = {setModalState}/>
   }
 
   return (
     <div className='Home__feed__div'>
-
-      <button className='Home__add__button' onClick={()=>updatePrompt('', '', '')}>
-        <Plus size={60}/>
-      </button>
-
+      {/* True: open the modal; 2: indicates that the update type is creation 0: indicates that there's non specific index; '': cleans the inputs*/}  
         {
           events.map((event, eventIndex) => (
-              <EventCard key = {eventIndex} eventIndex = {eventIndex} title = {event.title} description = {event.description} dates = {event.dates} removeHandler = {removeEvent}/>
+              <EventCard key = {eventIndex} updateHandler = {setModalState} eventIndex = {eventIndex} title = {event.title} description = {event.description} dates = {event.dates} removeHandler = {removeEventDispatch}/>
             )
           )
         }
+
+      {renderUpdatePrompt()}
+      <button className='Home__add__button' onClick={()=>setModalState(true, creationType, 0, '', '', '')}>
+        <Plus size={60}/>
+      </button>
     </div>
   )
 }
