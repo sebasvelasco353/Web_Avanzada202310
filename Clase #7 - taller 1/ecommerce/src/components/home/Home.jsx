@@ -44,6 +44,7 @@ function Home (){
       if(showLogin){
         setShowLogin(false);
         dispatch({type: 'Logout'})
+        alert("Has salido de la sesión.")
       } else {
         setShowLogin(true);
       }

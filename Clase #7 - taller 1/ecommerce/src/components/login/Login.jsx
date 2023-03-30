@@ -9,8 +9,13 @@ function Login(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`Email: ${email}, Password: ${password}`);
-        dispatch({type: 'Login'})
+        if(!email || !password){
+            alert("Completa los campos.")
+        } else {
+            console.log(`Email: ${email}, Password: ${password}`);
+            dispatch({type: 'Login'})
+            alert("Has iniciado sesión.") 
+        }
     };
 
   return (
