@@ -3,6 +3,7 @@ import {configureStore} from '@reduxjs/toolkit'
 const initialState = {
     showModal: false,
     showShopping: false,
+    login: false,
     product: {},
     products: []
 }
@@ -15,6 +16,8 @@ const deleteProducts = 'DeleteProducts'
 const setProduct = 'SetProduct'
 const addProduct = 'AddProduct'
 const removeProduct = 'RemoveProduct'
+const login = 'Login'
+const logout = 'Logout'
 
 
 function modalReducer(state = initialState, action){
@@ -35,6 +38,10 @@ function modalReducer(state = initialState, action){
             return { ...state, showShopping: false}
         case deleteProducts:
             return { ...state, products: []}
+        case login:
+            return { ...state, login: true}
+        case logout:
+            return { ...state, login: false}
             default:
         return state;
     }

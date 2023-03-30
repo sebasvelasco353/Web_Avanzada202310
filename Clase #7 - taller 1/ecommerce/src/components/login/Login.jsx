@@ -1,17 +1,21 @@
+import './Login.css'
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Login(){
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(`Email: ${email}, Password: ${password}`);
+        dispatch({type: 'Login'})
+    };
 
   return (
     <div className='container_login'>
-        <form className='cotainer_login__form' onSubmit={handleSubmit}>
+        <form className='container_login__form' onSubmit={handleSubmit}>
             <label>
                 Email:
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -20,7 +24,7 @@ const Login = () => {
                 Password:
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </label>
-            <button type="submit">Submit</button>
+            <button type="submit">LogIn</button>
         </form>
     </div>
   );

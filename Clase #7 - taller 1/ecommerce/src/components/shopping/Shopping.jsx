@@ -12,7 +12,7 @@ function Shopping(){
     }
 
     const closeShopping =()=>{
-        
+        dispatch({type: 'HideShopping'})
     }
 
     return(
