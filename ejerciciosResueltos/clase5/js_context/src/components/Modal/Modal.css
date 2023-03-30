@@ -1,0 +1,28 @@
+.modal {
+    width: 50vw;
+    height: 50vh;
+    border: 1px solid gray;
+    background-color: beige;
+
+    position: absolute;
+    top: 25vh;
+    left: 25vw;
+
+    padding: 2rem 3rem;
+}
+.modal--header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.modal--content form {
+    display: flex;
+    flex-direction: column;
+}
+.modal--content form input {
+    margin-top: 2rem;
+}
+.modal--content form button {
+    margin-top: 2rem;
+}
