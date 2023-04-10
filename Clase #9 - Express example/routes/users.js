@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 router.get('/profile/:start/:end', function (req, res) {
   console.log("Starting Page: ", req.params['start']);
   console.log("Ending Page: ", req.params['end']);
-  res.send();
+  res.status(200).send('asds');
 })
 
 module.exports = router;
