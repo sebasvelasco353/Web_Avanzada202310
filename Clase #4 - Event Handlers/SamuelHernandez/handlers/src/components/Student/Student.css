@@ -1,0 +1,59 @@
+.student {
+    height: 5rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    place-items: center;
+    transition: all 600ms ease-in-out;
+    border-radius: 12px;
+}
+
+.student:hover {
+    transform: translateY(-0.5rem);
+    background-color: #f5bb79aa;
+    cursor: pointer;
+}
+
+.student__semester {
+    display: flex;
+    width: 16rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.student__button {
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: transparent solid;
+    transition: all 300ms ease-out;
+}
+
+.student__button:hover {
+    cursor: pointer;
+    scale: 1.1;
+    color: floralwhite;
+}
+
+.student__button--add {
+    color: #318731;
+}
+
+.student__button--add:hover {
+    background-color: #318731;
+}
+
+.student__button--remove {
+    color: #a02020;
+}
+
+.student__button--remove:hover {
+    background-color: #a02020;
+}
+
+.student__button--delete {
+    color: #ff1515;
+}
+
+.student__button--delete:hover {
+    background-color: #ff1515;
+}
