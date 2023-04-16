@@ -1,0 +1,42 @@
+.nav {
+  background-color: #f5bb79;
+  color: #2b2b2b;
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 4rem;
+  transition: background-color 800ms ease-in-out;
+}
+.nav__linktree {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  list-style-type: none;
+}
+.nav--magenta {
+  background-color: #ec80ec;
+  color: #2b2b2b;
+}
+.nav--cyan {
+  background-color: #90d7f3;
+  color: #2b2b2b;
+}
+.nav--yellow {
+  background-color: #f3e281;
+  color: #2b2b2b;
+}
+.nav--red {
+  background-color: #ec8080;
+  color: #2b2b2b;
+}
+.nav--blue {
+  background-color: #80a6ec;
+  color: #2b2b2b;
+}
+.nav--green {
+  background-color: #92ec80;
+  color: #2b2b2b;
+}/*# sourceMappingURL=Navbar.css.map */
