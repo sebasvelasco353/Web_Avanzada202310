@@ -12,6 +12,7 @@ export const productsContext = React.createContext();
 export const cartContext = React.createContext();
 export const addProductContext = React.createContext();
 export const isPayingContext = React.createContext();
+export const cartModalContext = React.createContext();
 
 function App() {
 
@@ -60,11 +61,19 @@ function App() {
       id: Math.floor(Math.random() * 10000) + 1
     }])
 
-  //TODO: create CART context
+  //Cobtrols cart modal
+  let [cartModal, setCarModal] = useState(false)
 
   const [cartStatus, setCarStatus] = useState([])
 
   const [isPaying, setIsPaying] = useState(false)
+
+  
+  function handleSetDisplayCart(prop) {
+    setCarModal(prop);
+  }
+
+
   // Displays the add product section
   function handleDisplayAddProduct() {
     setModalAddProduct(!modalAddProduct)
@@ -78,19 +87,23 @@ function App() {
     
   }
 
+  //Add a new product to the cart 
   function handleSetProductList(newP) {
     setProductsList([...productsList, newP])
     //console.log(productsList)
   }
  
+  //Set new product to the cart
   function handleSetCartStatus(prop) {
     setCarStatus([...cartStatus, prop])
   }
-
+  
+//Sets new list of the cart
   function handleChangeCar(prop) {
     setCarStatus([...prop])
   }
 
+  //Cheks if the user is paying
   function handleIsPaying(prop){
     setIsPaying(prop)
   }
@@ -98,20 +111,23 @@ function App() {
 
   return (
     <div className="App">
-      <Header handleLogIn={handleLogIn} isLogged={isLoggedIn} handleDisplayAddProduct={handleDisplayAddProduct} ></Header>
+      
+      <cartModalContext.Provider value={cartModal}>
+        <Header handleLogIn={handleLogIn} isLogged={isLoggedIn} handleDisplayAddProduct={handleDisplayAddProduct} handleSetDisplayCart={handleSetDisplayCart}></Header>
       <productsContext.Provider value={productsList}>
         <cartContext.Provider value={cartStatus}>
           <addProductContext.Provider value={modalAddProduct}>
-            <AddProduct handleSetProductList={handleSetProductList}></AddProduct>
+            <AddProduct handleSetProductList={handleSetProductList} > </AddProduct>
           </addProductContext.Provider>
           <isPayingContext.Provider value={isPaying}>
-            <Cart handleSetCartStatus={handleSetCartStatus} handleIsPaying={handleIsPaying} handleChangeCar={handleChangeCar}></Cart>
+            <Cart handleIsPaying={handleIsPaying} handleChangeCar={handleChangeCar} ></Cart>
             <Payment handleIsPaying={handleIsPaying}></Payment>
             <Banner></Banner>
             <List productsList={productsList} handleSetCartStatus={handleSetCartStatus}> </List>
           </isPayingContext.Provider>
         </cartContext.Provider>
-      </productsContext.Provider>
+        </productsContext.Provider>
+        </cartModalContext.Provider>
     </div>
   );
 }

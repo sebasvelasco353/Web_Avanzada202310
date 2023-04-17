@@ -1,7 +1,23 @@
 import React from 'react'
 import './Header.css'
+import { useContext } from "react";
+import { cartModalContext } from "../../App";
 
-function Header({handleLogIn, handleDisplayAddProduct, isLogged, modalAddProduct}) {
+function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDisplayCart, isLoggedInStoryBook}) {
+
+    let isCartOpen = useContext(cartModalContext);
+    let logInState;
+
+    function handleCheckHeaderDisplay() {
+        if (isLoggedInStoryBook !== undefined) { 
+            logInState = isLoggedInStoryBook;
+        } else {
+            logInState = isLogged;
+        }
+    }
+
+    handleCheckHeaderDisplay();
+
 
     const loginSstyles = {
         logged:"",
@@ -9,20 +25,9 @@ function Header({handleLogIn, handleDisplayAddProduct, isLogged, modalAddProduct
     }
 
 
-
-  
-
-    function handleDisplayCart () {
-        let cartDisplayStatus = document.getElementById("cart-container");
-        if (cartDisplayStatus.classList.contains("cart-closed")) {
-            cartDisplayStatus.classList.remove("cart-closed")
-            cartDisplayStatus.classList.add("cart-open")
-        } else {
-            cartDisplayStatus.classList.add("cart-closed")
-            cartDisplayStatus.classList.remove("cart-open")
-        }
-      
-        //cartDisplayStatus.classList.remove("cart-closed"
+    function handleDisplayCart() {
+        console.log("Estado del cart en el header: " + isCartOpen)
+        handleSetDisplayCart(!isCartOpen)
     }
 
     return (
@@ -34,8 +39,8 @@ function Header({handleLogIn, handleDisplayAddProduct, isLogged, modalAddProduct
 
             <img src="https://thumbs.dreamstime.com/b/logotipo-oval-122856198.jpg" alt="" />
             <div id="header-buttons">
-                <button id="log-in-button" className={isLogged ? "not-showing" :""} onClick={() => { handleLogIn() }}> Iniciar Sesión </button>
-                <div id="admin-header-section" className={isLogged ? loginSstyles.logged : loginSstyles.notLogged}>
+                <button id="log-in-button" className={logInState ? "not-showing" :""} onClick={() => { handleLogIn() }}> Iniciar Sesión </button>
+                <div id="admin-header-section" className={logInState ? loginSstyles.logged : loginSstyles.notLogged}>
 
                     {/* Admin Content  */}
                     <p> Admin User </p>

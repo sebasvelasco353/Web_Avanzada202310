@@ -3,11 +3,14 @@ import "./Cart.css"
 import { useContext } from "react";
 import { cartContext } from "../../App";
 import { isPayingContext } from "../../App";
+import { cartModalContext } from "../../App";
 
-function Cart({ handleSetCartStatus, handleIsPaying, handleChangeCar}) {
+function Cart({ handleIsPaying, handleChangeCar, isCartOpenStorybook}) {
 
     let myCartStatus = useContext(cartContext);
     let isPaying = useContext(isPayingContext);
+    let isCartOpen = useContext(cartModalContext);
+    let controlModalCart;
     
 //Delete car from item
     function deleteFromCart(itemID) {
@@ -26,8 +29,29 @@ function Cart({ handleSetCartStatus, handleIsPaying, handleChangeCar}) {
         console.log(isPaying)
     }
 
+    function handleCheckModalState() {
+        isCartOpen ? controlModalCart = "cart-open" : controlModalCart = "cart-closed"
+    }
+    
+//This functions handles in case there is any prompt from storybook
+//In case there is a prompt it will take it other wise it will act normal
+    function handleVisivility() {
+        if (isCartOpenStorybook !== undefined) {
+            if (isCartOpenStorybook) {
+                controlModalCart = true;
+            } else {
+                controlModalCart =false;
+            }
+        } else {
+            handleCheckModalState()
+        }
+    }
+
+    handleVisivility()
+
+
   return (
-      <div className="cart-container cart-closed" id="cart-container">
+      <div className={"cart-container" + " " + controlModalCart }id="cart-container">
           <div className="your-cart-logo">
               <img src="https://parspng.com/wp-content/uploads/2022/12/cartpng.parspng.com-2.png" alt="" />
               <h2> Tu carrito </h2>  
