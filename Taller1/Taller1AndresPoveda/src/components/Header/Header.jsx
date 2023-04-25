@@ -3,14 +3,14 @@ import './Header.css'
 import { useContext } from "react";
 import { cartModalContext } from "../../App";
 
-function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDisplayCart, isLoggedInStoryBook}) {
+function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDisplayCart, isLoogedInProp}) {
 
     let isCartOpen = useContext(cartModalContext);
     let logInState;
 
     function handleCheckHeaderDisplay() {
-        if (isLoggedInStoryBook !== undefined) { 
-            logInState = isLoggedInStoryBook;
+        if (isLoogedInProp !== undefined) { 
+            logInState = isLoogedInProp;
         } else {
             logInState = isLogged;
         }

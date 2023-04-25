@@ -1,4 +1,4 @@
-import Header from "./Header.jsx"
+import Header from "./Header.jsx";
 
 export default {
     title: 'Header',
@@ -10,6 +10,6 @@ const Template = (args) => <Header{...args} />;
 
 export const Open = Template.bind({});
 Open.args = {
-    isLoggedInStoryBook: true
+    isLoogedInProp: true
 };
 
