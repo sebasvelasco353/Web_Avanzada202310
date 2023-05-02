@@ -17,7 +17,6 @@ function AddProduct({ handleSetProductList, modalStateProp }) {
   
   function handleStoryBookState () {
     if (modalStateProp === "" || modalStateProp === undefined) {
-      console.log("El modal esta vacioooo")
       if (modalAddNewProduct === true) {
         modalState = 'modalOpen';
       } else if (modalAddNewProduct === false) {

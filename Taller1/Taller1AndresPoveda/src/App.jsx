@@ -81,9 +81,8 @@ function App() {
 
   //TODO: Fix is loggedIn state, not showing properly
   function handleLogIn() {
-
     setIsLoggedIn(!isLoggedIn);
-
+    console.log("Handle Log In Function: " + isLoggedIn);
     
   }
 

@@ -25,7 +25,7 @@ function Payment({ handleIsPaying }) {
           <h2> Completa el pago</h2>
           <section>
               <h3>1) Informacion personal</h3>
-              <section class="payment-h-cotainer">
+              <section className="payment-h-cotainer">
                   
                   <div>
                       <label htmlFor=""> Nombre</label>
@@ -38,7 +38,7 @@ function Payment({ handleIsPaying }) {
                  
               </section>
           
-              <section class="payment-h-cotainer">
+              <section className="payment-h-cotainer">
 
                   <div>
                       <label htmlFor=""> Cedula </label>
@@ -51,7 +51,7 @@ function Payment({ handleIsPaying }) {
 
               </section>
 
-              <section class="payment-h-cotainer">
+              <section className="payment-h-cotainer">
 
                   <div>
                       <label htmlFor="">Fecha de nacimiento</label>
@@ -68,7 +68,7 @@ function Payment({ handleIsPaying }) {
         
           <section>
               <h3>2) Informacion de pago</h3>
-              <section class="payment-h-cotainer">
+              <section className="payment-h-cotainer">
 
                   <div>
                       <label htmlFor=""> Numero de tarjeta </label>
@@ -81,7 +81,7 @@ function Payment({ handleIsPaying }) {
 
               </section>
 
-              <section class="payment-h-cotainer">
+              <section className="payment-h-cotainer">
 
                   <div>
                       <label htmlFor=""> CCV </label>

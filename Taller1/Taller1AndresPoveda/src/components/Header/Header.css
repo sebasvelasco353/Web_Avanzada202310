@@ -80,3 +80,55 @@ header .admin-header-section  p {
     width: 2px;
     background-color:black;
 }
+
+#sign-form{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+}
+
+.form{
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: var(--mora-oscuro);
+    align-items: center;
+}
+
+.form input{
+    border-radius: 10px;
+    margin: 10px 0;
+    max-width: 400px;
+}
+.form h1{
+    margin: 20px 0;
+}
+
+.form button{
+    margin-top: 15px;
+    max-width: 350px;
+    background-color: rgb(47, 255, 61);
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+}
+
+.form button{
+    margin-top: 15px;
+    max-width: 350px;
+    background-color: rgb(47, 255, 61);
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+}
+
+.form button:hover{
+    transition: background-color 0.5s;
+    cursor: pointer;
+    transition: color 0.5;
+    color: black;
+    font-weight: bold;
+  border-radius: 15px;
+    background-color: rgb(92, 230, 101);
+}
