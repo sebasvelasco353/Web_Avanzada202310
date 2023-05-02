@@ -4,14 +4,13 @@ import { db } from "../../config/firebase";
 
 export default function ListItem({item}) {
   const [newScore, setNewScore] = useState(0);
+
   const handleDelete = async () => {
     const movieDoc = doc(db, "movies", item.id);
-    console.log('delete element with id: ', item.id);
     await deleteDoc(movieDoc);
   }
   const handleEditScore = async () => {
     const movieDoc = doc(db, "movies", item.id);
-    console.log('delete element with id: ', item.id);
     await updateDoc(movieDoc, {score: newScore});
   }
 
