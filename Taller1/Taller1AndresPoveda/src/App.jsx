@@ -7,6 +7,9 @@ import Cart from './components/Cart/Cart';
 import Banner from './components/Banner/Banner';
 import Payment from './components/Payment/Payment';
 
+
+import { handleGetProductsFromDB } from './firebase.jsx'
+
 //Create context.
 export const productsContext = React.createContext();
 export const cartContext = React.createContext();
@@ -23,43 +26,13 @@ function App() {
   const [modalAddProduct, setModalAddProduct] = useState(false);
 
   //Initial list of the products
-  const [productsList, setProductsList] = useState([
-    {
-      name: "Tinte Rubio",
-      brand: "Nouvelle",
-      price: 20000,
-      avalible: true,
-      id: Math.floor(Math.random() * 10000) + 1
-    },
-    {
-      name: "Shampo Negro",
-      brand: "Sephora",
-      price: 15000,
-      avalible: true,
-      id: Math.floor(Math.random() * 10000) + 1
-      
-    },
-    {
-      name: "Aclarador Natural",
-      brand: "Igora",
-      price: 45000,
-      avaliblde: true,
-      id: Math.floor(Math.random() * 10000) + 1
-    },
-    {
-      name: "Gel Capilar",
-      brand: "Sephora",
-      price: 5000,
-      avalible: true,
-      id: Math.floor(Math.random() * 10000) + 1
-    },
-    {
-      name: "Aclarador Artificial",
-      brand: "Color One",
-      price: 25000,
-      avalible: true,
-      id: Math.floor(Math.random() * 10000) + 1
-    }])
+  const [productsList, setProductsList] = useState([])
+
+  //Constantly bringing the product from the db
+  handleGetProductsFromDB().then(result => {
+    setProductsList(result)
+  });
+
 
   //Cobtrols cart modal
   let [cartModal, setCarModal] = useState(false)
