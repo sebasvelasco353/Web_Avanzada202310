@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../config/firebase";
+import { v4 } from 'uuid';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 export default function ListItem({item}) {
   const [newScore, setNewScore] = useState(0);
   // file upload state
   const [file, setFile] = useState(null);
-
-  useEffect(() => {
-
-  }, [])
 
   const handleDelete = async () => {
     const movieDoc = doc(db, "movies", item.id);
@@ -22,7 +19,7 @@ export default function ListItem({item}) {
   }
   const handleUploadFile = () => {
     if (!file) return; // no empty files
-    const filesFolderReference = ref(storage, `random/${file.name}`); // save in the random folder
+    const filesFolderReference = ref(storage, `moviePoster/${v4()+file.name}`); // save in the random folder
     try {
       uploadBytes(filesFolderReference, file).then(res => {
         return getDownloadURL(res.ref);

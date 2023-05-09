@@ -4,15 +4,29 @@ import SignIn from './components/SignIn';
 import NewItem from './components/NewItem';
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import List from "./components/List";
-import { firebaseAuth } from "./config/firebase";
+import { firebaseAuth, db } from "./config/firebase";
 import { useEffect, useState } from 'react';
+import { getDocs, collection,  query, where  } from "firebase/firestore";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [ userDisplayData, setUserDisplayData] = useState(null);
 
   const checkForUser = () => {
     onAuthStateChanged(firebaseAuth, (user) => {
+      if (!user)  return;
       if (user) setUser(user);
+      const usersRef = collection(db, "users");
+      // Create a query against the collection.
+      const q = query(usersRef, where("uid", "==", user.uid));
+      getDocs(q).then(querySnapshot => {
+        const formattedData = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id
+        }))
+        console.log(formattedData);
+        setUserDisplayData(formattedData);
+      })
     });
   }
 
@@ -30,8 +44,16 @@ function App() {
   }
 
   const renderHeaderContent = () => {
-    if (user) return <button onClick={handleSignOut}>Sign Out</button>;
-    return <><SignIn /><br /><LogIn /> <br/></>;
+    if (user && userDisplayData) {
+      return (
+        <>
+          <img src={userDisplayData[0].profileImage} alt='user profile' />
+          <button onClick={handleSignOut}>Sign Out</button>
+        </>
+      )
+    } else {
+      return <><SignIn /><br /><LogIn /> <br/></>;
+    }
   }
 
   return (
