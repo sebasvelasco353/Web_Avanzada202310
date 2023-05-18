@@ -1,11 +1,10 @@
 .login {
   padding-block: 2rem;
-  padding-inline: 16rem;
+  padding-inline: 4rem;
   height: 100%;
-  padding-top: 12rem;
 }
 .login__card {
-  background-color: #be123c;
+  background-color: #10b981;
   height: 100%;
   width: 100%;
 }
@@ -31,7 +30,7 @@
   font-size: xxx-large;
   margin-bottom: 5rem;
   font-weight: bolder;
-  color: #9f1239;
+  color: #065f46;
 }
 .login__form input[type=submit] {
   margin-top: 4rem;
@@ -40,8 +39,8 @@
   height: 3.5rem;
   width: 100%;
   border-radius: 0.5rem;
-  border: solid 2px #F7444EFF;
-  background-color: #F7444EFF;
+  border: solid 2px #10b981;
+  background-color: #10b981;
   color: #eff6ff;
   font-size: large;
 }
@@ -52,7 +51,19 @@
 .login__form p {
   margin-top: 8rem;
   font-size: small;
-  color: #fb7185;
+  min-height: 1.5rem;
+}
+
+.loading {
+  color: #a3a3a3;
+}
+
+.errored {
+  color: #f87171;
+}
+
+.success {
+  color: #34d399;
 }
 
 /*# sourceMappingURL=Login.css.map */

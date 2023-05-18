@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from "react";
+import React, {useState} from "react";
 import "./Input.css";
 
 export const Input = (
@@ -9,6 +9,8 @@ export const Input = (
         icon? : JSX.Element,
         required? : boolean,
         autoFocus? : boolean,
+        actionIcon? : JSX.Element,
+        actionClick? : React.MouseEventHandler<HTMLButtonElement>
     }
 ) => {
 
@@ -37,6 +39,9 @@ export const Input = (
             <label htmlFor={props.name} className={"input__label"}>{props.label}</label>
             {props.icon || <div className={"input__icon"}/>}
             <input {...props} className={"input__box"}/>
+            {props.actionClick && <button tabIndex={0} onClick={props.actionClick}>
+                {props.actionIcon || <></>}
+            </button>}
         </div>
     );
 }

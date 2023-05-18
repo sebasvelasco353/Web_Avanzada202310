@@ -7,9 +7,9 @@
   top: 0;
   left: 0;
   min-height: 8rem;
-  font-family: "Rubik", sans-serif;
+  font-family: "Bahnschrift", sans-serif;
 
-  background-color: black;
+  background-color: v.$emerald-700;
   color: v.$neutral-100;
 
   display: flex;
@@ -23,6 +23,15 @@
     align-items: center;
     justify-content: start;
     gap: 1rem;
+
+    &__image {
+      background-image: url("./../../../../src/assets/images/valle.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      aspect-ratio: 209 / 177;
+      height: 4rem;
+    }
 
     &__script {
       display: flex;
@@ -46,17 +55,17 @@
   &__actions {
     margin-right: 4rem;
     display: grid;
-    grid-template-columns: repeat(4, minmax(8.75rem, 1fr));
+    grid-template-columns: repeat(5, minmax(8.75rem, 1fr));
     gap: 0.5rem;
     transition: width ease-in-out 1s;
 
     li {
       display: grid;
       place-items: center;
-      transition: 300ms ease-in-out ;
+      transition: 200ms ease-in-out ;
 
       &:hover {
-        color: v.$rose-300;
+        color: v.$amber-100;
       }
 
       a {
@@ -74,11 +83,11 @@
         border-radius: 0.5rem;
         padding-inline: 2rem;
         padding-block: 0.5rem;
+        transition: all 200ms ease-in-out;
 
         &:hover {
-          transition: all 200ms ease-in-out;
           cursor: pointer;
-          border-color: v.$accent;
+          border-color: v.$amber-100;
           scale: 1.025;
         }
       }
@@ -99,7 +108,7 @@
 }
 
 .selected {
-  color: v.$accent;
+  color: v.$amber-200;
   font-weight: bold;
   text-decoration: underline 2px;
   text-underline-offset: 1rem;

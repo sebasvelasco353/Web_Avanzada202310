@@ -1,5 +1,4 @@
 import './Navbar.css';
-import {CupHot} from "react-bootstrap-icons";
 import React, {useContext} from "react";
 import SessionContext from "../../../context/Session/SessionContext";
 import {useLocation, useNavigate} from "react-router-dom";
@@ -30,24 +29,27 @@ export const Navbar = () => {
     return (
         <nav className={"navbar"}>
             <section className={"navbar__logo"}>
-                <CupHot size={38}/>
+                <span className={"navbar__logo__image"}/>
                 <section className={"navbar__logo__script"}>
-                    <h1>Hotshop</h1>
-                    <p>brewed for you</p>
+                    <h1>Vallexplora</h1>
+                    <p>¡Explora el Valle!</p>
                 </section>
             </section>
             <ul className={"navbar__actions"}>
                 <li className={`${current === "/" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
-                    <a href={"/"} onClick={handleChange}>Home</a>
+                    <a href={"/"} onClick={handleChange}>Inicio</a>
                 </li>
-                <li className={`${current === "/cart" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
-                    <a href={"/cart"} onClick={handleChange}>Cart</a>
+                <li className={`${current === "/events" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
+                    <a href={"/events"} onClick={handleChange}>Eventos</a>
+                </li>
+                <li className={`${current === "/challenges" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
+                    <a href={"/challenges"} onClick={handleChange}>Desafíos</a>
                 </li>
                 <li className={`${current === "/profile" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
-                    <a href={"/profile"} onClick={handleChange}>{username ? username : "Profile"}</a>
+                    <a href={"/profile"} onClick={handleChange}>{username ? username : "Perfil"}</a>
                 </li>
                 <li>
-                    <button onClick={handleLogout} >{logged ? "Logout" : "Login"}</button>
+                    <button onClick={handleLogout} >{logged ? "Salir" : "Ingresar"}</button>
                 </li>
             </ul>
         </nav>
