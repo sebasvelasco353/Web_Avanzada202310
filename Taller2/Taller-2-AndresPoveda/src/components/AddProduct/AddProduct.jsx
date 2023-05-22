@@ -56,7 +56,7 @@ function AddProduct({ handleSetProductList, modalStateProp }) {
 
 
       const hideSection = document.getElementById("add-product").style.display = "none";
-      console.log("Document written with name:", product.name)
+      alert("Document written with name:", product.name)
 
     } catch (e) {
       console.error("Error adding document", e)
@@ -67,10 +67,17 @@ function AddProduct({ handleSetProductList, modalStateProp }) {
   return (
 
     <div id="add-product" className={modalState}>
-        <input id="name" type="text" placeholder="Nombre" />
-        <input id="brand" type="text" placeholder="Marca" />
-        <input id="price" type="number" placeholder="Precio" />
-      <button onClick={() => { handleAddNewProduct() }}> Añade un producto </button>
+      <h2> Add a new product</h2>
+      <p> 1. Set name of the product</p>
+      <input id="name" type="text" placeholder="Name" />
+      <p> 2. Set the brand of the product</p>
+      <input id="brand" type="text" placeholder="Brand" />
+      <p> 3. Set the price</p>
+      <input id="price" type="number" placeholder="Price" />
+
+      <p> 4. Upload the image of the product</p>
+      <input id="add-img" placeHolder="select a file" type="file" />
+      <button onClick={() => { handleAddNewProduct() }}> Add to the database </button>
     </div>
     
   )

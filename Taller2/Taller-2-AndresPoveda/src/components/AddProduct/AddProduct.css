@@ -4,10 +4,14 @@
 .modalOpen{
     display: flex;
     background-color: var(--mora-oscuro);
-    height: 100px;
-    flex-direction: row;
+    height: 700px;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+#add-img{
+ background-color: white
 }
 
 .modalClosed{
@@ -23,7 +27,8 @@
     border-radius: 5px;
     background-color: rgb(47, 255, 61);
     font-weight: bold;
-    width: 100px;
+    width: 200px;
+    margin: 20px 0;
 
 }
 
@@ -45,4 +50,13 @@
 
 #add-product button {
     height: 50px;
+}
+
+#add-product h2{
+    margin: 10px 0;
+}
+
+#add-product{
+    background-image: url("./assets/background.png");
+    background-size: cover;
 }

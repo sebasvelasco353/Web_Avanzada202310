@@ -189,23 +189,31 @@ function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDispl
             
             {/* Header contiains an image of the logo and a separate section for cart, user photo and login  */}
 
-            <img src="https://thumbs.dreamstime.com/b/logotipo-oval-122856198.jpg" alt="" />
+            <img id="logo-img"src={require("./assets/logo.png")} alt="" />
+            <div id="header-info">
+                    <p> Products </p>
+                    <p> About Us </p>
+                    <p> Contact  </p>
+            </div>
             <div id="header-buttons">
-                    <button id="log-in-button" className={logInState ? "not-showing" : ""} onClick={() => { handleDisplayLogInForm() }}> Iniciar Sesión </button>
-                    <button id="register-button" style={{ display: logInState ? "none" : "" }}  onClick={() => { handleDisplayRegisterForm() }}> Registrate </button>
+                    <button id="log-in-button" className={logInState ? "not-showing" : ""} onClick={() => { handleDisplayLogInForm() }}> Log In </button>
+                    <button id="register-button" style={{ display: logInState ? "none" : "" }}  onClick={() => { handleDisplayRegisterForm() }}> Register </button>
                 
                    {/* If user is admin */}
                 <div id="admin-header-section" className={logInState ? loginSstyles.logged : loginSstyles.notLogged}>
-                    <p> Admin User </p>
-                    <a href="">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="" />
-                    </a>
-                    <button onClick={() => { handleDisplayAddProduct()} }> Añade un producto </button>
-                        <button className="log-out-button" onClick={(e) => { logOut(e) }}> Salir </button>
+                
+                    <button onClick={() => { handleDisplayAddProduct()} }> Add a product </button>
+                        <button className="log-out-button" onClick={(e) => { logOut(e) }}> Log Out </button>
                         <div className="group-div"> 1</div>
+                        <a href="">
+                            <img src={require("./assets/user-pic.png")} alt="" />
+                        </a>
+            
+                        <p> Admin</p>
                         <a onClick={() => { handleDisplayCart() }} href="#">
                             <img src="https://parspng.com/wp-content/uploads/2022/12/cartpng.parspng.com-2.png" alt="" />
                         </a>
+                        
                     </div>
             
             </div>
@@ -216,25 +224,26 @@ function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDispl
             <div id="sign-form">
 
                 <div id="register-form" className="form" style={{ display: registerDisplayHandler ? registerDisplayHandlerStyles.open : registerDisplayHandlerStyles.closed}} >
-                    <h1> Registrate! </h1>
-                    <label htmlFor=""> Nombre </label>
-                    <input id="input-register-name" type="text" />
-                    <label htmlFor=""> Correo </label>
-                    <input id="input-register-mail" type="mail" />
-                    <label htmlFor=""> Contraseña</label>
-                    <input id="input-register-password" type="password" />
-                    <label htmlFor=""> Repite contraseña</label>
-                    <input id="input-register-password-confirmation"  type="password" />
-                    <button onClick={(e) => handleRegisterUser(e)}> Registrarse </button>
+                    <h1> Register now to get exclusive deals!</h1>
+                    <label htmlFor=""> Name </label>
+                    <input placeHolder="Ex: Pedro"  id="input-register-name" type="text" />
+                    <label htmlFor=""> Mail </label>
+                    <input placeHolder="Ex: mail@gmail.com"  id="input-register-mail" type="mail" />
+                    <label htmlFor="" > Password </label>
+                    <input id="input-register-password" placeHolder="Password" type="password" />
+                    <p> password must be at least 6 characters long.</p>
+                    <label htmlFor=""> Repit password </label>
+                    <input placeHolder="Repit Password"  id="input-register-password-confirmation"  type="password" />
+                    <button onClick={(e) => handleRegisterUser(e)}> Register</button>
                 </div> 
 
                 <div id="log-in-form" className="form" style={{ display: logInDisplayHandler ? logInDisplayHandlerStyles.open : logInDisplayHandlerStyles.closed }}>
-                    <h1> Inicia Sesión! </h1>
-                    <label htmlFor=""> Correo </label>
-                    <input id="input-login-mail"  type="text" />
-                    <label htmlFor=""> Contraseña</label>
-                    <input id="input-login-password" type="text" />
-                    <button onClick={(e) => handleFirebaseLogIn(e)}> Entrar </button>
+                    <h1> Glad to see you back! </h1>
+                    <label htmlFor=""> Mail </label>
+                    <input placeHolder="correo@gmail.com" id="input-login-mail"  type="mail" />
+                    <label htmlFor=""> Password </label>
+                    <input placeHolder="password"  id="input-login-password" type="password" />
+                    <button onClick={(e) => handleFirebaseLogIn(e)}> Ready!</button>
                 </div>
 
             </div>

@@ -1,7 +1,7 @@
 @import '../../App.css';
 
-header img {
-    width: 60px;
+#logo-img{
+    width: 70px;
     object-fit: contain;
     margin: 0 2px;
 }
@@ -69,6 +69,13 @@ header .admin-header-section  p {
     display: none;
 }
 
+
+#admin-header-section img{
+    width: 40px;
+    margin-left: 10px;
+    object-fit: contain;
+}
+
 .admin-header-style {
  display: flex;
  flex-direction: row;
@@ -81,37 +88,24 @@ header .admin-header-section  p {
     background-color:black;
 }
 
-#sign-form{
-    display: flex;
-    flex-direction: column;
-    padding: 5px 20px;
-}
-
 .form{
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
     color: white;
-    background-color: var(--mora-oscuro);
+    background-color: transparent;
     align-items: center;
 }
 
 .form input{
     border-radius: 10px;
     margin: 10px 0;
-    max-width: 400px;
+    width: 300px;
+    height: 30px;
+    padding: 0px 20px;
 }
 .form h1{
     margin: 20px 0;
-}
-
-.form button{
-    margin-top: 15px;
-    max-width: 350px;
-    background-color: rgb(47, 255, 61);
-    width: 300px;
-    height: 40px;
-    border-radius: 15px;
 }
 
 .form button{
@@ -131,4 +125,48 @@ header .admin-header-section  p {
     font-weight: bold;
   border-radius: 15px;
     background-color: rgb(92, 230, 101);
+}
+
+#header-info{
+    font-weight: bold;
+}
+
+#header-info p{
+    margin: 0 20px;
+}
+
+#header-info p:hover{
+    cursor: pointer;
+    transition: opacity 0.5s;
+    opacity: 0.8;
+}
+
+#log-in-form{
+    background-image: url("./assets/background.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content:left;
+    color: white;
+
+}
+#sign-form{
+    background-image: url("./assets/background.png"); 
+    background-size: cover;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+}
+
+#sign-form h1{
+    margin-left: 60px;
+    width: 400px;
+}
+
+
+#sign-form p{
+margin-left: -110px;
+   font-size: 10px;
+   margin-bottom: 10px;
 }
