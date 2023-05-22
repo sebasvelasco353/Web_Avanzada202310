@@ -3,6 +3,9 @@ import './AddProduct.css'
 import { useContext } from "react";
 import { productsContext } from "../../App";
 import { addProductContext } from "../../App";
+import { db } from "../../firebase.jsx"
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js"
+
 
 function AddProduct({ handleSetProductList, modalStateProp }) {
   
@@ -31,25 +34,33 @@ function AddProduct({ handleSetProductList, modalStateProp }) {
 
     }
   }
-  
-  function handleAddNewProduct() {
-    
-    let myNewProduct = {
-      name: document.getElementById("name").value,
-      brand: document.getElementById("brand").value,
-      price: document.getElementById("price").value,
-      avalible: "yes",
-      id: Math.floor(Math.random() * 10000) + 1
+
+  async function handleAddNewProduct() {
+    try {
+      let product = {
+        name: document.getElementById("name").value,
+        brand: document.getElementById("brand").value,
+        price: document.getElementById("price").value,
+        avalible: "yes",
+        id: Math.floor(Math.random() * 10000) + 1
+      }
+
+
+      const docRef = await setDoc(doc(db, "products", product.name), {
+        name: product.name,
+        brand: product.brand,
+        price: product.price,
+        avalible: true,
+        id: product.id
+      });
+
+
+      const hideSection = document.getElementById("add-product").style.display = "none";
+      console.log("Document written with name:", product.name)
+
+    } catch (e) {
+      console.error("Error adding document", e)
     }
-
-    let newArr = actualList;
-    newArr.push(myNewProduct);
-
-    console.log(newArr)
-
-    handleSetProductList(myNewProduct);
-
-    const hideSection = document.getElementById("add-product").style.display = "none";
   }
 
   handleStoryBookState();

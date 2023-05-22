@@ -192,7 +192,7 @@ function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDispl
             <img src="https://thumbs.dreamstime.com/b/logotipo-oval-122856198.jpg" alt="" />
             <div id="header-buttons">
                     <button id="log-in-button" className={logInState ? "not-showing" : ""} onClick={() => { handleDisplayLogInForm() }}> Iniciar Sesión </button>
-                    <button id="register-button" onClick={() => { handleDisplayRegisterForm() }}> Registrate </button>
+                    <button id="register-button" style={{ display: logInState ? "none" : "" }}  onClick={() => { handleDisplayRegisterForm() }}> Registrate </button>
                 
                    {/* If user is admin */}
                 <div id="admin-header-section" className={logInState ? loginSstyles.logged : loginSstyles.notLogged}>
@@ -202,13 +202,12 @@ function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDispl
                     </a>
                     <button onClick={() => { handleDisplayAddProduct()} }> Añade un producto </button>
                         <button className="log-out-button" onClick={(e) => { logOut(e) }}> Salir </button>
+                        <div className="group-div"> 1</div>
+                        <a onClick={() => { handleDisplayCart() }} href="#">
+                            <img src="https://parspng.com/wp-content/uploads/2022/12/cartpng.parspng.com-2.png" alt="" />
+                        </a>
                     </div>
-                
-                    
-                <div className="group-div"> 1</div>
-                <a onClick={() => { handleDisplayCart() }} href="#">
-                    <img src="https://parspng.com/wp-content/uploads/2022/12/cartpng.parspng.com-2.png" alt="" />
-                </a>
+            
             </div>
             
         </header>
