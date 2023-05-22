@@ -1,0 +1,36 @@
+@use "./../../variables" as v;
+
+.entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.6fr 3fr 1fr 1fr;
+  place-items: center;
+
+  &__trash {
+    border: none;
+    background: transparent;
+    color: v.$neutral-400;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    transition: all 200ms ease-in-out;
+
+    &:hover {
+      background-color: transparentize(v.$rose-300, 0.6);
+      color: v.$red-700;
+      cursor: pointer;
+    }
+  }
+
+  h2 {
+    font-size: medium;
+    letter-spacing: normal;
+    font-weight: normal;
+    text-transform: none;
+  }
+
+  &__name {
+    width: 100%;
+    text-align: start;
+    text-overflow: fade;
+  }
+}

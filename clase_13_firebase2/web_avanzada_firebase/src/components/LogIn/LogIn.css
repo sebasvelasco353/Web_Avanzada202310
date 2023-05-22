@@ -1,0 +1,6 @@
+.LogIn {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    padding: 25px 10px;
+}

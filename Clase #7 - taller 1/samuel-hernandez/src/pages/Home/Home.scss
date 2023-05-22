@@ -1,0 +1,22 @@
+@use "./../../variables" as v;
+
+.home {
+  position: relative;
+  background: linear-gradient(to bottom, v.$rose-800 0%, v.$rose-700 5%, v.$neutral-800 15%);
+  padding-top: 12rem;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: start;
+    padding-inline: 8rem;
+  }
+
+  &__content {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}

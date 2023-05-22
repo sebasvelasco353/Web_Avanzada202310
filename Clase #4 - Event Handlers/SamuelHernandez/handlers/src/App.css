@@ -1,0 +1,52 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+    width: 100vmax;
+    height: 100vmin;
+    justify-content: start;
+    padding-top: 16rem;
+    overflow: hidden;
+}
+
+.app__header {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1rem;
+    padding-inline: 4rem;
+}
+
+.app__title {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+.app__button {
+    padding-inline: 1.8rem;
+    padding-block: 0.8rem;
+    border-radius: 0.5rem;
+    background-color: coral;
+    border: transparent solid;
+    font-size: 1.2rem;
+    transition: all 200ms ease-in-out;
+}
+
+.app__button:hover {
+    scale: 1.1;
+    cursor: pointer;
+    background-color: transparent;
+    border: coral solid;
+    color: coral;
+}
+
+.app__button:active {
+    transition: all 100ms linear;
+    scale: 1;
+    cursor: pointer;
+    background-color: #FF7F5022;
+    border: #FF7F50CC solid;
+    color: #FF7F50CC;
+}
