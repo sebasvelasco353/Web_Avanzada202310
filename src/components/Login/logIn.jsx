@@ -1,6 +1,8 @@
 import React from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+//import {auth, db} from "../../config/firebase";
+//import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+//import { collection, query, where, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom"; 
 
 function Login({user}){
@@ -11,7 +13,10 @@ function Login({user}){
 
 	const handleLogIn = async () => {
 		try {
-			const {userData} = signInWithEmailAndPassword(auth, email, password);
+			userData = signInWithEmailAndPassword(auth, email, password);
+			const q = query(collection(db, "usuario"), where("correo", "==", email));
+			const querySnapshot = await getDocs(q);
+			userData.push(querySnapshot)
 			user(userData);
 			navigate("/mangas")
 		} catch (error) {

@@ -1,10 +1,12 @@
 import React, {useState} from "react";
-import {auth} from "../../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+//import {auth, db} from "../../config/firebase";
+//import { collection, addDoc } from "firebase/firestore";
+//import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom"; 
 
 function Sigin({user}){
 
+	const [alias, setAlias] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
@@ -12,6 +14,10 @@ function Sigin({user}){
 	const handleSignIn = async () => {
 		try {
 			await createUserWithEmailAndPassword(auth, email, password);
+			const docRef = await addDoc(collection(db, "usuario"), {
+						    			  correo: email,
+										  tipo: "client"
+										});
 			navigate("/login")
 		} catch (error) {
 			console.error(error);
