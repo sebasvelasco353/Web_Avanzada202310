@@ -1,0 +1,20 @@
+.navbar {
+    width: 100vw;
+    height: 100px;
+    background-color: azure;
+    position: sticky;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
+    justify-content: space-around;
+}
+
+.button {
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
