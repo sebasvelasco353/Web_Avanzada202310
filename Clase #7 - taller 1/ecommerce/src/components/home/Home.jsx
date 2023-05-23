@@ -7,11 +7,13 @@ import Shopping from '../shopping/Shopping'
 import './Home.css'
 import Sign from '../sign/Sign';
 import { getAuth} from 'firebase/auth';
+import AddProduct from '../sales/AddProduct';
 
 function Home (){
     const [showLogin, setShowLogin] = useState(true);
     const [showSign, setShowSign] = useState(false);
     const [component, setActiveComponent] = useState('Login');
+    const [showSales, setShowSales] = useState(false);
 
     const isLogin = useSelector(state => state.login)
     const showShopping = useSelector(state => state.showShopping);
@@ -49,15 +51,25 @@ function Home (){
       }
     }
 
+    const openSale = () =>{
+      if(showSales){
+        setShowSales(false)
+      } else {
+        setShowSales(true)
+      }
+    }
+
     return(
         <div className='container_home'>
           <div className='container_home__bar'>
             {isLogin && <button className='container_home__bar__shopping_button' onClick={openShopping}></button>}
             {!isLogin && <button className='container_home__bar__sing_button' onClick={handleSign}>Sign</button>}
+            {isLogin && <button className='container_home__bar__sale_nutton' onClick={openSale}>Sale</button>}
             <button className='container_home__bar__login_button' onClick={handleLogin}>{!isLogin?"Login":"Logout"}</button> 
           </div>
           {component === 'Sign' && <Sign/>}
           {component === 'Login' && !isLogin && <Login/>}
+          {showSales && <AddProduct/>}
           {displayShopping()}
           {displayProductList()}
         </div>
