@@ -5,12 +5,14 @@ import SessionContext from "../../../context/Session/SessionContext";
 import {useLocation, useNavigate} from "react-router-dom";
 import UserContext from "../../../context/User/UserContext";
 import CartContext from "../../../context/Cart/CartContext";
+import {auth} from "../../../config/firebase";
+import { signOut } from 'firebase/auth';
 
 export const Navbar = () => {
 
     const {sessionState , logout} = useContext(SessionContext);
     const {logged} = sessionState;
-    const {username} = useContext(UserContext);
+    const {username, clear: clearUser} = useContext(UserContext);
     const {clear: clearCart} = useContext(CartContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -18,8 +20,11 @@ export const Navbar = () => {
 
     const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        clearCart();
-        logout();
+        signOut(auth).then(() => {
+            clearCart();
+            clearUser();
+            logout();
+        })
     };
 
     function handleChange(e: React.MouseEvent<HTMLAnchorElement>) {

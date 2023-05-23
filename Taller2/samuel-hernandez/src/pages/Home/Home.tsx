@@ -1,5 +1,4 @@
 import "./Home.css";
-import {AvailableItems} from "../../data/AvailableItems";
 import {ItemCard} from "../../components/ItemCard/ItemCard";
 import {ItemModal} from "../../components/ItemModal/ItemModal";
 import {ModalProvider} from "../../context/Modal/ModalProvider";
@@ -17,9 +16,7 @@ export const Home = () => {
                 </header>
                 <section className={"home__wrapper"}>
                     <section className={"home__content"}>
-                        {AvailableItems.map((item, index) => {
-                            return <ItemCard key={`itemCard${index}`} item={item}/>;
-                        })}
+
                     </section>
                 </section>
                 <ItemModal/>

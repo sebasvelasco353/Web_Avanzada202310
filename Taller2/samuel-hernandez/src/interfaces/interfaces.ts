@@ -5,7 +5,8 @@ export interface Item {
     name : string,
     description : string,
     stock : number,
-    price : number
+    price : number,
+    inStock : boolean,
 }
 
 export interface CartItem extends Item {
@@ -29,6 +30,9 @@ export interface ModalState {
 export interface User {
     id : string,
     username : string,
+    email: string,
+    hasSpent : number,
+    isAdmin : boolean
 }
 
 export interface SessionState {

@@ -4,13 +4,16 @@ import {User} from "../../interfaces/interfaces";
 import {userReducer} from "./userReducer";
 
 interface IProps {
-    children : JSX.Element | JSX.Element[]
+    children: JSX.Element | JSX.Element[]
 }
 
 export const UserProvider = (props: IProps) => {
 
-    const defaultState :User = {
-        id : "INVALID",
+    const defaultState: User = {
+        email: "none@none.no",
+        hasSpent: 0,
+        isAdmin: false,
+        id: "INVALID",
         username: "none"
     }
 
@@ -25,8 +28,8 @@ export const UserProvider = (props: IProps) => {
     }
 
     return (
-        <UserContext.Provider value={{...userState, setUser, clear}} >
-            { props.children }
+        <UserContext.Provider value={{...userState, setUser, clear}}>
+            {props.children}
         </UserContext.Provider>
     );
 }
