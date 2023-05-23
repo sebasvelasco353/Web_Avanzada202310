@@ -2,11 +2,12 @@
 
 .login {
   padding-block: 2rem;
-  padding-inline: 4rem;
+  padding-inline: 16rem;
   height: 100%;
+  padding-top: 12rem;
 
   &__card {
-    background-color: v.$emerald-500;
+    background-color: v.$rose-700;
     height: 100%;
     width: 100%;
   }
@@ -35,7 +36,7 @@
       font-size: xxx-large;
       margin-bottom: 5rem;
       font-weight: bolder;
-      color: v.$emerald-800;
+      color: v.$rose-800;
     }
 
     input[type="submit"] {
@@ -46,8 +47,8 @@
       width: 100%;
 
       border-radius: 0.5rem;
-      border: solid 2px v.$emerald-500;
-      background-color: v.$emerald-500;
+      border: solid 2px v.$accent;
+      background-color: v.$accent;
       color: v.$blue-50;
       font-size: large;
 
@@ -60,20 +61,8 @@
     p {
       margin-top: 8rem;
       font-size: small;
-      min-height: 1.5rem;
+      color: v.$rose-400;
     }
   }
 
-}
-
-.loading {
-  color: v.$neutral-400;
-}
-
-.errored {
-  color: v.$red-400;
-}
-
-.success {
-  color: v.$emerald-400;
 }
