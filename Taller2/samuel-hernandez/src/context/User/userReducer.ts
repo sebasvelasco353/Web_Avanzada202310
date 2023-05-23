@@ -1,13 +1,14 @@
 import {User} from "../../interfaces/interfaces";
 
 type UserAction =
-    | {type: "clear", payload: null}
-    | {type: "set", payload: User};
+    | { type: "clear", payload: null }
+    | { type: "set", payload: User }
+    | { type: "get", payload: null };
 
-export const userReducer = (state: User, action: UserAction) : User => {
+export const userReducer = (state: User, action: UserAction): User => {
     switch (action.type) {
         case "clear":
-            return  {
+            return {
                 ...state,
                 id: "INVALID",
                 username: "none",
@@ -18,6 +19,8 @@ export const userReducer = (state: User, action: UserAction) : User => {
                 id: action.payload.id,
                 username: action.payload.username,
             }
+        case "get":
+            return state;
         default:
             return state;
     }

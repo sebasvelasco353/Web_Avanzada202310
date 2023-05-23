@@ -34,9 +34,10 @@ export const Login = () => {
                 const userDocRef = doc(db, "users", userId);
                 const userDocSnap = await getDoc(userDocRef);
                 if (userDocSnap.exists()) {
+                    alert(userDocSnap.data());
                     setUser(userDocSnap.data() as User);
-                }
-                login();
+                    login();
+                } else throw new Error("Usuario no verificado");
             }).catch((error) => {
             setInfoClassName("errored");
             const errorMessage = error.message;

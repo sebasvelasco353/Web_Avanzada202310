@@ -23,12 +23,17 @@ export const UserProvider = (props: IProps) => {
         dispatch({type: "set", payload: user});
     }
 
+    const getUser = () => {
+        dispatch({type: "get", payload: null});
+        return userState;
+    }
+
     const clear = () => {
         dispatch({type: "clear", payload: null});
     }
 
     return (
-        <UserContext.Provider value={{...userState, setUser, clear}}>
+        <UserContext.Provider value={{...userState, getUser, setUser, clear}}>
             {props.children}
         </UserContext.Provider>
     );

@@ -6,11 +6,13 @@ import {Helmet} from "react-helmet";
 import {collection, doc, getDoc, getDocs, query} from "firebase/firestore";
 import {db} from "../../config/firebase";
 import {Item, User} from "../../interfaces/interfaces";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import UserContext from "../../context/User/UserContext";
 
 export const Home = () => {
 
     const [items, setItems] = useState([] as Item[]);
+    const { getUser } = useContext(UserContext)
 
     const fetchItems = async () => {
         const itemsQuery = query(collection(db, "items"));
@@ -25,6 +27,7 @@ export const Home = () => {
 
     useEffect(() => {
         fetchItems();
+        console.log(getUser())
     }, [])
 
     return (
@@ -44,6 +47,9 @@ export const Home = () => {
                             );
                         })}
                     </section>
+                    {getUser().isAdmin && <button>
+                        Soy admin
+                    </button>}
                 </section>
                 <ItemModal/>
             </main>
