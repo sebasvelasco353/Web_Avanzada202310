@@ -1,20 +1,30 @@
 import './Login.css'
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { auth } from '../../config/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch()
 
-    const handleSubmit = (e) => {
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+    
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if(!email || !password){
-            alert("Completa los campos.")
-        } else {
-            console.log(`Email: ${email}, Password: ${password}`);
+        try {
+            await signInWithEmailAndPassword(auth, email, password)
             dispatch({type: 'Login'})
-            alert("Has iniciado sesión.") 
+            alert("Usuario autenticado.") 
+        } catch (error) {
+            alert("El usuario no se encuentra registrado.")
         }
     };
 
@@ -23,11 +33,11 @@ function Login(){
         <form className='container_login__form' onSubmit={handleSubmit}>
             <label>
                 Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="email" id='email' value={email} onChange={handleEmailChange} required/>
             </label>
             <label>
                 Password:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" id='password' value={password} onChange={handlePasswordChange} required/>
             </label>
             <button type="submit">LogIn</button>
         </form>
