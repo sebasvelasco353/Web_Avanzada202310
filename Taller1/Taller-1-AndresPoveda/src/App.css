@@ -1,0 +1,12 @@
+:root{
+    --beish:#E9D4C1;
+    --mora-oscuro:#38204C;
+    --mora-beish:#b89aee;
+    --mora-claro:#e5e0fd;
+    --fuente:  'Montserrat', sans-serif;
+}
+
+*{
+    font-family: var(--fuente);
+    margin: 0px;
+}
