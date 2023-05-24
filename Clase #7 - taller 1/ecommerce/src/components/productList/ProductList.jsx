@@ -25,10 +25,6 @@ function ProductList(){
     }
   }
 
-  const handleDelete=async()=>{
-    const productDoc = doc(db, 'product', )
-  }
-
   useEffect(()=>{
     getProducts();
   })
@@ -42,10 +38,11 @@ function ProductList(){
           </div>
           {productList.map(product => (
             <Product
-              id={v4()}
+              id={product.id}
               name={product.name}
               price={product.price}
               description={product.description}
+              active={true}
             />
           ))}
         </div>}
@@ -60,6 +57,7 @@ function ProductList(){
                 name={product.name} 
                 price={product.price} 
                 description={product.description}
+                active = {false}
             />
         ))}
     </div>

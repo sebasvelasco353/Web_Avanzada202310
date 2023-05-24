@@ -8,6 +8,24 @@
     height: 300px;
     overflow: hidden;
   }
+
+  .productcard_bar{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .productcard_bar--button {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-image: url('../../imgs/eliminar.png');
+    background-size: cover;
+  }
   
   .productcard h1 {
     font-size: 24px;

@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import Modal from '../modal/Modal'
 import './Product.css'
 import { useSelector,useDispatch } from 'react-redux'
+import { db } from '../../config/firebase';
+import { deleteDoc, doc } from '@firebase/firestore';
 
 function Product (props){
     
@@ -24,14 +26,27 @@ function Product (props){
         }
     }
 
+    const handleDelete=async()=>{
+        if(confirm('¿Estás segur@ que quieres eliminar este producto?')){
+            const productDoc = doc(db, 'product', props.id)
+            await deleteDoc(productDoc)
+        }
+      }
+
     return(
-        <div className='productcard' onClick={clickProductCard}>
-            <h1>{props.name}</h1>
-            <h2>${props.price}</h2>
-            <p>{props.description}</p>
+        <div className='productcard'>
+            {props.active && <div className='productcard_bar'>
+                <button className='productcard_bar--button' onClick={handleDelete}></button>  
+            </div>}
+            <div className='productcard_container__info' onClick={clickProductCard}>
+                <h1>{props.name}</h1>
+                <h2>${props.price}</h2>
+                <p>{props.description}</p>
+            </div>
+            
             {displayModal()}
         </div>       
     )
 }
 
-export default Product
+export default Product;
