@@ -16,7 +16,7 @@ function UpdateModal(props) {
             price: price,
             description: description
         })
-        alert('Producto actualizado.')
+        alert('Producto actualizado')
     }
 
     const handleName =(e)=>{
