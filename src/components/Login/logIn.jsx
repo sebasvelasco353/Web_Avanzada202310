@@ -1,9 +1,10 @@
 import React from "react";
-//import {auth, db} from "../../config/firebase";
-//import { signInWithEmailAndPassword } from "firebase/auth";
+import {auth, db} from "../../config/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-//import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom"; 
+import "./login.css"
 
 function Login({user}){
 
@@ -13,11 +14,14 @@ function Login({user}){
 
 	const handleLogIn = async () => {
 		try {
-			userData = signInWithEmailAndPassword(auth, email, password);
+			const userData = await signInWithEmailAndPassword(auth, email, password);
 			const q = query(collection(db, "usuario"), where("correo", "==", email));
 			const querySnapshot = await getDocs(q);
-			userData.push(querySnapshot)
-			user(userData);
+			const querySnapshotFormatted = querySnapshot.docs.map( (manga) => ({
+				...manga.data()
+			}));
+			console.log([email, password, querySnapshotFormatted[0].tipo]);
+			user([email, password, querySnapshotFormatted[0].tipo]);
 			navigate("/mangas")
 		} catch (error) {
 			console.error(error);
@@ -30,35 +34,54 @@ function Login({user}){
 
 	return(
 	  <div>
-	    <form>
-		<table>
-		  <thead>
-            <tr>
-		      <th colSpan="2">Log in</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		   <tr>
-		     <td>Correo electronico: </td>
-		     <td><input type="text" onChange={(e) => setEmail(e.target.value)}/></td>
-		   </tr>
-		   <tr>
-		     <td>Contraseña: </td>
-		     <td><input type="password" onChange={(e) => setPassword(e.target.value)}/></td>
-		   </tr>
-		   <tr>
-		   	<td></td>
-		   	<td>
-		   		<button onClick={handleLogIn}>Log in</button>
-		   		<button onClick={handleSignIn}>Sign in</button>
-		   	</td>
-		   	<td></td>
-		   </tr>
-		  </tbody>
-		</table>
-	    </form>
-	  </div>
+		    <form>
+			    <table>
+			    	<thead>
+		              <tr>
+		            	<th colSpan="2">Log in</th>
+		          	  </tr>
+		        	</thead>
+		        	<tbody>
+		        		<tr></tr>
+		        		<tr></tr>
+		        		<tr>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td>
+		        				<div className="form-group">
+						          <label htmlFor="email">Correo electrónico:</label>
+						          <input type="text" id="email" onChange={(e) => setEmail(e.target.value)}/>
+						        </div></td>
+		        		</tr>
+		        		<tr>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td>
+		        				<div className="form-group">
+						          <label htmlFor="password">Contraseña:</label>
+						          <input type="password" id="password" onChange={(e) => setPassword(e.target.value)}/>
+						        </div></td>
+		        		</tr>
+		        		<tr>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td>
+		        				 <div className="form-group">
+						         <button onClick={handleLogIn}>Login</button>
+						         <button onClick={handleSignIn}>Signin</button>
+						        </div></td>
+		        		</tr>
+		        	</tbody>
+			    </table>
+		    </form>
+	    </div>
 	);
 }
-
 export default Login;

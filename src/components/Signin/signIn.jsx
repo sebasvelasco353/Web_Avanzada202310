@@ -1,8 +1,9 @@
 import React, {useState} from "react";
-//import {auth, db} from "../../config/firebase";
-//import { collection, addDoc } from "firebase/firestore";
-//import { createUserWithEmailAndPassword } from "firebase/auth";
+import {auth, db} from "../../config/firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom"; 
+import "./sigin.css"
 
 function Sigin({user}){
 
@@ -12,14 +13,20 @@ function Sigin({user}){
 	const navigate = useNavigate();
 
 	const handleSignIn = async () => {
+		console.log(email)
+		console.log(password)
 		try {
+			console.log("Antes de conectar")
 			await createUserWithEmailAndPassword(auth, email, password);
+			console.log("Despues de conectar")
 			const docRef = await addDoc(collection(db, "usuario"), {
 						    			  correo: email,
 										  tipo: "client"
 										});
+			console.log("Despues de conectar 2")
 			navigate("/login")
 		} catch (error) {
+			console.log("Error")
 			console.error(error);
 		}
 	}
@@ -31,34 +38,53 @@ function Sigin({user}){
 	return(
 		<div>
 		    <form>
-			<table>
-			  <thead>
-	            <tr>
-			      <th colSpan="2">Sign in</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			   <tr>
-			     <td>Correo electronico: </td>
-			     <td><input type="text" onChange={(e) => setEmail(e.target.value)}/></td>
-			   </tr>
-			   <tr>
-			     <td>Contraseña: </td>
-			     <td><input type="password" onChange={(e) => setPassword(e.target.value)}/></td>
-			   </tr>
-			   <tr>
-			   	<td></td>
-			   	<td>
-			   		<button onClick={handleSignIn}>Sign in</button>
-			   		<button onClick={handleLogIn}>Log in</button>
-			   	</td>
-			   	<td></td>
-			   </tr>
-			  </tbody>
-			</table>
+			    <table>
+			    	<thead>
+		              <tr>
+		            	<th colSpan="2">Sign in</th>
+		          	  </tr>
+		        	</thead>
+		        	<tbody>
+		        		<tr></tr>
+		        		<tr></tr>
+		        		<tr>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td>
+		        				<div className="form-group">
+						          <label htmlFor="email">Correo electrónico:</label>
+						          <input type="text" id="email" onChange={(e) => setEmail(e.target.value)}/>
+						        </div></td>
+		        		</tr>
+		        		<tr>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td>
+		        				<div className="form-group">
+						          <label htmlFor="password">Contraseña:</label>
+						          <input type="password" id="password" onChange={(e) => setPassword(e.target.value)}/>
+						        </div></td>
+		        		</tr>
+		        		<tr>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td></td>
+		        			<td>
+		        				 <div className="form-group">
+						         <button onClick={handleSignIn}>Signin</button>
+						         <button onClick={handleLogIn}>Login</button>
+						        </div></td>
+		        		</tr>
+		        	</tbody>
+			    </table>
 		    </form>
-	  </div>
+	    </div>
 		);
 }
-
 export default Sigin;

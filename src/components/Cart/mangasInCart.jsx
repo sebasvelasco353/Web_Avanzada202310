@@ -16,8 +16,10 @@ function InCart({cart, handleDelete}){
           {group.map((product) => (
             <div className="card">
               <div className="container">
-                <h4><b>{product.name}</b></h4>
-                <p>{product.price}</p>
+                <h4><b>{product.Nombre}</b></h4>
+                  <p>{product.Precio}</p>
+                  <p>{product.Cantidad}</p>
+                  <p>{product.Disponible}</p>
                 <button onClick={() => handleDelete(product)}>Eliminar del carrito</button>
               </div>
             </div>

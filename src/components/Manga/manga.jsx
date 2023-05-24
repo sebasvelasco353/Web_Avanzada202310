@@ -14,11 +14,12 @@ function Catalogue({addToCart}){
 			const q = (searchQuery != "")
 			?query(collection(db, "mangas"), where("name", "==", searchQuery))
 			:collection(db, "mangas")
-			const querySnapshot = getDocs(q);
+			const querySnapshot = await getDocs(q);
 			const formatted = querySnapshot.docs.map( (manga) => ({
 				...manga.data(), id: manga.id
 			}));
 			setMangas(formatted);
+			console.log(formatted)
 		}catch(error){console.error(error);}
 	}
 
@@ -42,12 +43,22 @@ function Catalogue({addToCart}){
 	return(
 	  <div>
 	    <div className="browser">
-	      <form onSubmit={handleSearch}>
-	        <lu>
-		  <li><input type="text" id="manga_name" name="manga_name" placeholder="Buscar manga"/></li>
-		  <li><button type="submit">search</button></li>
-		</lu>
-	      </form>
+			<table>
+			  <tbody>
+			   <tr>
+			     <td></td>
+			     <td>
+			       <form onSubmit={handleSearch}>
+			        <lu>
+					  <li><input type="text" id="manga_name" name="manga_name" placeholder="Buscar manga"/></li>
+					  <li><button type="submit">search</button></li>
+					</lu>
+			       </form>
+	      		</td>
+			     <td></td>
+			   </tr>
+			  </tbody>
+			</table>
 	    </div>
 	    <div className="catalogue">
 	      {mangaGroups.map((group) => (
@@ -55,8 +66,10 @@ function Catalogue({addToCart}){
 	          {group.map((product) => (
 	            <div className="card">
 	              <div className="container">
-	                <h4><b>{product.name}</b></h4>
-	                <p>{product.price}</p>
+	                <h4><b>{product.Nombre}</b></h4>
+	                <p>{product.Precio}</p>
+	                <p>{product.Cantidad}</p>
+	                <p>{product.Disponible}</p>
 	                <button onClick={() => addToCart(product)}>Agregar al carrito</button>
 	              </div>
 	            </div>

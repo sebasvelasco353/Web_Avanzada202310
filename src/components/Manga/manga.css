@@ -77,3 +77,41 @@
     margin: 0;
   }
   
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+td {
+  width: 33.33%;
+}
+
+tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+form lu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+form li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+form input[type="text"] {
+  padding: 5px;
+}
+
+form button {
+  padding: 5px 10px;
+}

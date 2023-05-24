@@ -1,5 +1,5 @@
 import "./App.css"
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
 	Route,
 	NavLink,
@@ -8,32 +8,51 @@ import {
 	Routes,
 	Navigate
 } from "react-router-dom"; 
+import {auth, db} from "./config/firebase";
 import LogIn from "./components/Login/logIn";
 import Sigin from "./components/Signin/signIn";
 import Cart from "./components/Cart/cart";
 import Catalogue from "./components/Manga/manga";
 import AddManga from "./components/Manga/addManga";
+import { signOut } from 'firebase/auth';
 
 export const EcommerceContext = React.createContext();
 
 function App(){
-	//
 	const [user, setUser] = useState([]);
 	const [mangasInCart, setmangasInCart] = useState([])
+	const [logBtnText, setText] = useState("")
 
 	const handleAddToCart = (manga) => {
         if(!mangasInCart.includes(manga)){
             const newCart = [...mangasInCart, manga];
-            setProductsInCart(newCart);
+            setmangasInCart(newCart);
         }
     }
 
     const deleteMangaFromCart = (manga) => {
         const mangaIndex = mangasInCart.findIndex((toDelete) => toDelete.id === manga.id);
         if (mangaIndex !== -1) {
-            mangasInCart.splice(mangaIndex, 1);
-        }
+        	const cart = [...mangasInCart]
+        	cart.splice(mangaIndex, 1)
+        	setmangasInCart(cart);
+        }   
     }
+
+    const handleLogout = async () => {
+    	if(user.length > 0){
+	    	try {
+		      await signOut(firebaseAuth);
+		      setUser([]);
+		    } catch (error) {
+		      console.error(error);
+		    }
+    	}
+	}
+
+    useEffect(()=>{
+        setText((user.length > 0)?"Log out":"Log in");
+    }, []);
 
     const renderHeader = () => {
     	if(user[2] == 'admin'){
@@ -46,7 +65,7 @@ function App(){
 			      </div>
 			      <div className="right-container">	
 					<li><NavLink to="/cart">Carrito</NavLink></li>
-					<li><NavLink to="/signin">Usuario</NavLink></li>
+					<li onClick={handleLogout}><NavLink to="/signin">{logBtnText}</NavLink></li>
 			      </div>
 			    </ul>
 	    		</>
@@ -60,7 +79,7 @@ function App(){
 		      </div>
 		      <div className="right-container">	
 				<li><NavLink to="/cart">Carrito</NavLink></li>
-				<li><NavLink to="/signin">Usuario</NavLink></li>
+				<li onClick={handleLogout}><NavLink to="/signin">{logBtnText}</NavLink></li>
 		      </div>
 		    </ul>
     		</>
@@ -81,6 +100,7 @@ function App(){
 			    	<Route path="/signin" element={<Sigin user = {setUser}/>}/>
 			    	<Route path="/cart" element={<Cart cart = {mangasInCart} handleDelete = {deleteMangaFromCart}/>}/>
 			    	<Route path="/mangas" element={<Catalogue addToCart = {handleAddToCart}/>}/>
+			    	<Route path="/" element={<Catalogue addToCart = {handleAddToCart}/>}/>
 			    	<Route path="/addManga" element={ (user[2] == 'admin') ? <AddManga/> : <Navigate to='/' />}/>
 			    </Routes>
 			  </div>
