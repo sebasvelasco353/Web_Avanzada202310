@@ -11,12 +11,10 @@
 
   .productcard_bar{
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 
-  .productcard_bar--button {
+  .productcard_bar__delete_button {
     width: 30px;
     height: 30px;
     background-color: transparent;
@@ -24,6 +22,17 @@
     outline: none;
     cursor: pointer;
     background-image: url('../../imgs/eliminar.png');
+    background-size: cover;
+  }
+
+  .productcard_bar__edit_button {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-image: url('../../imgs/editar.png');
     background-size: cover;
   }
   

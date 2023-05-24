@@ -1,54 +1,33 @@
 import React, { useState } from 'react';
-import './AddProduct.css'
-import { addDoc, collection } from "firebase/firestore";
-import { db, auth } from "../../config/firebase";
+import './UpdateModal.css'
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
-function AddProduct() {
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
-    const [description, setDescription] = useState('');
-    const [newProduct, setNewProduct] = useState({});
-    
-    const collectionProduct = collection(db, 'product')
+function UpdateModal(props) {
+    const [name, setName] = useState(props.product.name);
+    const [price, setPrice] = useState(props.product.price);
+    const [description, setDescription] = useState(props.product.description);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            await addDoc(collectionProduct, {...newProduct, creatoId: auth?.currentUser.uid});
-            setName('')
-            setPrice('')
-            setDescription('')
-            setNewProduct({})
-        } catch (error){
-            console.error(error)
-        }
+        const productDoc = doc(db, 'product', props.product.id)
+        await updateDoc(productDoc, {
+            name: name,
+            price: price,
+            description: description
+        })
+        alert('Producto actualizado.')
     }
 
     const handleName =(e)=>{
-        setNewProduct({
-            ...newProduct, 
-            name: e.target.value
-        })
-
         setName(e.target.value)
     }
 
     const handlePrice =(e)=>{
-        setNewProduct({
-            ...newProduct, 
-            price: e.target.value
-        })
-
         setPrice(e.target.value)
     }
 
     const handleDescription =(e)=>{
-        setNewProduct({
-            ...newProduct, 
-            description: e.target.value
-        })
-
         setDescription(e.target.value)
     }
 
@@ -80,10 +59,10 @@ function AddProduct() {
                 required
                 />
             </div>
-            <button type="submit" className='add_button'>Add Product</button>
+            <button type="submit" className='add_button'>Actualizar</button>
         </form>
         </div>
     );
 };
 
-export default AddProduct;
+export default UpdateModal;
