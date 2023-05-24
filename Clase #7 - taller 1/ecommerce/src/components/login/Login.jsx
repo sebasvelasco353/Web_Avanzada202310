@@ -29,8 +29,8 @@ function Login(){
     };
 
   return (
-    <div className='container_login'>
-        <form className='container_login__form' onSubmit={handleSubmit}>
+    <form className='form' onSubmit={handleSubmit}>
+        <div className='form_container'>
             <label>
                 Email:
                 <input type="email" id='email' value={email} onChange={handleEmailChange} required/>
@@ -40,8 +40,9 @@ function Login(){
                 <input type="password" id='password' value={password} onChange={handlePasswordChange} required/>
             </label>
             <button type="submit">LogIn</button>
-        </form>
-    </div>
+        </div>  
+    </form>
+    
   );
 };
 

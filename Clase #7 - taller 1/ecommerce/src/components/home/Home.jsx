@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { products } from '../assets/Products';
 import Login from '../login/Login';
 import ProductList from '../productList/ProductList';
 import Shopping from '../shopping/Shopping'
@@ -35,7 +34,7 @@ function Home (){
 
     const displayProductList=()=>{
       if(isLogin){
-        return <ProductList products={products}></ProductList>
+        return <ProductList></ProductList>
       }
     }
 
@@ -54,8 +53,10 @@ function Home (){
     const openSale = () =>{
       if(showSales){
         setShowSales(false)
+        setActiveComponent('')
       } else {
         setShowSales(true)
+        setActiveComponent('AddProduct')
       }
     }
 
@@ -69,8 +70,9 @@ function Home (){
           </div>
           {component === 'Sign' && <Sign/>}
           {component === 'Login' && !isLogin && <Login/>}
-          {showSales && <AddProduct/>}
+          {component === 'AddProduct' && <AddProduct/>}
           {displayShopping()}
+
           {displayProductList()}
         </div>
     );

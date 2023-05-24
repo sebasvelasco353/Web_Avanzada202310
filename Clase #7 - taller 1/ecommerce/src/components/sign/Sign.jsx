@@ -31,14 +31,12 @@ function Sign() {
     <form className='form' onSubmit={handleSubmit}>
       <div className='form_container'>
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" value={email} onChange={handleEmailChange} required
-        />
-      </div>
-      <div>
+        <input type="email" id="email" value={email} onChange={handleEmailChange} required/>
+
         <label htmlFor="password">Contraseña:</label>
         <input type="password" id="password" value={password} onChange={handlePasswordChange} required/>
+        <button type="submit">Registrarse</button>
       </div>
-      <button type="submit">Registrarse</button>
     </form>
   );
 };
