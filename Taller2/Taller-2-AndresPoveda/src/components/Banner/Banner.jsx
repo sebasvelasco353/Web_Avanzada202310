@@ -1,14 +1,35 @@
 import React from 'react'
 import "./Banner.css"
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Thumbs, Autoplay } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/thumbs'
 
-function banner() {
+function Banner() {
+  const bannerImgs = [
+    require('./assets/1.png'),
+    require('./assets/2.png')
+  ]
 
   return (
     <div className='banner'>
-      <img src="https://img.freepik.com/vector-gratis/plantilla-portada-redes-sociales-boutique-degradada_23-2149329324.jpg" alt="" />
-
+      <Swiper
+        loop={true}
+        spaceBetween={10}
+        navigation={true}
+        modules={[Navigation, Thumbs, Autoplay]}
+        grabCursor={true}
+        autoplay={{ delay: 3000 }}
+      >
+        {bannerImgs.map((item, index) => (
+          <SwiperSlide key={index}>
+            <img src={item} alt="Slider Images" className='product-img-slider' />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
-    )
+  )
 }
 
-export default banner
+export default Banner

@@ -5,6 +5,8 @@ import { productsContext } from "../../App";
 import { addProductContext } from "../../App";
 import { db } from "../../firebase.jsx"
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js"
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js"
+import {app} from "../../firebase"
 
 
 function AddProduct({ handleSetProductList, modalStateProp }) {
@@ -12,6 +14,8 @@ function AddProduct({ handleSetProductList, modalStateProp }) {
   let modalState = modalStateProp;
   const actualList = useContext(productsContext)
   const modalAddNewProduct = useContext(addProductContext)
+  const storage = getStorage(app);
+  const imgRoute = 'products-img';
 
   
   //This function is in charge to check either if 
@@ -37,10 +41,15 @@ function AddProduct({ handleSetProductList, modalStateProp }) {
 
   async function handleAddNewProduct() {
     try {
+
+      const imgInput = document.getElementById("add-img").files[0];
+      const uploadedFileUrl = await addImage(imgInput.name, imgInput);
+
       let product = {
         name: document.getElementById("name").value,
         brand: document.getElementById("brand").value,
         price: document.getElementById("price").value,
+        img: uploadedFileUrl,
         avalible: "yes",
         id: Math.floor(Math.random() * 10000) + 1
       }
@@ -50,17 +59,32 @@ function AddProduct({ handleSetProductList, modalStateProp }) {
         name: product.name,
         brand: product.brand,
         price: product.price,
+        img: product.img,
         avalible: true,
         id: product.id
       });
 
 
-      const hideSection = document.getElementById("add-product").style.display = "none";
       alert("Document written with name:", product.name)
 
     } catch (e) {
       console.error("Error adding document", e)
     }
+  }
+
+  async function addImage(name, file) {
+
+    const storageRef = ref(storage, `${imgRoute}/${name}`);
+
+    try {
+      await uploadBytes(storageRef, file)
+      console.log(file)
+      const url = await getDownloadURL(storageRef);
+      return url
+    } catch (err) {
+      console.error("Error uploading img: " + err.message)
+    }
+
   }
 
   handleStoryBookState();

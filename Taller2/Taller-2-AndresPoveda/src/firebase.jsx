@@ -26,7 +26,5 @@ export async function handleGetProductsFromDB() {
         mappedArray.push(doc.data());
     });
 
-   
-
  return mappedArray;
 }

@@ -21,31 +21,41 @@ function List({ handleSetCartStatus }) {
         handleSetCartStatus(cartObj)
        
     }
- 
-  return (
-      <div className="card-container">
-         
-          {
-              actualList.map((item, index) => {
-                  return <section key={index} className="card">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="" />
-                      <h1> {item.name} </h1>
-                      <h3>{item.brand} </h3>
-                      <p> $ {item.price} </p>
-                      <div id="units-card">
-                         <label htmlFor=""> Cuantas vas a llevar?</label>
-                          <input id="units-number" type="number" placeholder='1' />
 
-                      </div>
+    let USDollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
 
-                      <button onClick={() => { handleAddToCart(item.name, item.price, item.id) }}> Añadir al carrito </button>
-                  </section>
-              })
-          }  
+    return (
+        <>
+            <div id="products-title">
+                <span> Take a look at our products!</span>
+                <img src="https://em-content.zobj.net/source/microsoft-teams/363/package_1f4e6.png" alt="" />
+            </div>
+           
+            <div className="card-container">
 
-      </div>
-      
-      
+                {
+                    actualList.map((item, index) => {
+                        return <section key={index} className="card">
+                            <img src={item.img ? item.img : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"} alt="" />
+                            <h1> {item.name} </h1>
+                            <h3>{item.brand} </h3>
+                            <p> {USDollar.format(item.price)
+                            } </p>
+                            <div id="units-card">
+                                <label htmlFor=""> How many are you taking?</label>
+                                <input id="units-number" type="number" placeholder='1' />
+                            </div>
+
+                            <button onClick={() => { handleAddToCart(item.name, item.price, item.id) }}> Add to the cart </button>
+                        </section>
+                    })
+                }
+
+            </div>
+      </> 
   )
 }
 

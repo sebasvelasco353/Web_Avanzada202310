@@ -8,12 +8,29 @@
 }
 
 .card img {
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    object-fit: contain;
     padding: 20px 20px;
      border-radius: 40px;
 }
 
+#products-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+        margin-left: 200px;
+}
+
+#products-title span{
+    font-size: 4vh;
+    font-weight: bold;
+}
+
+#products-title img{
+    margin-left: 20px;
+ width: 60px;
+ object-fit: contain;
+}
 
 .card {
     display: flex;
@@ -50,15 +67,16 @@
     margin: 5px 0;
     height: 50px;
     font-weight: bold;
-    background-color: var(--beish);
+    background-color: var(--mora-oscuro);
     border-radius: 5px;
     cursor: pointer;
+    color: white;
 }
 
 .card button:hover{
     transition: background-color 0.5s;
-    background-color: var(--mora-oscuro);
-    color: white;
+    background-color: var(--verde);
+    color: black;
 }
 
 .card label {

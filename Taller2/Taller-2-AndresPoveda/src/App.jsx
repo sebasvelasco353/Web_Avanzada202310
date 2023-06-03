@@ -1,11 +1,11 @@
 import './App.css';
 import Header from './components/Header/Header'
 import List from './components/List/List';
-import React, { useState } from 'react';
 import AddProduct from './components/AddProduct/AddProduct';
 import Cart from './components/Cart/Cart';
 import Banner from './components/Banner/Banner';
 import Payment from './components/Payment/Payment';
+import React, { useState, useEffect } from 'react';
 
 
 import { handleGetProductsFromDB } from './firebase.jsx'
@@ -28,9 +28,13 @@ function App() {
   //Initial list of the products
   const [productsList, setProductsList] = useState([])
 
-  //Constantly bringing the product from the db
-  handleGetProductsFromDB().then(result => {
-    setProductsList(result)
+  //Use effect: incia la funcion antres de que se monta el componente
+  useEffect(() => {
+    // Update the document title using the browser API
+    handleGetProductsFromDB().then(result => {
+      setProductsList(result)
+    });
+
   });
 
 

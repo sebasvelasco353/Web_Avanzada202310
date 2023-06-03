@@ -9,6 +9,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
+    "swiper": "^9.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -16,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-     "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "eslintConfig": {
@@ -38,8 +39,7 @@
     ]
   },
   "devDependencies": {
-    "@storybook/react": "^7.0.2",
-     "@storybook/addon-essentials": "^7.0.2",
+    "@storybook/addon-essentials": "^7.0.2",
     "@storybook/addon-interactions": "^7.0.2",
     "@storybook/addon-links": "^7.0.2",
     "@storybook/blocks": "^7.0.2",
