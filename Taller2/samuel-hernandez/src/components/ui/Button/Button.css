@@ -1,0 +1,13 @@
+.button {
+  min-width: 8rem;
+  border-radius: 1rem;
+  text-transform: none !important;
+}
+.button__large {
+  width: 16rem;
+}
+.button__normal {
+  border-radius: 0.5rem;
+}
+
+/*# sourceMappingURL=Button.css.map */

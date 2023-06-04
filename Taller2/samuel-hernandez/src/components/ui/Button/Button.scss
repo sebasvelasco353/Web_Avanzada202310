@@ -1,0 +1,14 @@
+.button {
+
+  min-width: 8rem;
+  border-radius: 1rem;
+  text-transform: none !important;
+
+  &__large {
+    width: 16rem;
+  }
+
+  &__normal {
+    border-radius: 0.5rem;
+  }
+}

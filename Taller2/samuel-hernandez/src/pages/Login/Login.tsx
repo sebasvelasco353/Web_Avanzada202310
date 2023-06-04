@@ -1,15 +1,15 @@
 import "./Login.css";
 import {Input} from "../../components/ui/Input/Input";
 import React, {useContext, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import SessionContext from "../../context/Session/SessionContext";
-import {EnvelopeAt, Eye, EyeSlash, Key, Person} from "react-bootstrap-icons";
+import {EnvelopeAt, Eye, EyeSlash, Key} from "react-bootstrap-icons";
 import UserContext from "../../context/User/UserContext";
 import {Helmet} from "react-helmet";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth, db, normalizeFirebaseErrorMessage} from "../../config/firebase";
-import {doc, getDoc, getFirestore} from "firebase/firestore";
+import {doc, getDoc} from "firebase/firestore";
 import {User} from "../../interfaces/interfaces";
+import {Button} from "@mui/material";
 
 export const Login = () => {
     const {setUser} = useContext(UserContext);
@@ -65,7 +65,8 @@ export const Login = () => {
                            actionIcon={passwordHidden ?
                                <Eye size={12} className={"input__icon"} onClick={e => togglePassword(e)}/> :
                                <EyeSlash size={12} className={"input__icon"} onClick={e => togglePassword(e)}/>}/>
-                    <input type={"submit"}/>
+                    <Button type={"submit"} variant={"contained"}>Login</Button>
+                    <Button color={"secondary"} variant={"outlined"}>Sign Up</Button>
                     <p className={infoClassName}>{info}</p>
                 </form>
             </section>

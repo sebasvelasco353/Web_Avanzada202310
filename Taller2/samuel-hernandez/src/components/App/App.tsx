@@ -10,6 +10,8 @@ import {Navbar} from "../ui/Navbar/Navbar";
 import {SessionProvider} from "../../context/Session/SessionProvider";
 import {UserProvider} from "../../context/User/UserProvider";
 import {CartProvider} from "../../context/Cart/CartProvider";
+import {ThemeProvider} from "@mui/material/styles";
+import theme from "../../config/mui";
 
 function App() {
 
@@ -17,20 +19,22 @@ function App() {
 
     return (
         <BrowserRouter>
-            <UserProvider>
-                <SessionProvider>
-                    <CartProvider>
-                        <Navbar/>
-                        <Routes>
-                            <Route index element={<Home/>}/>
-                            <Route path={"login"} element={<Login/>}/>
-                            <Route path={"/cart"} element={<Cart/>}/>
-                            <Route path={"/profile"} element={<Profile/>}/>
-                            <Route path={"*"} element={<NotFound/>}/>
-                        </Routes>
-                    </CartProvider>
-                </SessionProvider>
-            </UserProvider>
+            <ThemeProvider theme={theme}>
+                <UserProvider>
+                    <SessionProvider>
+                        <CartProvider>
+                            <Navbar/>
+                            <Routes>
+                                <Route index element={<Home/>}/>
+                                <Route path={"login"} element={<Login/>}/>
+                                <Route path={"/cart"} element={<Cart/>}/>
+                                <Route path={"/profile"} element={<Profile/>}/>
+                                <Route path={"*"} element={<NotFound/>}/>
+                            </Routes>
+                        </CartProvider>
+                    </SessionProvider>
+                </UserProvider>
+            </ThemeProvider>
         </BrowserRouter>
     );
 }
