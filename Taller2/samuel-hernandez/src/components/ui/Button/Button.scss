@@ -1,14 +1,20 @@
 .button {
 
-  min-width: 8rem;
-  border-radius: 1rem;
+  // Marking everything with important makes me wanna puke but it's beyond me at this point
+  min-width: 10rem !important;
+  border-radius: 0.75rem !important;
   text-transform: none !important;
+  padding-inline: 1.5rem !important;
+  padding-block: 0.25rem !important;
+  height: 3.5rem !important;
+  font-size: large !important;
 
   &__large {
-    width: 16rem;
+    width: 18rem;
   }
 
   &__normal {
     border-radius: 0.5rem;
+    height: 3rem;
   }
 }

@@ -1,7 +1,7 @@
 @use "./../../../variables" as v;
 
 .input {
-  width: 100%;
+  min-width: 24rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -35,6 +35,14 @@
     padding-inline: 1rem;
     width: 2.25rem;
     height: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__adornment {
+    height: 2.25rem !important;
   }
 
   button {

@@ -1,16 +1,18 @@
 import React, {useState} from "react";
 import "./Input.css";
+import {FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField} from "@mui/material";
 
 export const Input = (
-    props : {
-        type : string,
-        label : string | JSX.Element,
-        name : string,
-        icon? : JSX.Element,
-        required? : boolean,
-        autoFocus? : boolean,
-        actionIcon? : JSX.Element,
-        actionClick? : React.MouseEventHandler<HTMLButtonElement>
+    props: {
+        type: string,
+        label: string | JSX.Element,
+        name: string,
+        icon?: JSX.Element,
+        required?: boolean,
+        autoFocus?: boolean,
+        actionIcon?: JSX.Element,
+        actionClick?: React.MouseEventHandler<HTMLButtonElement>
+        passwordState?: string
     }
 ) => {
 
@@ -26,20 +28,21 @@ export const Input = (
         setIsFocused(false);
     }
 
+    return (
+        <TextField type={props.type} label={props.label} className={"input"} InputProps={
+            {
+                endAdornment: (
+                    <InputAdornment className={"input__adornment"} position="end">
+                        {props.actionIcon || <div className={"input__icon"}/>}
+                    </InputAdornment>
+                ),
+                startAdornment: (
+                    <InputAdornment className={"input__adornment"} position={"start"}>
+                        {props.icon || <></>}
+                    </InputAdornment>
+                ),
+            }}>
 
-    return props.type === "area" ? (
-        <div tabIndex={1} onFocus={handleFocusIn} onBlur={handleFocusOut}
-             className={`input ${isFocused ? "input__focused" : ""}`}>
-            <label htmlFor={props.name} className={"input__label"}>{props.label}</label>
-            <textarea {...props} className={"input__box"}/>
-        </div>
-    ) : (
-        <div tabIndex={1} onFocus={handleFocusIn} onBlur={handleFocusOut}
-             className={`input ${isFocused ? "input__focused" : ""}`}>
-            <label htmlFor={props.name} className={"input__label"}>{props.label}</label>
-            {props.icon || <div className={"input__icon"}/>}
-            <input {...props} className={"input__box"}/>
-            {props.actionIcon || <></>}
-        </div>
+        </TextField>
     );
 }

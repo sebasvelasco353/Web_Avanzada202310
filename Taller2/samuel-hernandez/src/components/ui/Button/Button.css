@@ -1,13 +1,18 @@
 .button {
-  min-width: 8rem;
-  border-radius: 1rem;
+  min-width: 10rem !important;
+  border-radius: 0.75rem !important;
   text-transform: none !important;
+  padding-inline: 1.5rem !important;
+  padding-block: 0.25rem !important;
+  height: 3.5rem !important;
+  font-size: large !important;
 }
 .button__large {
-  width: 16rem;
+  width: 18rem;
 }
 .button__normal {
   border-radius: 0.5rem;
+  height: 3rem;
 }
 
 /*# sourceMappingURL=Button.css.map */

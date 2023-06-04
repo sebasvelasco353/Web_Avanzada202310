@@ -9,7 +9,9 @@ import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth, db, normalizeFirebaseErrorMessage} from "../../config/firebase";
 import {doc, getDoc} from "firebase/firestore";
 import {User} from "../../interfaces/interfaces";
-import {Button} from "@mui/material";
+import {Button} from "../../components/ui/Button/Button";
+import material from "../../helpers/material";
+import {Container, Grid} from "@mui/material";
 
 export const Login = () => {
     const {setUser} = useContext(UserContext);
@@ -52,24 +54,26 @@ export const Login = () => {
             <Helmet>
                 <title>Vallexplora | ¡Explora el Valle!</title>
             </Helmet>
-            <section className={"login__container"}>
-                <section className={"login__card"}>
-
-                </section>
-                <form className={"login__form"} onSubmit={handleSubmit}>
-                    <h2>¡Hola de nuevo!</h2>
-                    <Input type={"email"} label={"Correo"} name={"loginEmail"}
-                           icon={<EnvelopeAt size={12} className={"input__icon"}/>}/>
-                    <Input type={passwordHidden ? "password" : "text"} label={"Contraseña"} name={"loginPassword"}
-                           icon={<Key size={12} className={"input__icon"}/>}
-                           actionIcon={passwordHidden ?
-                               <Eye size={12} className={"input__icon"} onClick={e => togglePassword(e)}/> :
-                               <EyeSlash size={12} className={"input__icon"} onClick={e => togglePassword(e)}/>}/>
-                    <Button type={"submit"} variant={"contained"}>Login</Button>
-                    <Button color={"secondary"} variant={"outlined"}>Sign Up</Button>
-                    <p className={infoClassName}>{info}</p>
-                </form>
-            </section>
+            <Grid container spacing={2} className={"login__container"}>
+                <Grid item className={"login__card"} xs={7}/>
+                <Grid item xs={5} className={"login__form__container"}>
+                    <form className={"login__form"} onSubmit={handleSubmit}>
+                        <h2>Hello again!</h2>
+                        <Input type={"email"} label={"Correo"} name={"loginEmail"}
+                               icon={<EnvelopeAt size={12} className={"input__icon"}/>}/>
+                        <Input type={passwordHidden ? "password" : "text"} label={"Contraseña"} name={"loginPassword"}
+                               icon={<Key size={12} className={"input__icon"}/>}
+                               actionIcon={passwordHidden ?
+                                   <Eye size={12} className={"input__icon"} onClick={e => togglePassword(e)}/> :
+                                   <EyeSlash size={12} className={"input__icon"} onClick={e => togglePassword(e)}/>}/>
+                        <Button sxProps={{color: material("red")[100]}}
+                                className={"button button__large"} type={"submit"} variant={"contained"} label={"Login"}/>
+                        <Button sxProps={{color: material("grey")[600]}} color={"secondary"}
+                                className={"button button__large"} variant={"outlined"} label={"Sign Up"}/>
+                        <p className={infoClassName}>{info}</p>
+                    </form>
+                </Grid>
+            </Grid>
         </main>
     );
 }

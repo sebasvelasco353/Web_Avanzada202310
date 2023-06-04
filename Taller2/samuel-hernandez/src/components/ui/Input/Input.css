@@ -1,5 +1,5 @@
 .input {
-  width: 100%;
+  min-width: 24rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -30,6 +30,12 @@
   padding-inline: 1rem;
   width: 2.25rem;
   height: 100%;
+}
+.input__icon:hover {
+  cursor: pointer;
+}
+.input__adornment {
+  height: 2.25rem !important;
 }
 .input button {
   background-color: transparent;
