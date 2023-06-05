@@ -76,6 +76,13 @@ header .admin-header-section  p {
     object-fit: contain;
 }
 
+.selected{
+    background-color: var(--mora-oscuro);
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: white;
+}
+
 .admin-header-style {
  display: flex;
  flex-direction: row;

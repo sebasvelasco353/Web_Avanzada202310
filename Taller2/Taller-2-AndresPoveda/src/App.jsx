@@ -6,7 +6,7 @@ import Cart from './components/Cart/Cart';
 import Banner from './components/Banner/Banner';
 import Payment from './components/Payment/Payment';
 import React, { useState, useEffect } from 'react';
-
+import About from './components/About/About';
 
 import { handleGetProductsFromDB } from './firebase.jsx'
 
@@ -90,19 +90,22 @@ function App() {
       
       <cartModalContext.Provider value={cartModal}>
         <Header handleLogIn={handleLogIn} isLogged={isLoggedIn} handleDisplayAddProduct={handleDisplayAddProduct} handleSetDisplayCart={handleSetDisplayCart}></Header>
-      <productsContext.Provider value={productsList}>
-        <cartContext.Provider value={cartStatus}>
-          <addProductContext.Provider value={modalAddProduct}>
-            <AddProduct handleSetProductList={handleSetProductList} > </AddProduct>
-          </addProductContext.Provider>
-          <isPayingContext.Provider value={isPaying}>
-            <Cart handleIsPaying={handleIsPaying} handleChangeCar={handleChangeCar} ></Cart>
-            <Payment handleIsPaying={handleIsPaying}></Payment>
-            <Banner></Banner>
-            <List productsList={productsList} handleSetCartStatus={handleSetCartStatus}> </List>
-          </isPayingContext.Provider>
-        </cartContext.Provider>
-        </productsContext.Provider>
+        <div id="products-section">
+          <productsContext.Provider value={productsList}>
+            <cartContext.Provider value={cartStatus}>
+              <addProductContext.Provider value={modalAddProduct}>
+                <AddProduct handleSetProductList={handleSetProductList} > </AddProduct>
+              </addProductContext.Provider>
+              <isPayingContext.Provider value={isPaying}>
+                <Cart handleIsPaying={handleIsPaying} handleChangeCar={handleChangeCar} ></Cart>
+                <Payment handleIsPaying={handleIsPaying}></Payment>
+                <Banner></Banner>
+                <List productsList={productsList} handleSetCartStatus={handleSetCartStatus}> </List>
+              </isPayingContext.Provider>
+            </cartContext.Provider>
+          </productsContext.Provider>
+        </div>
+        <About> </About>
         </cartModalContext.Provider>
     </div>
   );

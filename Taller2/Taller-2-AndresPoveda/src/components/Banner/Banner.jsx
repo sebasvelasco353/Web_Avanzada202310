@@ -13,7 +13,7 @@ function Banner() {
   ]
 
   return (
-    <div className='banner'>
+    <div className='banner' data-aos="fade-right" data-aos-duration="1200" data-aos-once="false">
       <Swiper
         loop={true}
         spaceBetween={10}

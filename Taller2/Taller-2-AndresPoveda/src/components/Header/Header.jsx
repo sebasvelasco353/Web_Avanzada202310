@@ -1,6 +1,6 @@
 import React from 'react'
 import './Header.css'
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import { cartModalContext } from "../../App";
 import { app, auth, db } from "../../firebase.jsx"
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js"
@@ -153,21 +153,6 @@ function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDispl
             });
     }
 
-    function checkUserStatus(user_) {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
-         
-                setuserUID(user.uid)
-                console.log(userUID)
-                // ...
-            } else {
-                // ...
-            }
-        });
-    }
-
     function logOut(e) {
         e.preventDefault();
         signOut(auth)
@@ -181,7 +166,31 @@ function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDispl
                 // ..
             });
     }
-    
+
+    const [screenDisplay, setScreenDisplay] = useState(true)
+    const mainButtonRef = useRef(null);
+    const aboutButtonRef = useRef(null);
+
+    function handleAboutScreen() {
+        const mainScreen = document.getElementById("products-section");
+        const aboutUsScreen = document.getElementById("about")
+     
+
+        if (screenDisplay === true) {
+            mainScreen.style.display = "none";
+            aboutUsScreen.style.display = "flex";
+            //mainButtonRef.classList.remove(".selected")
+            setScreenDisplay(false)
+        } else {
+            console.log("mostrando main")
+            mainScreen.style.display = "flex";
+            aboutUsScreen.style.display = "none";
+            //aboutButtonRef.classList.add(".selected")
+            setScreenDisplay(true)
+        }
+   
+        
+    }
     return (
 
         <>
@@ -189,13 +198,13 @@ function Header({ handleLogIn, handleDisplayAddProduct, isLogged, handleSetDispl
             
             {/* Header contiains an image of the logo and a separate section for cart, user photo and login  */}
 
-            <img id="logo-img"src={require("./assets/logo.png")} alt="" />
-            <div id="header-info">
-                    <p> Products </p>
-                    <p> About Us </p>
+                <img id="logo-img" src={require("./assets/logo.png")} data-aos="slide-down" data-aos-duration="600" data-aos-once="false" />
+                <div id="header-info" data-aos="slide-down" data-aos-duration="1200" data-aos-once="false">
+                    <p ref={mainButtonRef} onClick={() => { handleAboutScreen() }}  className='selected'> Products </p>
+                    <p ref={aboutButtonRef} onClick={() => { handleAboutScreen()} }> About Us </p>
                     <p> Contact  </p>
             </div>
-            <div id="header-buttons">
+                <div id="header-buttons" data-aos="slide-down" data-aos-duration="1200" data-aos-once="false">
                     <button id="log-in-button" className={logInState ? "not-showing" : ""} onClick={() => { handleDisplayLogInForm() }}> Log In </button>
                     <button id="register-button" style={{ display: logInState ? "none" : "" }}  onClick={() => { handleDisplayRegisterForm() }}> Register </button>
                 

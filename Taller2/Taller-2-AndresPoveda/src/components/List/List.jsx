@@ -29,12 +29,12 @@ function List({ handleSetCartStatus }) {
 
     return (
         <>
-            <div id="products-title">
+            <div id="products-title" data-aos="slide-right" data-aos-duration="1200" data-aos-once="false">
                 <span> Take a look at our products!</span>
                 <img src="https://em-content.zobj.net/source/microsoft-teams/363/package_1f4e6.png" alt="" />
             </div>
            
-            <div className="card-container">
+            <div className="card-container" data-aos="slide-up" data-aos-duration="600" data-aos-once="false">
 
                 {
                     actualList.map((item, index) => {

@@ -11,3 +11,8 @@
     font-family: var(--fuente);
     margin: 0px;
 }
+
+#products-section{
+    display: flex;
+    flex-direction: column;
+}

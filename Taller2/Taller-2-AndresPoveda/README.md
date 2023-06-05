@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Advanced Web Project - Cosmectics Marketplace with Firebase
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This was a project made with React. And uses libraries such as: Storybook and Mui. Also uses 
+different firebase services such as: Firestore and Auth.
 
 ## Available Scripts
 
