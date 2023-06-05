@@ -6,10 +6,10 @@ import { collection, getDocs } from '@firebase/firestore';
 import { db } from '../../config/firebase';
 import { useEffect, useState } from 'react';
 
-function ProductList(){
+const productsCollection = collection(db, 'product');
 
+function ProductList(){
   const [productList, setProductList] = useState([]);
-  const productsCollection = collection(db, 'product');
   
   const getProducts=async()=>{
     try {
@@ -25,8 +25,9 @@ function ProductList(){
   }
 
   useEffect(()=>{
+    console.log(1)
     getProducts()
-  }, [productsCollection])
+  }, [])
 
   return (
     <div className="product-list">

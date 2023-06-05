@@ -23,6 +23,18 @@ function Home (){
       }
     }
 
+    const displayShopping =()=>{
+      if(showShopping){
+        return <Shopping/>
+      }
+    }
+
+    const displayProductList=()=>{
+      if(isLogin){
+        return <ProductList></ProductList>
+      }
+    }
+
     const handleSign=()=>{
       setActiveComponent('Sign')
     }
@@ -56,8 +68,9 @@ function Home (){
           {component === 'Sign' && <Sign/>}
           {component === 'Login' && !isLogin && <Login/>}
           {component === 'AddProduct' && <AddProduct isVisible={showSales} changeVisible={setShowSales}/>}
-          {showShopping && <Shopping/>}
-          {isLogin && <ProductList/>}
+          {displayShopping()}
+
+          {displayProductList()}
         </div>
     );
 } 
