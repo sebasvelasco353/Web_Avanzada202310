@@ -11,7 +11,7 @@ function Product (props){
     const [showEditModal, setShowEdit] = useState(false)
     const showModal = useSelector(state => state.showModal);
     const dispatch = useDispatch();
-
+    
     const clickProductCard =()=>{
 
         if(showModal){
@@ -32,6 +32,7 @@ function Product (props){
         if(window.confirm('¿Estás segur@ que quieres eliminar este producto?')){
             const productDoc = doc(db, 'product', props.id)
             await deleteDoc(productDoc)
+            dispatch({ type: 'ChangeDocument'})
         }
     }
 

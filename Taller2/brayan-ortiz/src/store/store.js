@@ -5,7 +5,8 @@ const initialState = {
     showShopping: false,
     login: false,
     product: {},
-    products: []
+    products: [],
+    document: true
 }
 
 const showModal = 'ShowModal'
@@ -18,6 +19,7 @@ const addProduct = 'AddProduct'
 const removeProduct = 'RemoveProduct'
 const login = 'Login'
 const logout = 'Logout'
+const changeDocument = 'ChangeDocument'
 
 
 function modalReducer(state = initialState, action){
@@ -42,6 +44,8 @@ function modalReducer(state = initialState, action){
             return { ...state, login: true}
         case logout:
             return { ...state, login: false}
+        case changeDocument:
+            return { ...state, document: !state.document}
             default:
         return state;
     }

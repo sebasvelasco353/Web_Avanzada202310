@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './AddProduct.css'
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../config/firebase";
+import { useDispatch } from 'react-redux';
 
 function AddProduct(props) {
     const [name, setName] = useState('');
@@ -9,6 +10,7 @@ function AddProduct(props) {
     const [description, setDescription] = useState('');
     const [newProduct, setNewProduct] = useState({});
     const collectionProduct = collection(db, 'product')
+    const dispatch = useDispatch()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,6 +21,7 @@ function AddProduct(props) {
             setPrice('')
             setDescription('')
             setNewProduct({})
+            dispatch({type: 'ChangeDocument'})
         } catch (error){
             console.error(error)
         }

@@ -5,12 +5,13 @@ import { v4 } from 'uuid';
 import { collection, getDocs } from '@firebase/firestore';
 import { db } from '../../config/firebase';
 import { useEffect, useState } from 'react';
-
-const productsCollection = collection(db, 'product');
+import { useSelector } from 'react-redux';
 
 function ProductList(){
+  const productsCollection = collection(db, 'product');
   const [productList, setProductList] = useState([]);
-  
+  const changeDocument = useSelector(state => state.document)
+
   const getProducts=async()=>{
     try {
       const data = await getDocs(productsCollection);
@@ -25,9 +26,8 @@ function ProductList(){
   }
 
   useEffect(()=>{
-    console.log(1)
     getProducts()
-  }, [])
+  }, [changeDocument])
 
   return (
     <div className="product-list">
