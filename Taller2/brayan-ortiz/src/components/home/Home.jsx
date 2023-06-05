@@ -69,7 +69,6 @@ function Home (){
           {component === 'Login' && !isLogin && <Login/>}
           {component === 'AddProduct' && <AddProduct isVisible={showSales} changeVisible={setShowSales}/>}
           {displayShopping()}
-
           {displayProductList()}
         </div>
     );
