@@ -1,0 +1,16 @@
+.banner {
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin: 20px 0;
+}
+
+.banner img{
+    width: 80%;
+}
+
+.product-img-slider{
+ margin-left: 10%;
+ margin-top: 2vh;
+ border-radius: 30px;
+}

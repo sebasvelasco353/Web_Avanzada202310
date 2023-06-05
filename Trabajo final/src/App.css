@@ -1,0 +1,18 @@
+:root{
+    --beish:#E9D4C1;
+    --mora-oscuro:#533ae5;
+    --mora-beish:#b89aee;
+    --mora-claro:#e5e0fd;
+    --verde:  rgb(47, 255, 61);
+    --fuente:  'Montserrat', sans-serif;
+}
+
+*{
+    font-family: var(--fuente);
+    margin: 0px;
+}
+
+#products-section{
+    display: flex;
+    flex-direction: column;
+}

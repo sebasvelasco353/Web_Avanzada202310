@@ -1,0 +1,107 @@
+@import '../../App.css';
+
+.cart-open{
+    display: flex;
+}
+
+.cart-closed{
+    display: none;
+}
+
+.cart-container {
+    flex-direction: column;
+    background-color: rgb(254, 254, 254);
+    margin: 10px 30px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(186, 186, 186);
+}
+
+.your-cart-logo{
+    margin-top:20px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.your-cart-logo img {
+    width:50px;
+}
+
+.cart-container button {
+    width: 300px;
+    height: 40px;
+    border-radius:10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.cart-container button:hover{
+    transition: background-color 0.5s;
+    transition: color 0.5;
+    background-color: rgb(255, 147, 147);
+    color: black;
+    cursor: pointer;
+}
+
+.cart-container p span{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.cart-object {
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    flex-direction: row;
+    background-color: var(--mora-claro);
+    height: 160px;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: center;
+    margin: 15px 20px;
+    border-radius: 15px;
+}
+
+#buy-button{
+    background-color: rgb(47, 255, 61);
+    color: black;
+       margin: 10px 20px;
+       height: 40px;
+       border-radius:10px;
+}
+
+#buy-button:hover{
+    transition: background-color 0.5s;
+    background-color: rgb(11, 82, 16);
+    color: rgb(255, 255, 255);
+       margin: 10px 20px;
+       height: 40PX;
+       cursor: pointer;
+}
+
+.cart-object section {
+    display: flex;
+    flex-direction: row;
+ 
+}
+
+.cart-object section img {
+    margin-left: 20px;
+    width: 150px;
+    object-fit: contain;
+}
+
+.cart-object section div {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-object section p {
+    margin: 5px 0;
+}

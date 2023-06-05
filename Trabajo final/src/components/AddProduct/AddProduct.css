@@ -1,0 +1,62 @@
+@import '../../App.css';
+
+
+.modalOpen{
+    display: flex;
+    background-color: var(--mora-oscuro);
+    height: 700px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#add-img{
+ background-color: white
+}
+
+.modalClosed{
+    display: none;
+    background-color: var(--mora-oscuro);
+    height: 100px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#add-product button {
+    border-radius: 5px;
+    background-color: rgb(47, 255, 61);
+    font-weight: bold;
+    width: 200px;
+    margin: 20px 0;
+
+}
+
+#add-product button:hover {
+    transition: background-color 0.5s;
+    transition: color 0.5s;
+    background-color: rgb(9, 94, 14);
+    color: white;
+    cursor: pointer;
+   
+}
+
+
+#add-product input {
+    height: 40px;
+     border-radius: 10px;
+     padding: 5px 10px;
+}
+
+#add-product button {
+    height: 50px;
+}
+
+#add-product h2{
+    margin: 10px 0;
+}
+
+#add-product{
+    background-image: url("./assets/background.png");
+    background-size: cover;
+}

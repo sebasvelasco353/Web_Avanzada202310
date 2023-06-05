@@ -1,0 +1,86 @@
+@import '../../App.css';
+
+#about{
+    margin-top: 100px;
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#about img{
+    width: 700px;
+    object-fit: contain;
+}
+
+
+#text-container{
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#text-container h3{
+    margin-bottom: 30px;
+   color: var(--mora-oscuro);
+   font-size: 4vh;
+}
+
+#text-container h4{
+   margin-top: 30px;
+   margin-bottom: 30px;
+}
+
+#slider{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+#slider img{
+    width: 50px;
+    object-fit: contain;
+    padding: 0px 30px;
+}
+
+#oferts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#oferts div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+#oferts img{
+    margin-left: -50px;
+    width: 100px;
+}
+
+#oferts input{
+    margin-left: 20px;
+    height: 50px;
+    border-radius: 15px;
+    color: #707070;
+    width: 200px;
+    padding: 0px 20px;
+}
+
+#oferts button {
+    padding: 10px 20px;
+    margin: 10px 10px;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 5px;
+    background-color: var(--verde);
+    color: black;
+    cursor: pointer;
+}

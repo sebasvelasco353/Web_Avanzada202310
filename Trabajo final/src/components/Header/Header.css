@@ -1,0 +1,179 @@
+@import '../../App.css';
+
+#logo-img{
+    width: 70px;
+    object-fit: contain;
+    margin: 0 2px;
+}
+
+header p {
+  
+    padding: 0 5px;
+}
+
+header {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header button {
+    padding: 10px 20px;
+    margin: 10px 10px;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 5px;
+    background-color: var(--mora-oscuro);
+    color: white;
+    cursor: pointer;
+}
+
+.not-showing{
+ display: none;
+}
+
+.log-out-button{
+    background-color: red;
+}
+
+.log-out-button:hover{
+    transition: background-color 0.5s;
+    transition: color 0.5;
+    background-color: rgb(255, 147, 147);
+    cursor: pointer;
+}
+
+header button:hover {
+    transition: background-color 0.5s;
+    transition: color 0.5;
+    color: black;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgb(47, 255, 61);
+}
+
+header div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .admin-header-section  p {
+    margin-left: 30px;
+}
+
+.admin-header-section {
+    display: none;
+}
+
+
+#admin-header-section img{
+    width: 40px;
+    margin-left: 10px;
+    object-fit: contain;
+}
+
+.selected{
+    background-color: var(--mora-oscuro);
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.admin-header-style {
+ display: flex;
+ flex-direction: row;
+}
+
+.group-div{
+    margin-right: 55px;
+    font-weight: 100;
+    width: 2px;
+    background-color:black;
+}
+
+.form{
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: transparent;
+    align-items: center;
+}
+
+.form input{
+    border-radius: 10px;
+    margin: 10px 0;
+    width: 300px;
+    height: 30px;
+    padding: 0px 20px;
+}
+.form h1{
+    margin: 20px 0;
+}
+
+.form button{
+    margin-top: 15px;
+    max-width: 350px;
+    background-color: rgb(47, 255, 61);
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+}
+
+.form button:hover{
+    transition: background-color 0.5s;
+    cursor: pointer;
+    transition: color 0.5;
+    color: black;
+    font-weight: bold;
+  border-radius: 15px;
+    background-color: rgb(92, 230, 101);
+}
+
+#header-info{
+    font-weight: bold;
+}
+
+#header-info p{
+    margin: 0 20px;
+}
+
+#header-info p:hover{
+    cursor: pointer;
+    transition: opacity 0.5s;
+    opacity: 0.8;
+}
+
+#log-in-form{
+    background-image: url("./assets/background.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content:left;
+    color: white;
+
+}
+#sign-form{
+    background-image: url("./assets/background.png"); 
+    background-size: cover;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+}
+
+#sign-form h1{
+    margin-left: 60px;
+    width: 400px;
+}
+
+
+#sign-form p{
+margin-left: -110px;
+   font-size: 10px;
+   margin-bottom: 10px;
+}
