@@ -13,9 +13,11 @@
 
   &__focused {
     color: v.$rose-700;
+    fill: v.$rose-700;
 
     * {
       color: v.$rose-700;
+      fill: v.$rose-700;
     }
   }
 

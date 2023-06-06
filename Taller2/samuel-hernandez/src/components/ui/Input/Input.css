@@ -11,9 +11,11 @@
 }
 .input__focused {
   color: #be123c;
+  fill: #be123c;
 }
 .input__focused * {
   color: #be123c;
+  fill: #be123c;
 }
 .input__label {
   position: absolute;

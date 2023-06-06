@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./Input.css";
-import {FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField} from "@mui/material";
+import {InputAdornment, TextField} from "@mui/material";
 
 export const Input = (
     props: {
@@ -18,18 +18,19 @@ export const Input = (
 
     const [isFocused, setIsFocused] = useState(false);
 
-    const handleFocusIn = (e: React.FocusEvent<HTMLDivElement>) => {
+    const handleFocusIn = (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => {
         e.preventDefault();
         setIsFocused(true);
     }
 
-    const handleFocusOut = (e: React.FocusEvent<HTMLDivElement>) => {
+    const handleFocusOut = (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => {
         e.preventDefault();
         setIsFocused(false);
     }
 
     return (
-        <TextField type={props.type} label={props.label} className={"input"} InputProps={
+        <TextField onFocus={handleFocusIn} onBlur={handleFocusOut} type={props.type} label={props.label}
+                   className={`input ${isFocused ? "input__focused" : ""}`} name={props.name} InputProps={
             {
                 endAdornment: (
                     <InputAdornment className={"input__adornment"} position="end">

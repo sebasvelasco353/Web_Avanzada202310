@@ -1,6 +1,6 @@
 import "./Login.css";
 import {Input} from "../../components/ui/Input/Input";
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import SessionContext from "../../context/Session/SessionContext";
 import {EnvelopeAt, Eye, EyeSlash, Key} from "react-bootstrap-icons";
 import UserContext from "../../context/User/UserContext";
@@ -11,7 +11,8 @@ import {doc, getDoc} from "firebase/firestore";
 import {User} from "../../interfaces/interfaces";
 import {Button} from "../../components/ui/Button/Button";
 import material from "../../helpers/material";
-import {Container, Grid} from "@mui/material";
+import {Grid} from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 export const Login = () => {
     const {setUser} = useContext(UserContext);
@@ -20,6 +21,15 @@ export const Login = () => {
     const [passwordHidden, togglePasswordHidden] = useState(true);
     const [info, setInfo] = useState(" ");
     const [infoClassName, setInfoClassName] = useState("");
+    const search = useLocation().search;
+    const redirect = new URLSearchParams(search).get("redirect");
+
+    useEffect(() => {
+        if (redirect !== null) {
+            setInfoClassName("errored");
+            setInfo("Please login to view the content");
+        }
+    }, []);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -52,7 +62,7 @@ export const Login = () => {
     return (
         <main className={"login"}>
             <Helmet>
-                <title>Vallexplora | ¡Explora el Valle!</title>
+                <title>Login - Hotshop | brewed for you</title>
             </Helmet>
             <Grid container spacing={2} className={"login__container"}>
                 <Grid item className={"login__card"} xs={7}/>

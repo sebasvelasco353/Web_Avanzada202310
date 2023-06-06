@@ -3,18 +3,21 @@ import {ItemCard} from "../../components/ItemCard/ItemCard";
 import {ItemModal} from "../../components/ItemModal/ItemModal";
 import {ModalProvider} from "../../context/Modal/ModalProvider";
 import {Helmet} from "react-helmet";
-import {collection, doc, getDoc, getDocs, query} from "firebase/firestore";
+import {collection, getDocs, query} from "firebase/firestore";
 import {db} from "../../config/firebase";
-import {Item, User} from "../../interfaces/interfaces";
+import {Item} from "../../interfaces/interfaces";
 import {useContext, useEffect, useState} from "react";
 import UserContext from "../../context/User/UserContext";
+import {useRevalidateUser} from "../../hooks/useRevalidateUser";
 
 export const Home = () => {
 
+    useRevalidateUser();
     const [items, setItems] = useState([] as Item[]);
     const { getUser } = useContext(UserContext)
 
     const fetchItems = async () => {
+
         const itemsQuery = query(collection(db, "items"));
 
         const querySnapshot = await getDocs(itemsQuery);

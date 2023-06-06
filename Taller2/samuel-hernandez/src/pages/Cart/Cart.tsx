@@ -5,9 +5,11 @@ import CartContext from "../../context/Cart/CartContext";
 import {CartEntry} from "../../components/CartEntry/CartEntry";
 import UserContext from "../../context/User/UserContext";
 import {useNavigate} from "react-router-dom";
+import {useRevalidateUser} from "../../hooks/useRevalidateUser";
 
 export const Cart = () => {
 
+    useRevalidateUser();
     const {items, clear, updateItem, productNumber, total} = useContext(CartContext);
     const {username} = useContext(UserContext);
     const renderedTotal = ((Math.round(total) * 100) / 100).toFixed(2);
