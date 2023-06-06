@@ -10,14 +10,14 @@ export const userReducer = (state: User, action: UserAction): User => {
         case "clear":
             return {
                 ...state,
-                id: "INVALID",
-                username: "none",
+                uid: "INVALID",
+                displayName: "none",
             }
         case "set":
             return {
                 ...state,
-                id: action.payload.id,
-                username: action.payload.username,
+                uid: action.payload.uid,
+                displayName: action.payload.displayName,
             }
         case "get":
             return state;

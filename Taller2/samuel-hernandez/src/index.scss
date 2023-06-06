@@ -32,3 +32,15 @@ main {
   justify-content: start;
   background-color: v.$neutral-800;
 }
+
+.errored {
+  color: v.$red-500;
+}
+
+.success {
+  color: v.$green-500;
+}
+
+.loading {
+  color: v.$neutral-300;
+}

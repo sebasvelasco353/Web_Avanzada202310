@@ -12,6 +12,7 @@ import {UserProvider} from "../../context/User/UserProvider";
 import {CartProvider} from "../../context/Cart/CartProvider";
 import {ThemeProvider} from "@mui/material/styles";
 import theme from "../../config/mui";
+import {Register} from "../../pages/Register/Register";
 
 function App() {
 
@@ -27,8 +28,9 @@ function App() {
                             <Routes>
                                 <Route index element={<Home/>}/>
                                 <Route path={"login"} element={<Login/>}/>
-                                <Route path={"/cart"} element={<Cart/>}/>
-                                <Route path={"/profile"} element={<Profile/>}/>
+                                <Route path={"register"} element={<Register/>}/>
+                                <Route path={"cart"} element={<Cart/>}/>
+                                <Route path={"profile"} element={<Profile/>}/>
                                 <Route path={"*"} element={<NotFound/>}/>
                             </Routes>
                         </CartProvider>

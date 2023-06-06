@@ -28,8 +28,8 @@ export interface ModalState {
 
 // Session and User
 export interface User {
-    id : string,
-    username : string,
+    uid : string,
+    displayName : string,
     email: string,
     hasSpent : number,
     isAdmin : boolean

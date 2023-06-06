@@ -17,7 +17,7 @@ Large.args = {
     },
     color: "primary",
     className: "button button__large",
-    label: "Large"
+    children: "Large"
 }
 
 export const Normal = Template.bind({});
@@ -26,5 +26,5 @@ Normal.args = {
         color: material("red")[100]
     },
     className: "button button__normal",
-    label: "Small"
+    children: "Small"
 }

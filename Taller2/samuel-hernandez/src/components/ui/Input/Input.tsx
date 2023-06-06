@@ -11,8 +11,9 @@ export const Input = (
         required?: boolean,
         autoFocus?: boolean,
         actionIcon?: JSX.Element,
-        actionClick?: React.MouseEventHandler<HTMLButtonElement>
-        passwordState?: string
+        actionClick?: React.MouseEventHandler<HTMLButtonElement>,
+        passwordState?: string,
+        error?: boolean,
     }
 ) => {
 
@@ -29,7 +30,7 @@ export const Input = (
     }
 
     return (
-        <TextField onFocus={handleFocusIn} onBlur={handleFocusOut} type={props.type} label={props.label}
+        <TextField error={props.error} onFocus={handleFocusIn} onBlur={handleFocusOut} type={props.type} label={props.label}
                    className={`input ${isFocused ? "input__focused" : ""}`} name={props.name} InputProps={
             {
                 endAdornment: (

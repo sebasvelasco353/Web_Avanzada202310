@@ -11,7 +11,7 @@ export const Cart = () => {
 
     useRevalidateUser();
     const {items, clear, updateItem, productNumber, total} = useContext(CartContext);
-    const {username} = useContext(UserContext);
+    const {displayName} = useContext(UserContext);
     const renderedTotal = ((Math.round(total) * 100) / 100).toFixed(2);
     const navigate = useNavigate();
 
@@ -69,7 +69,7 @@ export const Cart = () => {
                             <section className={"cart__billing__details"}>
                                 <section className={"cart__billing__details__group"}>
                                     <h3>Order recipient</h3>
-                                    <h3 className={"cart__billing__details__group__data"}>{username || "Anonymous"}</h3>
+                                    <h3 className={"cart__billing__details__group__data"}>{displayName || "Anonymous"}</h3>
                                 </section>
                                 <section className={"cart__billing__details__group"}>
                                     <h3>Order total</h3>

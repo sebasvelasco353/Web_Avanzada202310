@@ -34,4 +34,16 @@ main {
   background-color: #262626;
 }
 
+.errored {
+  color: #ef4444;
+}
+
+.success {
+  color: #22c55e;
+}
+
+.loading {
+  color: #d4d4d4;
+}
+
 /*# sourceMappingURL=index.css.map */
