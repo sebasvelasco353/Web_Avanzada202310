@@ -15,13 +15,14 @@ function Catalogue({addToCart}){
 	const fetchMangas = async () => {
 		try {			
 			const q = (searchQuery != "")
-			?query(collection(db, "mangas"), where("name", "==", searchQuery))
+			?query(collection(db, "mangas"), where("Nombre", "==", searchQuery))
 			:collection(db, "mangas")
 			const querySnapshot = await getDocs(q);
 			const formatted = querySnapshot.docs.map( (manga) => ({
 				...manga.data(), id: manga.id
 			}));
 			setMangas(formatted);
+			console.log(mangas)
 		}catch(error){console.error(error);}
 	}
 
@@ -65,7 +66,29 @@ function Catalogue({addToCart}){
 	    <Grid xs={4}></Grid>
 	    <Grid xs={8}>
 	    <div className="catalogue">
-	      {mangaGroups.map((group) => (
+	      { mangaGroups.length === 0?
+	      <Container>
+		  	<Grid container spacing={2}>
+		  	<Grid xs={3}></Grid>
+		  	<Grid xs={8}>
+			    <img
+			        src="https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
+			        alt="Portada"
+			        className="card-image"
+			        style={{
+	            	width: "70%",
+	            	height: "60%",
+	            	marginBottom: "16px",
+	            	marginTop: "16px",
+	          		}}
+		        />
+			    <Typography variant="h5">
+			        No se encontrarón resultados.
+			    </Typography>
+		  	</Grid>
+		  	</Grid>
+		  </Container>
+	      :mangaGroups.map((group) => (
 	        <div className="product-group">
 	          {group.map((product) => (
 	            <Card className="card">

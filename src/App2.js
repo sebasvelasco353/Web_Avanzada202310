@@ -22,9 +22,10 @@ export const EcommerceContext = React.createContext();
 function App(){
 	const [user, setUser] = useState([]);
 	const [mangasInCart, setmangasInCart] = useState([])
-	const [logBtnText, setText] = useState("")
+	const [logBtnText, setText] = useState("Log in")
 
 	const handleAddToCart = (manga) => {
+		console.log(manga)
 		if(user.length > 0){
 			if(!mangasInCart.some((item) => item.id === manga.id)){
 	            const newCart = [...mangasInCart, manga];
@@ -55,9 +56,9 @@ function App(){
     	}
 	}
 
-    useEffect(()=>{
-        setText((user.length > 0)?"Log out":"Log in");
-    }, []);
+    const handleUserLogin = (loggedIn) => {
+    	setText(loggedIn ? "Log out" : "Log in");
+  	};
 
     const renderHeader = () => {
     	if(user[2] == 'admin'){
@@ -103,7 +104,7 @@ function App(){
 		  <EcommerceContext.Provider value={user}>
 			  <div className="content" style={{ marginTop: "64px"}}>
 			    <Routes>
-			    	<Route path="/login" element={<LogIn user = {setUser}/>}/>
+			    	<Route path="/login" element={<LogIn user = {setUser} onLogin={handleUserLogin}/>}/>
 			    	<Route path="/signin" element={<Sigin user = {setUser}/>}/>
 			    	<Route path="/cart" element={<Cart cart = {mangasInCart} handleDelete = {deleteMangaFromCart}/>}/>
 			    	<Route path="/mangas" element={<Catalogue addToCart = {handleAddToCart}/>}/>

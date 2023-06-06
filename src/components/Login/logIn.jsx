@@ -9,7 +9,8 @@ import { Table, TableHead, TableRow,
 		 Container, Grid } from "@mui/material";
 import "./login.css";
 
-function Login({ user }) {
+function Login({ user, onLogin}) {
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,8 +23,8 @@ function Login({ user }) {
       const querySnapshotFormatted = querySnapshot.docs.map((manga) => ({
         ...manga.data(),
       }));
-      console.log([email, password, querySnapshotFormatted[0].tipo]);
       user([email, password, querySnapshotFormatted[0].tipo]);
+      onLogin(true);
       navigate("/mangas");
     } catch (error) {
       console.error(error);
