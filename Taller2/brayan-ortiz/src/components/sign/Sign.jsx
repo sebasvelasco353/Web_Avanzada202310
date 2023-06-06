@@ -1,7 +1,7 @@
 import './Sign.css'
 import React, { useState } from 'react';
-import { auth} from "../../config/firebase"
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import {auth} from "../../config/firebase"
+import {createUserWithEmailAndPassword } from "firebase/auth"
 import Alert from '../alertMaterialUI/Alert';
 
 function Sign() {
@@ -45,7 +45,7 @@ function Sign() {
         <button type="submit">Registrarse</button>
       </div>
       <Alert title={"Usuario registrado"} state={showAlert} message={"Usuario registrado con éxito."} onConfirmation={handleConfirm}/>
-      <Alert title={"Usuario no registrado"} state={showErrorAlert} message={"El usuario ya se escuentra registrado."} onConfirmation={handleConfirm}/>
+      <Alert title={"Registro fallido"} state={showErrorAlert} message={"El usuario ya se escuentra registrado."} onConfirmation={handleConfirm}/>
     </form>
   );
 };
