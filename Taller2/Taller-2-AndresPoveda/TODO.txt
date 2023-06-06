@@ -1,0 +1,4 @@
+1. Solucionar problema de estado con "IsLoggedIn"
+2. Solucionar problema de primera vez de "Add New Product"
+3. Hacer que la lista se actualice cuando le undo guardar y no log out (Tiene que ver con el isLoggedIn)
+4. Solucionar tema de unidades por prodcuto
