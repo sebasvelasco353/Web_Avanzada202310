@@ -1,21 +1,63 @@
 import './ProductList.css'
 import Product from '../product/Product';
+import { products } from '../assets/Products';
+import { v4 } from 'uuid';
+import { collection, doc, getDocs } from '@firebase/firestore';
+import { db } from '../../config/firebase';
+import { useEffect, useState } from 'react';
+import { async } from '@firebase/util';
 
-function ProductList({ products }){
+function ProductList(){
 
-  const uuidv4=()=> {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
+  const [productList, setProductList] = useState([]);
+  const productsCollection = collection(db, 'product');
+  
+  const getProducts= async()=>{
+    try {
+      const data = await getDocs(productsCollection);
+      const formatedData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }))
+      setProductList(formatedData);
+    }catch (error) {
+      console.error(error)
+    }
   }
+
+  useEffect(()=>{
+    getProducts();
+  })
 
   return (
     <div className="product-list">
+        
+        {productList.length != 0 && <div className='container'>
+          <div className='container_tittle1'> 
+            <h1 className='label_product'>Mis productos a la venta:</h1>
+          </div>
+          {productList.map(product => (
+            <Product
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              description={product.description}
+              active={true}
+            />
+          ))}
+        </div>}
+
+        <div className='container_tittle2'> 
+          <h1 className='label_product'>Productos a la venta:</h1>
+        </div>
+        
         {products.map((product) => (
             <Product
-                id={uuidv4()}
+                id={v4()}
                 name={product.name} 
                 price={product.price} 
                 description={product.description}
+                active = {false}
             />
         ))}
     </div>

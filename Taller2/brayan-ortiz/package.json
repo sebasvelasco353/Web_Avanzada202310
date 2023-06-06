@@ -1,0 +1,87 @@
+{
+  "name": "brayan-ortiz",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/style": "^0.8.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.3",
+    "@reduxjs/toolkit": "^1.9.3",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "firebase": "^9.22.0",
+    "react": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-scripts": "5.0.1",
+    "redux": "^4.2.1",
+    "uuid": "^9.0.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:storybook/recommended"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^7.0.18",
+    "@storybook/addon-essentials": "^7.0.18",
+    "@storybook/addon-interactions": "^7.0.18",
+    "@storybook/addon-links": "^7.0.18",
+    "@storybook/blocks": "^7.0.6",
+    "@storybook/builder-webpack5": "^7.0.18",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/node-logger": "^7.0.18",
+    "@storybook/preset-create-react-app": "^7.0.18",
+    "@storybook/react": "^7.0.18",
+    "@storybook/react-webpack5": "^7.0.6",
+    "@storybook/testing-library": "^0.1.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "eslint-plugin-storybook": "^0.6.12",
+    "prop-types": "^15.8.1",
+    "storybook": "^6.0.0",
+    "webpack": "^5.85.1",
+    "webpack-dev-server": "^4.15.0"
+  }
+}

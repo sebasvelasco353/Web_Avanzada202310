@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { products } from '../assets/Products';
 import Login from '../login/Login';
 import ProductList from '../productList/ProductList';
 import Shopping from '../shopping/Shopping'
 import './Home.css'
+import Sign from '../sign/Sign';
+import { getAuth} from 'firebase/auth';
+import AddProduct from '../sales/AddProduct';
 
 function Home (){
-    const [showLogin, setShowLogin] = useState(false);
-    const [txtLoginButton, setTxtButton] = useState("Login");
+    const [showLogin, setShowLogin] = useState(true);
+    const [showSign, setShowSign] = useState(false);
+    const [component, setActiveComponent] = useState('Login');
+    const [showSales, setShowSales] = useState(false);
 
     const isLogin = useSelector(state => state.login)
     const showShopping = useSelector(state => state.showShopping);
@@ -30,34 +34,45 @@ function Home (){
 
     const displayProductList=()=>{
       if(isLogin){
-        return <ProductList products={products}></ProductList>
-      }
-    }
-    
-    const displayLogin=()=>{
-      if(showLogin && !isLogin){
-        return <Login/>
+        return <ProductList></ProductList>
       }
     }
 
+    const handleSign=()=>{
+      setActiveComponent('Sign')
+    }
     const handleLogin =()=>{
-      if(showLogin){
-        setShowLogin(false);
+      if(isLogin){
         dispatch({type: 'Logout'})
         alert("Has salido de la sesión.")
       } else {
-        setShowLogin(true);
+        setActiveComponent('Login')
+      }
+    }
+
+    const openSale = () =>{
+      if(showSales){
+        setShowSales(false)
+        setActiveComponent('')
+      } else {
+        setShowSales(true)
+        setActiveComponent('AddProduct')
       }
     }
 
     return(
         <div className='container_home'>
           <div className='container_home__bar'>
-            <button className='container_home__bar__shopping_button' onClick={openShopping}></button>
+            {isLogin && <button className='container_home__bar__shopping_button' onClick={openShopping}></button>}
+            {!isLogin && <button className='container_home__bar__sing_button' onClick={handleSign}>Sign</button>}
+            {isLogin && <button className='container_home__bar__sale_nutton' onClick={openSale}>Sale</button>}
             <button className='container_home__bar__login_button' onClick={handleLogin}>{!isLogin?"Login":"Logout"}</button> 
           </div>
-          {displayLogin()}
+          {component === 'Sign' && <Sign/>}
+          {component === 'Login' && !isLogin && <Login/>}
+          {component === 'AddProduct' && <AddProduct/>}
           {displayShopping()}
+
           {displayProductList()}
         </div>
     );
