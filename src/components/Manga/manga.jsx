@@ -3,6 +3,9 @@ import "./manga.css"
 import { useState, useEffect } from "react";
 import {auth, db} from "../../config/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { Button, FormGroup, Typography,
+		 Container, Grid, Card,
+		 CardMedia, CardContent } from "@mui/material";
 
 function Catalogue({addToCart}){
 
@@ -19,7 +22,6 @@ function Catalogue({addToCart}){
 				...manga.data(), id: manga.id
 			}));
 			setMangas(formatted);
-			console.log(formatted)
 		}catch(error){console.error(error);}
 	}
 
@@ -28,7 +30,7 @@ function Catalogue({addToCart}){
     }, [searchQuery]);
 
     const mangaGroups = mangas.reduce((groups, manga, index) => {
-	    if (index % 4 === 0)
+	    if (index % 3 === 0)
 	      groups.push([]);
 	    groups[groups.length - 1].push(manga);
 	    return groups;
@@ -41,7 +43,7 @@ function Catalogue({addToCart}){
   	};
 
 	return(
-	  <div>
+	  <>
 	    <div className="browser">
 			<table>
 			  <tbody>
@@ -60,24 +62,43 @@ function Catalogue({addToCart}){
 			  </tbody>
 			</table>
 	    </div>
+	    <Grid xs={4}></Grid>
+	    <Grid xs={8}>
 	    <div className="catalogue">
 	      {mangaGroups.map((group) => (
 	        <div className="product-group">
 	          {group.map((product) => (
-	            <div className="card">
-	              <div className="container">
-	                <h4><b>{product.Nombre}</b></h4>
-	                <p>{product.Precio}</p>
-	                <p>{product.Cantidad}</p>
-	                <p>{product.Disponible}</p>
-	                <button onClick={() => addToCart(product)}>Agregar al carrito</button>
-	              </div>
-	            </div>
+	            <Card className="card">
+			    	<CardMedia
+			    	component="img"
+  					alt="Portada"
+  					height="300"
+  					image={product.image}
+			    	/>
+			    	<CardContent >
+			    		<Typography variant="h5">
+			    			<b>{product.Nombre}</b>
+			    		</Typography>
+			    		<Typography variant="h6" style={{ color: 'green' }}>
+			    			<b>${product.Precio}</b>
+			    		</Typography>
+			    		<Typography component="p">
+			    			Cantidad: {product.Cantidad}
+			    		</Typography>
+			    		<Typography component="p">
+			    			{(product.Disponible)?'Disponible':'No disponible'}
+			    		</Typography>
+			    		<Button onClick={() => addToCart(product)}>
+		                    Agregar al carrito
+		                </Button>
+			    	</CardContent>
+			    </Card>
 	          ))}
 	        </div>
 	      ))}
 	    </div>
-	  </div>
+	    </Grid>
+	  </>
 	);
 }
 export default Catalogue;

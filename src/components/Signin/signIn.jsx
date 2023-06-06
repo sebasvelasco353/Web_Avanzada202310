@@ -3,8 +3,10 @@ import {auth, db} from "../../config/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom"; 
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import { Table, TableHead, TableRow, 
+		 TableCell, TableBody, TextField,
+		 Button, FormGroup, Typography,
+		 Container, Grid } from "@mui/material";
 import "./sigin.css"
 
 function Sigin({user}){
@@ -38,29 +40,63 @@ function Sigin({user}){
 	}
 
 	return(
-		<>
-			<Container>
-			<Grid container spacing={2}>
-			  <Grid xs={12}>--</Grid>
-			  <Grid xs={4}></Grid>
-			  <Grid xs={4}>
-			  	<div className="form-group">
-					<label htmlFor="email">Correo electrónico:</label>
-					<input type="text" id="email" onChange={(e) => setEmail(e.target.value)}/>
-				</div>
-		        <div className="form-group">
-					<label htmlFor="password">Contraseña:</label>
-					<input type="password" id="password" onChange={(e) => setPassword(e.target.value)}/>
-				</div>
-		        <div className="form-group">
-					<button onClick={handleSignIn}>Signin</button>
-					<button onClick={handleLogIn}>Login</button>
-				</div>
-			</Grid>
-			</Grid>
-		        
-			</Container>
-		</>
+	<>
+    <Container>
+    <Grid container spacing={2}>
+	    <Grid xs={4}></Grid>
+	    <Grid xs={4}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell colSpan={2}>
+                <Typography variant="h3" align="center">Registrate</Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+              	<label>Correo electrónico:</label>
+              </TableCell>
+              <TableCell>
+                  <TextField
+                    id="email" 
+                    label="Correo electrónico"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+              	<label>Contraseña:</label>
+              </TableCell>
+              <TableCell>
+                  <TextField
+                    type="password" 
+                    id="password" 
+                    label="Contraseña"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                  <Button variant="contained" onClick={handleSignIn}>
+                    Registrarse
+                  </Button>
+              </TableCell>
+              <TableCell>
+              	<Button variant="contained" onClick={handleLogIn}>
+                    Ingresar
+                </Button>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+    	</Grid>    
+    </Grid>
+    </Container>    
+    </>
 		);
 }
 export default Sigin;

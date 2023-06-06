@@ -1,87 +1,98 @@
-import React from "react";
-import {auth, db} from "../../config/firebase";
+import React, { useState } from "react";
+import { auth, db } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useNavigate } from "react-router-dom"; 
-import "./login.css"
+import { useNavigate } from "react-router-dom";
+import { Table, TableHead, TableRow, 
+		 TableCell, TableBody, TextField,
+		 Button, FormGroup, Typography,
+		 Container, Grid } from "@mui/material";
+import "./login.css";
 
-function Login({user}){
+function Login({ user }) {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-	const navigate = useNavigate();
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+  const handleLogIn = async () => {
+    try {
+      const userData = await signInWithEmailAndPassword(auth, email, password);
+      const q = query(collection(db, "usuario"), where("correo", "==", email));
+      const querySnapshot = await getDocs(q);
+      const querySnapshotFormatted = querySnapshot.docs.map((manga) => ({
+        ...manga.data(),
+      }));
+      console.log([email, password, querySnapshotFormatted[0].tipo]);
+      user([email, password, querySnapshotFormatted[0].tipo]);
+      navigate("/mangas");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-	const handleLogIn = async () => {
-		try {
-			const userData = await signInWithEmailAndPassword(auth, email, password);
-			const q = query(collection(db, "usuario"), where("correo", "==", email));
-			const querySnapshot = await getDocs(q);
-			const querySnapshotFormatted = querySnapshot.docs.map( (manga) => ({
-				...manga.data()
-			}));
-			console.log([email, password, querySnapshotFormatted[0].tipo]);
-			user([email, password, querySnapshotFormatted[0].tipo]);
-			navigate("/mangas")
-		} catch (error) {
-			console.error(error);
-		}
-	}
+  const handleSignIn = () => {
+    navigate("/signin");
+  };
 
-	const handleSignIn = () => {
-		navigate("/signin")
-	}
-
-	return(
-	  <div>
-		    <form>
-			    <table>
-			    	<thead>
-		              <tr>
-		            	<th colSpan="2">Log in</th>
-		          	  </tr>
-		        	</thead>
-		        	<tbody>
-		        		<tr></tr>
-		        		<tr></tr>
-		        		<tr>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td>
-		        				<div className="form-group">
-						          <label htmlFor="email">Correo electrónico:</label>
-						          <input type="text" id="email" onChange={(e) => setEmail(e.target.value)}/>
-						        </div></td>
-		        		</tr>
-		        		<tr>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td>
-		        				<div className="form-group">
-						          <label htmlFor="password">Contraseña:</label>
-						          <input type="password" id="password" onChange={(e) => setPassword(e.target.value)}/>
-						        </div></td>
-		        		</tr>
-		        		<tr>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td>
-		        				 <div className="form-group">
-						         <button onClick={handleLogIn}>Login</button>
-						         <button onClick={handleSignIn}>Signin</button>
-						        </div></td>
-		        		</tr>
-		        	</tbody>
-			    </table>
-		    </form>
-	    </div>
-	);
+  return (
+    <>
+    <Container>
+    <Grid container spacing={2}>
+	    <Grid xs={4}></Grid>
+	    <Grid xs={4}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell colSpan={2}>
+                <Typography variant="h3" align="center">Ingresar</Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+              	<label>Correo electrónico:</label>
+              </TableCell>
+              <TableCell>
+                  <TextField
+                    id="email"
+                    label="Correo electrónico"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+              	<label>Contraseña:</label>
+              </TableCell>
+              <TableCell>
+                  <TextField
+                    id="password"
+                    label="Contraseña"
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                  <Button variant="contained" onClick={handleLogIn}>
+                    Ingresar
+                  </Button>
+              </TableCell>
+              <TableCell>
+              	<Button variant="contained" onClick={handleSignIn}>
+                    Registrarse
+                </Button>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+    	</Grid>    
+    </Grid>
+    </Container>    
+    </>
+  );
 }
+
 export default Login;

@@ -15,6 +15,7 @@ import Cart from "./components/Cart/cart";
 import Catalogue from "./components/Manga/manga";
 import AddManga from "./components/Manga/addManga";
 import { signOut } from 'firebase/auth';
+import { AppBar, List, ListItem, ListItemText} from "@mui/material";
 
 export const EcommerceContext = React.createContext();
 
@@ -57,7 +58,6 @@ function App(){
     const renderHeader = () => {
     	if(user[2] == 'admin'){
     		return(
-    			<>
 	    		<ul className="header">
 			      <div className="left-container">
 					<li><NavLink to="/mangas">Catalogo</NavLink></li>
@@ -68,21 +68,24 @@ function App(){
 					<li onClick={handleLogout}><NavLink to="/signin">{logBtnText}</NavLink></li>
 			      </div>
 			    </ul>
-	    		</>
     			);
     	}else{
     		return(
-    		<>
-    		<ul className="header">
-		      <div className="left-container">
-				<li><NavLink to="/mangas">Catalogo</NavLink></li>
-		      </div>
-		      <div className="right-container">	
-				<li><NavLink to="/cart">Carrito</NavLink></li>
-				<li onClick={handleLogout}><NavLink to="/signin">{logBtnText}</NavLink></li>
-		      </div>
-		    </ul>
-    		</>
+    			<List className="header">
+	    			<div className="left-container">
+	    				<ListItem>
+	    					<NavLink to="/mangas">Catalogo</NavLink>
+	    				</ListItem>
+			      	</div>
+			      	<div className="right-container">
+			      		<ListItem>
+			      			<NavLink to="/cart">Carrito</NavLink>
+			      		</ListItem>	
+						<ListItem onClick={handleLogout}>
+							<NavLink to="/signin">{logBtnText}</NavLink>
+						</ListItem>
+				    </div>
+    			</List>
     		);
     	}//End if
 
@@ -90,11 +93,11 @@ function App(){
 
 	return(
 		<HashRouter>
-		  <div>
-		    {renderHeader()}
-		  </div>
+		  <AppBar position="fixed">
+			  	{renderHeader()}
+		  </AppBar>
 		  <EcommerceContext.Provider value={user}>
-			  <div className="content">
+			  <div className="content" style={{ marginTop: "64px"}}>
 			    <Routes>
 			    	<Route path="/login" element={<LogIn user = {setUser}/>}/>
 			    	<Route path="/signin" element={<Sigin user = {setUser}/>}/>
@@ -104,7 +107,7 @@ function App(){
 			    	<Route path="/addManga" element={ (user[2] == 'admin') ? <AddManga/> : <Navigate to='/' />}/>
 			    </Routes>
 			  </div>
-		  </EcommerceContext.Provider>
+		  </EcommerceContext.Provider>	
 		</HashRouter>
 	);
 }
