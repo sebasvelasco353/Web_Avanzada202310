@@ -11,7 +11,7 @@ import "./login.css";
 
 function Login({ user, onLogin}) {
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -25,14 +25,14 @@ function Login({ user, onLogin}) {
       }));
       user([email, password, querySnapshotFormatted[0].tipo]);
       onLogin(true);
-      window.location.href = "#/mangas";
+      navigate("/mangas");
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleSignIn = () => {
-    window.location.href = "#/signin";
+    navigate("/signin");
   };
 
   return (
