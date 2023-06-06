@@ -5,9 +5,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useEffect } from 'react';
 
-export default function AlertDialog({state, message, onConfirmation}) {
-  const [open, setOpen] = React.useState(state);
+export default function Alert({ title, state, message, onConfirmation}) {
+  const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -16,7 +17,12 @@ export default function AlertDialog({state, message, onConfirmation}) {
 
   const handleAcept = () => {
     onConfirmation(true)
+    setOpen(false)
   }
+
+  useEffect(()=>{
+    setOpen(state);
+  },[state]);
 
   return (
     <div>
@@ -26,7 +32,7 @@ export default function AlertDialog({state, message, onConfirmation}) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title"></DialogTitle>
+        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {message}

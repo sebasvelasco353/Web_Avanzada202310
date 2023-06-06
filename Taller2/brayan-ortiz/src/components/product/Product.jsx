@@ -5,15 +5,17 @@ import { useSelector,useDispatch } from 'react-redux'
 import { db } from '../../config/firebase';
 import { deleteDoc, doc } from '@firebase/firestore';
 import UpdateModal from '../updateModal/UpdateModal';
+import Alert from '../alertMaterialUI/Alert.jsx';
 
 function Product (props){
     
     const [showEditModal, setShowEdit] = useState(false)
     const showModal = useSelector(state => state.showModal);
+    const [showAlert, setShowAlert] = useState(false)
+
     const dispatch = useDispatch();
     
     const clickProductCard =()=>{
-
         if(showModal){
             dispatch({type: 'HideModal'});
         } else {
@@ -28,11 +30,18 @@ function Product (props){
         }
     }
 
-    const handleDelete=async()=>{
-        if(window.confirm('¿Estás segur@ que quieres eliminar este producto?')){
+    const handleDelete=()=>{
+        setShowAlert(true)
+    }
+
+    const handleConfirm=async(confirmation)=>{
+        if(confirmation){
             const productDoc = doc(db, 'product', props.id)
             await deleteDoc(productDoc)
             dispatch({ type: 'ChangeDocument'})
+            setShowAlert(false)
+        } else {
+            setShowAlert(false)
         }
     }
 
@@ -55,6 +64,10 @@ function Product (props){
                 <h2>${props.price}</h2>
                 <p>{props.description}</p>
             </div>
+            <Alert title ={"Confirmación"} state={showAlert} 
+            message={"¿Estás segur@ que quieres eliminar el producto?"} 
+            onConfirmation={handleConfirm}/>
+
             <UpdateModal product={props} isVisible ={showEditModal} setShowEdit={setShowEdit}/>
             {displayModal()}
         </div>       

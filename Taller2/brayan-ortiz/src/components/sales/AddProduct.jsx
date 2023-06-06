@@ -11,7 +11,8 @@ function AddProduct(props) {
     const [newProduct, setNewProduct] = useState({});
     const collectionProduct = collection(db, 'product')
     const dispatch = useDispatch()
-
+    const [ setShowAlert] = useState(false)
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -22,6 +23,7 @@ function AddProduct(props) {
             setDescription('')
             setNewProduct({})
             dispatch({type: 'ChangeDocument'})
+            setShowAlert(true)
         } catch (error){
             console.error(error)
         }

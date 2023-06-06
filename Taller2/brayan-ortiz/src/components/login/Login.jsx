@@ -3,11 +3,19 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { auth } from '../../config/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+
 
 function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
     const dispatch = useDispatch()
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -22,11 +30,14 @@ function Login(){
         try {
             await signInWithEmailAndPassword(auth, email, password)
             dispatch({type: 'Login'})
-            alert("Usuario autenticado.") 
         } catch (error) {
-            alert("El usuario no se encuentra registrado.")
+            setShowAlert(true)
         }
     };
+
+    const handleCloseAlert=()=>{
+        setShowAlert(false)
+    }
 
   return (
     <form className='form' onSubmit={handleSubmit}>
@@ -40,7 +51,12 @@ function Login(){
                 <input type="password" id='password' value={password} onChange={handlePasswordChange} required/>
             </label>
             <button type="submit">LogIn</button>
-        </div>  
+        </div>
+        <Snackbar open={showAlert} autoHideDuration={4000} onClose={handleCloseAlert}>
+            <Alert onClose={handleCloseAlert} severity="info" sx={{ width: '100%' }}>
+                El usuario no se encuentra registrado.
+            </Alert>
+        </Snackbar>
     </form>
     
   );
