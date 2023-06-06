@@ -12,15 +12,15 @@ import ModalContext from "../../context/Modal/ModalContext";
 
 export const Home = () => {
 
-    useRevalidateUser();
+    const allowAdd = useRevalidateUser();
     const [items, setItems] = useState([] as Item[]);
     const {openOnEdit} = useContext(ModalContext);
 
     const fetchItems = async () => {
         const response = await getDocs(collection(db, "items"));
-        const fetchedItems : Item[] = [];
+        const fetchedItems: Item[] = [];
         response.forEach((doc) => {
-            const itemDoc : any = doc.data();
+            const itemDoc: any = doc.data();
             itemDoc.id = doc.id;
             fetchedItems.push(itemDoc as Item);
         });
@@ -53,7 +53,10 @@ export const Home = () => {
                 </section>
             </section>
             <ItemModal/>
-            <Button onClick={handleClick} className={"button button__float"}>{"Add items"}</Button>
+            {allowAdd &&
+                <Button onClick={handleClick} className={"button button__float"}>{"Add items"}</Button>
+
+            }
         </main>
     );
 }

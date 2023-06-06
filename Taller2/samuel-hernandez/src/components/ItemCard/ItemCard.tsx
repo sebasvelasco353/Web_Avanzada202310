@@ -4,6 +4,8 @@ import {CartPlus} from "react-bootstrap-icons";
 import React, {useContext} from "react";
 import CartContext from "../../context/Cart/CartContext";
 import ModalContext from "../../context/Modal/ModalContext";
+import {useRevalidateUser} from "../../hooks/useRevalidateUser";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
     item : Item;
@@ -14,24 +16,28 @@ export const ItemCard = (props: IProps) => {
     const {open} = useContext(ModalContext);
     const { addItem, updateItem, findItemById } = useContext(CartContext);
     const available = props.item.stock > 0;
-
+    const navigate = useNavigate();
+    const shouldLogin = useRevalidateUser();
     const itemInCart = findItemById(props.item.id);
     const quantity = itemInCart !== undefined ? itemInCart.quantity : 0;
 
     const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         e.stopPropagation();
-
-        if (itemInCart === undefined) { // Item not found, add to cart
-            addItem({
-                ...props.item,
-                quantity: 1
-            });
-        } else { // Item found, increase quantity by 1
-            updateItem(itemInCart.id, {
-                ...itemInCart,
-                quantity: (itemInCart.quantity + 1)
-            });
+        if (shouldLogin) {
+            navigate("/login?redirect=true");
+        } else {
+            if (itemInCart === undefined) { // Item not found, add to cart
+                addItem({
+                    ...props.item,
+                    quantity: 1
+                });
+            } else { // Item found, increase quantity by 1
+                updateItem(itemInCart.id, {
+                    ...itemInCart,
+                    quantity: (itemInCart.quantity + 1)
+                });
+            }
         }
     };
 
