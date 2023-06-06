@@ -16,7 +16,8 @@ export const Input = (
         error?: boolean,
         multiline?: boolean,
         value? : string | readonly string[] | number,
-        onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+        onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
+        className? : string,
     }
 ) => {
 
@@ -32,9 +33,11 @@ export const Input = (
         setIsFocused(false);
     }
 
+    const maxRows = props.multiline ? 6 : undefined;
+
     return (
-        <TextField onChange={props.onChange} error={props.error} onFocus={handleFocusIn} onBlur={handleFocusOut} multiline={props.multiline} type={props.type} label={props.label}
-                   className={`input ${isFocused ? "input__focused" : ""}`} name={props.name} InputProps={
+        <TextField onChange={props.onChange} maxRows={maxRows} error={props.error} onFocus={handleFocusIn} onBlur={handleFocusOut} multiline={props.multiline} type={props.type} label={props.label}
+                   className={`input ${isFocused ? "input__focused" : ""} ${props.className || ""}`} name={props.name} InputProps={
             {
                 endAdornment: (
                     <InputAdornment className={"input__adornment"} position="end">

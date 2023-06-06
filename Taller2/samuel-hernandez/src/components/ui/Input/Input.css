@@ -9,13 +9,23 @@
   color: #737373;
   transition: all 300ms ease-in-out;
 }
+.input__over-dark {
+  color: #fff1f2 !important;
+  border-color: #fff1f2 !important;
+}
+.input__over-dark * {
+  color: #fff1f2 !important;
+  border-color: #fff1f2 !important;
+}
 .input__focused {
-  color: #be123c;
-  fill: #be123c;
+  color: #be123c !important;
+  fill: #be123c !important;
+  border-color: #be123c !important;
 }
 .input__focused * {
-  color: #be123c;
-  fill: #be123c;
+  border-color: #be123c !important;
+  color: #be123c !important;
+  fill: #be123c !important;
 }
 .input__label {
   position: absolute;

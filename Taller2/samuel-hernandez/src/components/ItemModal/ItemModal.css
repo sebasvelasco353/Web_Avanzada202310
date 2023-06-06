@@ -17,6 +17,13 @@
   padding-block: 3rem;
   transition: opacity 300ms ease-in-out;
 }
+.item-modal__new-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-items: start;
+  gap: 1rem;
+}
 .item-modal__overlay {
   z-index: 1;
   position: fixed;
@@ -34,7 +41,8 @@
 .item-modal h4 {
   font-weight: 300;
   font-size: medium;
-  margin-bottom: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 .item-modal__description {
   font-weight: normal;
@@ -141,12 +149,12 @@
   cursor: not-allowed;
 }
 .item-modal__add__button-bar__confirm {
-  background-color: #F7444EFF;
-  color: #fff1f2;
+  background-color: #F7444EFF !important;
+  color: #fff1f2 !important;
 }
 .item-modal__add__button-bar__cancel {
-  background-color: #737373;
-  color: #f5f5f5;
+  background-color: #737373 !important;
+  color: #f5f5f5 !important;
 }
 
 .available {

@@ -11,13 +11,24 @@
   color: v.$neutral-500;
   transition: all 300ms ease-in-out;
 
+  &__over-dark {
+    color: v.$rose-50 !important;
+    border-color: v.$rose-50 !important;
+    * {
+      color: v.$rose-50 !important;
+      border-color: v.$rose-50 !important;
+    }
+  }
+
   &__focused {
-    color: v.$rose-700;
-    fill: v.$rose-700;
+    color: v.$rose-700 !important;
+    fill: v.$rose-700 !important;
+    border-color: v.$rose-700 !important;
 
     * {
-      color: v.$rose-700;
-      fill: v.$rose-700;
+      border-color: v.$rose-700 !important;
+      color: v.$rose-700 !important;
+      fill: v.$rose-700 !important;
     }
   }
 
