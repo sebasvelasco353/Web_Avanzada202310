@@ -6,8 +6,8 @@ import {Input} from "../../components/ui/Input/Input";
 import {EnvelopeAt, Eye, EyeSlash, Key, Person} from "react-bootstrap-icons";
 import {Button} from "../../components/ui/Button/Button";
 import material from "../../helpers/material";
-import {auth, db} from "../../config/firebase";
-import {createUserWithEmailAndPassword } from "firebase/auth";
+import {auth, db, normalizeFirebaseErrorMessage} from "../../config/firebase";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 import {addDoc, collection} from "firebase/firestore";
 import {useNavigate} from "react-router-dom";
 
@@ -22,7 +22,7 @@ export const Register = () => {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
 
-    const validatePasswordsMatch = (pass : HTMLInputElement, confirm : HTMLInputElement) => {
+    const validatePasswordsMatch = (pass: HTMLInputElement, confirm: HTMLInputElement) => {
         if (pass.value !== confirm.value) {
             setPasswordError(true);
             setInfoClassName("errored");
@@ -31,19 +31,18 @@ export const Register = () => {
         } else return pass.value;
     }
 
-    const registerUser = async (email: string, pass : string, metadata : {displayName : string}) => {
-        try {
-            const { user } = await createUserWithEmailAndPassword(auth, email, pass);
-
-            const usersCollection = collection(db, 'users');
-            await addDoc(usersCollection, { uid: user.uid, ...metadata, email });
-            await setInfoClassName("success");
-            await setInfo('User registered successfully!');
+    const registerUser = async (email: string, pass: string, metadata: { displayName: string }) => {
+        const {user} = await createUserWithEmailAndPassword(auth, email, pass);
+        const usersCollection = collection(db, 'users');
+        return addDoc(usersCollection, {uid: user.uid, ...metadata, email}).then((u) => {
+            setInfoClassName("success");
+            setInfo('User registered successfully!');
             return user;
-        } catch (error : any) {
+        }).catch((error) => {
             setInfoClassName("errored");
-            setInfo(error.message);
-        }
+            setInfo(normalizeFirebaseErrorMessage(error.message));
+            return user;
+        });
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -56,8 +55,10 @@ export const Register = () => {
         const username = form.username;
         if (pass !== null) {
             registerUser(email, pass, {displayName: username.value}).then((user) => {
-                console.log(user!.uid);
                 navigate("/login");
+            }).catch((error) => {
+                setInfoClassName("errored");
+                setInfo(normalizeFirebaseErrorMessage(error.message));
             });
         }
     };
@@ -80,12 +81,14 @@ export const Register = () => {
                                icon={<Person size={12} className={"input__icon"}/>}/>
                         <Input error={emailError} type={"email"} label={"Email"} name={"email"}
                                icon={<EnvelopeAt size={12} className={"input__icon"}/>}/>
-                        <Input error={passwordError} type={passwordHidden ? "password" : "text"} label={"Password"} name={"password"}
+                        <Input error={passwordError} type={passwordHidden ? "password" : "text"} label={"Password"}
+                               name={"password"}
                                icon={<Key size={12} className={"input__icon"}/>}
                                actionIcon={passwordHidden ?
                                    <Eye size={12} className={"input__icon"} onClick={e => togglePassword(e)}/> :
                                    <EyeSlash size={12} className={"input__icon"} onClick={e => togglePassword(e)}/>}/>
-                        <Input error={passwordError} type={passwordHidden ? "password" : "text"} label={"Confirm Password"} name={"confirmPassword"}
+                        <Input error={passwordError} type={passwordHidden ? "password" : "text"}
+                               label={"Confirm Password"} name={"confirmPassword"}
                                icon={<Key size={12} className={"input__icon"}/>}
                                actionIcon={passwordHidden ?
                                    <Eye size={12} className={"input__icon"} onClick={e => togglePassword(e)}/> :

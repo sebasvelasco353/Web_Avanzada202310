@@ -23,13 +23,15 @@ export const db = getFirestore(app);
 export const normalizeFirebaseErrorMessage = (firebaseError : string) : string => {
     switch (firebaseError) {
         case "Firebase: Error (auth/invalid-email).":
-            return "Por favor ingrese un correo válido";
+            return "Please type in a valid email.";
         case "Firebase: Error (auth/missing-password).":
-            return "Por favor ingrese una contraseña";
+            return "Please type in a valid password.";
         case "Firebase: Error (auth/user-not-found).":
-            return "Usuario no encontrado";
+            return "User not found.";
         case "Firebase: Error (auth/wrong-password).":
-            return "Contraseña incorrecta"
+            return "Wrong password."
+        case "Firebase: Error (auth/email-already-in-use).":
+            return "Email already in use. Please try another."
         default:
             return firebaseError;
     }
