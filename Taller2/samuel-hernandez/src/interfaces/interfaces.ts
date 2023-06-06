@@ -24,12 +24,13 @@ export interface ModalState {
     isOpen: boolean,
     item : Item,
     initialQuantity: number,
+    editMode: boolean,
 }
 
 // Session and User
 export interface User {
-    id : string,
-    username : string,
+    uid : string,
+    displayName : string,
     email: string,
     hasSpent : number,
     isAdmin : boolean

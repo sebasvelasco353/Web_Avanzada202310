@@ -19,6 +19,14 @@
   padding-block: 3rem;
   transition: opacity 300ms ease-in-out;
 
+  &__new-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-items: start;
+    gap: 1rem;
+  }
+
   &__overlay {
     z-index: 1;
     position: fixed;
@@ -38,7 +46,8 @@
   h4 {
     font-weight: 300;
     font-size: medium;
-    margin-bottom: 5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
   }
 
   &__description {
@@ -166,13 +175,13 @@
       }
 
       &__confirm {
-        background-color: v.$accent;
-        color: v.$rose-50;
+        background-color: v.$accent !important;
+        color: v.$rose-50 !important;
       }
 
       &__cancel {
-        background-color: v.$neutral-500;
-        color: v.$neutral-100;
+        background-color: v.$neutral-500 !important;
+        color: v.$neutral-100 !important;
       }
     }
   }

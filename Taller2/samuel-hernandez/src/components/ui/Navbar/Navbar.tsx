@@ -12,7 +12,7 @@ export const Navbar = () => {
 
     const {sessionState , logout} = useContext(SessionContext);
     const {logged} = sessionState;
-    const {username, clear: clearUser} = useContext(UserContext);
+    const {displayName, clear: clearUser} = useContext(UserContext);
     const {clear: clearCart} = useContext(CartContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -49,7 +49,7 @@ export const Navbar = () => {
                     <a href={"/cart"} onClick={handleChange}>Cart</a>
                 </li>
                 <li className={`${current === "/profile" ? "selected" : ""} ${logged ? "shown" : "hidden"}`}>
-                    <a href={"/profile"} onClick={handleChange}>{username ? username : "Profile"}</a>
+                    <a href={"/profile"} onClick={handleChange}>{displayName ? displayName : "Profile"}</a>
                 </li>
                 <li>
                     <button onClick={handleLogout} >{logged ? "Logout" : "Login"}</button>

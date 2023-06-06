@@ -1,0 +1,27 @@
+.button {
+  min-width: 10rem !important;
+  border-radius: 0.75rem !important;
+  text-transform: none !important;
+  padding-inline: 1.5rem !important;
+  padding-block: 0.25rem !important;
+  height: 3.5rem !important;
+  font-size: large !important;
+}
+.button__large {
+  width: 18rem;
+}
+.button__normal {
+  border-radius: 0.5rem;
+  height: 3rem;
+}
+.button__float {
+  position: fixed !important;
+  bottom: 1rem !important;
+  right: 1rem !important;
+}
+.button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*# sourceMappingURL=Button.css.map */

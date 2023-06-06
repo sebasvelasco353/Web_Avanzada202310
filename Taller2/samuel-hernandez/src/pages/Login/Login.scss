@@ -2,8 +2,8 @@
 
 .login {
   padding-block: 2rem;
-  padding-inline: 16rem;
-  height: 100%;
+  padding-inline: 8rem;
+  height: calc(100vh - 20rem);
   padding-top: 12rem;
 
   &__card {
@@ -24,13 +24,17 @@
   }
 
   &__form {
+    &__container {
+      height: 95%;
+      width: 60%;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 
-    height: 95%;
-    width: 60%;
+    height: 100%;
+    width: 100%;
 
     h2 {
       font-size: xxx-large;

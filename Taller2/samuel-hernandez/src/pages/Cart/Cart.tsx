@@ -1,15 +1,17 @@
 import {Helmet} from "react-helmet";
 import "./Cart.css";
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import CartContext from "../../context/Cart/CartContext";
 import {CartEntry} from "../../components/CartEntry/CartEntry";
 import UserContext from "../../context/User/UserContext";
 import {useNavigate} from "react-router-dom";
+import {useRevalidateUser} from "../../hooks/useRevalidateUser";
 
 export const Cart = () => {
 
+    const shouldLogin = !useRevalidateUser();
     const {items, clear, updateItem, productNumber, total} = useContext(CartContext);
-    const {username} = useContext(UserContext);
+    const {displayName} = useContext(UserContext);
     const renderedTotal = ((Math.round(total) * 100) / 100).toFixed(2);
     const navigate = useNavigate();
 
@@ -31,6 +33,10 @@ export const Cart = () => {
         alert(`You have successfully paid $${renderedTotal} to the Chinese government and have now been deducted -198327212 social points 🫡🥶😱🥸`);
         navigate("/");
     };
+
+    useEffect(() => {
+        if (shouldLogin) navigate("/login?redirect=true");
+    }, []);
 
     return (
         <main className={"cart"}>
@@ -67,7 +73,7 @@ export const Cart = () => {
                             <section className={"cart__billing__details"}>
                                 <section className={"cart__billing__details__group"}>
                                     <h3>Order recipient</h3>
-                                    <h3 className={"cart__billing__details__group__data"}>{username || "Anonymous"}</h3>
+                                    <h3 className={"cart__billing__details__group__data"}>{displayName || "Anonymous"}</h3>
                                 </section>
                                 <section className={"cart__billing__details__group"}>
                                     <h3>Order total</h3>

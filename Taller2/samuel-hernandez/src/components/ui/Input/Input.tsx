@@ -1,45 +1,56 @@
-import React, {useState} from "react";
+import React, {ChangeEventHandler, useState} from "react";
 import "./Input.css";
+import {InputAdornment, TextField} from "@mui/material";
 
 export const Input = (
-    props : {
-        type : string,
-        label : string | JSX.Element,
-        name : string,
-        icon? : JSX.Element,
-        required? : boolean,
-        autoFocus? : boolean,
-        actionIcon? : JSX.Element,
-        actionClick? : React.MouseEventHandler<HTMLButtonElement>
+    props: {
+        type: string,
+        label: string | JSX.Element,
+        name: string,
+        icon?: JSX.Element,
+        required?: boolean,
+        autoFocus?: boolean,
+        actionIcon?: JSX.Element,
+        actionClick?: React.MouseEventHandler<HTMLButtonElement>,
+        passwordState?: string,
+        error?: boolean,
+        multiline?: boolean,
+        value? : string | readonly string[] | number,
+        onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
+        className? : string,
     }
 ) => {
 
     const [isFocused, setIsFocused] = useState(false);
 
-    const handleFocusIn = (e: React.FocusEvent<HTMLDivElement>) => {
+    const handleFocusIn = (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => {
         e.preventDefault();
         setIsFocused(true);
     }
 
-    const handleFocusOut = (e: React.FocusEvent<HTMLDivElement>) => {
+    const handleFocusOut = (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => {
         e.preventDefault();
         setIsFocused(false);
     }
 
+    const maxRows = props.multiline ? 6 : undefined;
 
-    return props.type === "area" ? (
-        <div tabIndex={1} onFocus={handleFocusIn} onBlur={handleFocusOut}
-             className={`input ${isFocused ? "input__focused" : ""}`}>
-            <label htmlFor={props.name} className={"input__label"}>{props.label}</label>
-            <textarea {...props} className={"input__box"}/>
-        </div>
-    ) : (
-        <div tabIndex={1} onFocus={handleFocusIn} onBlur={handleFocusOut}
-             className={`input ${isFocused ? "input__focused" : ""}`}>
-            <label htmlFor={props.name} className={"input__label"}>{props.label}</label>
-            {props.icon || <div className={"input__icon"}/>}
-            <input {...props} className={"input__box"}/>
-            {props.actionIcon || <></>}
-        </div>
+    return (
+        <TextField onChange={props.onChange} maxRows={maxRows} error={props.error} onFocus={handleFocusIn} onBlur={handleFocusOut} multiline={props.multiline} type={props.type} label={props.label}
+                   className={`input ${isFocused ? "input__focused" : ""} ${props.className || ""}`} name={props.name} InputProps={
+            {
+                endAdornment: (
+                    <InputAdornment className={"input__adornment"} position="end">
+                        {props.actionIcon || <div className={"input__icon"}/>}
+                    </InputAdornment>
+                ),
+                startAdornment: (
+                    <InputAdornment className={"input__adornment"} position={"start"}>
+                        {props.icon || <></>}
+                    </InputAdornment>
+                ),
+            }}>
+
+        </TextField>
     );
 }

@@ -3,29 +3,39 @@ import {Plus, Dash} from "react-bootstrap-icons";
 import React, {useContext, useState} from "react";
 import ModalContext from "../../context/Modal/ModalContext";
 import CartContext from "../../context/Cart/CartContext";
+import {addDoc, collection } from "firebase/firestore";
+import {db} from "../../config/firebase";
+import {Input} from "../ui/Input/Input";
+import {Button} from "../ui/Button/Button";
 
 export const ItemModal = () => {
-    const {isOpen, item, initialQuantity, close} = useContext(ModalContext);
+    const {isOpen, item, initialQuantity, close, editMode} = useContext(ModalContext);
     const {addItem, updateItem, removeItem, findItemById} = useContext(CartContext);
     const itemInCart = findItemById(item.id);
     const [quantity, setQuantity] = useState(initialQuantity);
-    const addDisable = quantity === 100;
-    const removeDisable = quantity === 0;
+    const [newStock, setNewStock] = useState(0);
+    const quantityLimit = editMode ? 1000 : 100;
+    const addDisable = editMode ? newStock === quantityLimit : quantity === quantityLimit;
+    const removeDisable = editMode ? newStock === 0 : quantity === 0;
 
     const add = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        setQuantity((quantity) => quantity + 1);
+        if (editMode) setNewStock((stock) => stock + 1);
+        else setQuantity((quantity) => quantity + 1);
     };
 
     const remove = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        setQuantity((quantity) => quantity - 1);
+        if (editMode) setNewStock((stock) => stock - 1);
+        else setQuantity((quantity) => quantity - 1);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const newQuantity = parseInt((e.target as HTMLInputElement).value);
-        setQuantity(newQuantity > 100 ? 100 : newQuantity < 0 ? 0 : newQuantity);
+        const parsedQuantity = newQuantity > quantityLimit ? quantityLimit : newQuantity < 0 ? 0 : newQuantity;
+        if (editMode) setNewStock(parsedQuantity);
+        else setQuantity(parsedQuantity);
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -37,7 +47,7 @@ export const ItemModal = () => {
         close();
     }
 
-    const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleConfirm = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         if (quantity === 0) { // Remove item from cart entirely
@@ -68,7 +78,63 @@ export const ItemModal = () => {
 
     const inStock = item.stock > 0;
 
-    return (
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const form = (e.target as HTMLFormElement);
+        await addDoc(collection(db, "items"), {
+            description: form.newDescription.value,
+            inStock: true,
+            name: form.newName.value,
+            price: parseInt(form.newPrice.value),
+            stock: newStock
+        });
+        await close();
+    };
+
+    if (editMode) return (
+        <>
+            <span onClick={handleCancel} className={`item-modal__overlay ${isOpen ? "modal-shown" : "modal-hidden"}`}/>
+            <form className={`item-modal ${isOpen ? "modal-shown" : "modal-hidden"}`} onSubmit={handleSubmit}>
+                <section>
+                    <h2>New Item</h2>
+                    <section className={"item-modal__new-fields"}>
+                        <Input className={"input__over-dark"} type={"text"} label={"Item name"} name={"newName"}/>
+                        <Input className={"input__over-dark"} type={"text"} label={"Description"}
+                               name={"newDescription"} multiline/>
+                        <Input type={"number"} label={"Price"} name={"newPrice"} className={"input__over-dark"}/>
+                    </section>
+                </section>
+                <section>
+                    <section className={"item-modal__add"}>
+                        <h4 className={"available"}>{`${newStock} for stock`}</h4>
+                        <section className={"item-modal__add__quantity"}>
+                            <button className={"item-modal__add__quantity__add"} disabled={addDisable}
+                                    onClick={add}>
+                                <Plus size={32}/>
+                            </button>
+                            <input type={"number"} max={quantityLimit} min={0}
+                                   className={"item-modal__add__quantity__number"}
+                                   onChange={handleChange} value={newStock} onBlur={handleBlur}/>
+                            <button className={"item-modal__add__quantity__remove"} disabled={removeDisable}
+                                    onClick={remove}>
+                                <Dash size={32}/>
+                            </button>
+                        </section>
+                        <section className={"item-modal__add__button-bar"}>
+                            <Button type={"submit"} variant={"contained"}
+                                    className={"item-modal__add__button-bar__confirm"}>Confirm
+                            </Button>
+                            <Button variant={"contained"} onClick={handleCancel}
+                                    className={"item-modal__add__button-bar__cancel"}>Cancel
+                            </Button>
+                        </section>
+                    </section>
+                </section>
+
+            </form>
+        </>
+    );
+    else return (
         <>
             <span onClick={handleCancel} className={`item-modal__overlay ${isOpen ? "modal-shown" : "modal-hidden"}`}/>
             <aside className={`item-modal ${isOpen ? "modal-shown" : "modal-hidden"}`}>

@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 main {
@@ -32,6 +32,19 @@ main {
   align-items: stretch;
   justify-content: start;
   background-color: #262626;
+  padding-bottom: 6rem;
+}
+
+.errored {
+  color: #ef4444;
+}
+
+.success {
+  color: #22c55e;
+}
+
+.loading {
+  color: #d4d4d4;
 }
 
 /*# sourceMappingURL=index.css.map */

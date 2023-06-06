@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 main {
@@ -31,4 +31,17 @@ main {
   align-items: stretch;
   justify-content: start;
   background-color: v.$neutral-800;
+  padding-bottom: 6rem;
+}
+
+.errored {
+  color: v.$red-500;
+}
+
+.success {
+  color: v.$green-500;
+}
+
+.loading {
+  color: v.$neutral-300;
 }

@@ -9,6 +9,7 @@ export const ModalProvider = ({children}: { children: ReactNode[] | ReactNode })
         isOpen: false,
         item : {} as Item,
         initialQuantity: 0,
+        editMode: false,
     }
 
     const [modal, dispatch] = useReducer(modalReducer, defaultState);
@@ -17,15 +18,20 @@ export const ModalProvider = ({children}: { children: ReactNode[] | ReactNode })
         dispatch({type: "set", payload: {item, initQ: quantity}});
     }
 
+    const openOnEdit = () => {
+        dispatch({type: "new"});
+    }
+
     const close = () => {
-        dispatch({type: "clear"})
+        dispatch({type: "clear"});
     }
 
     return (
         <ModalContext.Provider value={{
             ...modal,
             open,
-            close
+            close,
+            openOnEdit
         }}>
             {children}
         </ModalContext.Provider>

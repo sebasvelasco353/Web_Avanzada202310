@@ -13,8 +13,8 @@ export const UserProvider = (props: IProps) => {
         email: "none@none.no",
         hasSpent: 0,
         isAdmin: false,
-        id: "INVALID",
-        username: "none"
+        uid: "INVALID",
+        displayName: "none"
     }
 
     const [userState, dispatch] = useReducer(userReducer, defaultState);

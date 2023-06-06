@@ -1,0 +1,45 @@
+@use "./../../variables" as v;
+
+.register {
+  padding-block: 2rem;
+  padding-inline: 12rem;
+  height: calc(100vh - 14rem);
+  padding-top: 12rem;
+  display: grid;
+  place-items: center;
+
+  &__container {
+    width: 44rem !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    border-radius: 2rem;
+    background-color: v.$neutral-100;
+    filter: v.$drop-shadow-md;
+    overflow: clip;
+  }
+
+  &__form {
+    &__container {
+      display: flex;
+      flex-direction: column !important;
+      align-items: center;
+      justify-items: center;
+    }
+
+    flex-direction: column;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    gap: 2rem;
+
+    h2 {
+      font-size: xxx-large;
+      margin-bottom: 1rem;
+      font-weight: bolder;
+      color: v.$rose-800;
+    }
+  }
+}
