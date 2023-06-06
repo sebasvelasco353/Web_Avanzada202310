@@ -13,7 +13,6 @@
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.22.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
@@ -25,8 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": [
@@ -35,6 +34,14 @@
       "plugin:storybook/recommended"
     ],
     "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
       {
         "files": [
           "**/*.stories.*"
@@ -58,19 +65,23 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.0.6",
-    "@storybook/addon-interactions": "^7.0.6",
-    "@storybook/addon-links": "^7.0.6",
+    "@storybook/addon-actions": "^7.0.18",
+    "@storybook/addon-essentials": "^7.0.18",
+    "@storybook/addon-interactions": "^7.0.18",
+    "@storybook/addon-links": "^7.0.18",
     "@storybook/blocks": "^7.0.6",
-    "@storybook/preset-create-react-app": "^7.0.6",
-    "@storybook/react": "^7.0.6",
+    "@storybook/builder-webpack5": "^7.0.18",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/node-logger": "^7.0.18",
+    "@storybook/preset-create-react-app": "^7.0.18",
+    "@storybook/react": "^7.0.18",
     "@storybook/react-webpack5": "^7.0.6",
-    "@storybook/testing-library": "^0.0.14-next.2",
+    "@storybook/testing-library": "^0.1.0",
     "babel-plugin-named-exports-order": "^0.0.2",
     "eslint-plugin-storybook": "^0.6.12",
     "prop-types": "^15.8.1",
     "storybook": "^6.0.0",
-    "webpack": "^5.80.0",
+    "webpack": "^5.85.1",
     "webpack-dev-server": "^4.15.0"
   }
 }
