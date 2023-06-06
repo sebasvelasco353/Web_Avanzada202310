@@ -1,0 +1,87 @@
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} 
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #8bc6f6;
+}
+
+.details{
+  opacity: 0.0;
+  background-color:#256da9;
+
+}
+
+.details section {
+  display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 10px 200px;
+}
+
+.details h1, h2, h3 {
+    font-weight: 300;
+    color: #c3e4ff;
+}
+
+.details span{
+  font-weight: 600;
+  color: white;
+}
+
+.details input{
+  border-radius: 5px;
+  padding: 5px 5px;
+}
+
+.details p {
+  font-weight: 900;
+  color: rgb(23, 0, 124);
+}
+
+.form div {
+  display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+}
+
+th{
+  font-weight: 300;
+}
+
+th span {
+  font-weight: bold;
+}
+
+.addButton{
+border-radius: 5px;
+  background-color: rgb(229, 255, 222);
+  border-color: rgb(30, 143, 2);
+}
+
+.removeButton{
+  border-radius: 5px;
+    background-color: rgb(255, 182, 182);
+    border-color: rgb(114, 0, 0);
+}
+

@@ -1,0 +1,198 @@
+@use "./../../variables" as v;
+
+.item-modal {
+  position: fixed;
+  z-index: 2;
+  right: 1rem;
+  top: 10rem;
+  max-width: 24vw;
+  height: 70vh;
+  background-color: v.$neutral-900;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+  color: v.$neutral-100;
+  filter: v.$drop-shadow-md;
+  padding-inline: 2rem;
+  padding-block: 3rem;
+  transition: opacity 300ms ease-in-out;
+
+  &__overlay {
+    z-index: 1;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparentize(v.$neutral-900, 0.4);
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: xxx-large;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-weight: 300;
+    font-size: medium;
+    margin-bottom: 5rem;
+  }
+
+  &__description {
+    font-weight: normal;
+    font-size: large;
+    min-height: 16rem;
+    text-align: justify;
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 0.5rem;
+  }
+
+  &__shipping {
+    font-weight: 300;
+    font-size: small;
+    color: v.$neutral-400;
+  }
+
+  &__add {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+    gap: 2rem;
+
+    &__quantity {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      height: 3rem;
+
+      &__number {
+        border: solid 2px v.$neutral-600;
+        border-radius: 0.75rem;
+        padding-inline: 1rem;
+        height: 100%;
+        width: 7rem;
+        text-align: center;
+        font-size: large;
+        background-color: transparent;
+        color: v.$neutral-200;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        &[type=number] {
+          -moz-appearance: textfield;
+
+          &:disabled {
+            filter: grayscale(65%) brightness(50%);
+
+            &:hover {
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+
+      button {
+        height: 100%;
+        border-radius: 0.75rem;
+        aspect-ratio: 1;
+        border: none;
+
+        &:hover {
+          transition: all 200ms ease-in-out;
+          cursor: pointer;
+          scale: 1.025;
+        }
+
+        &:disabled {
+          filter: grayscale(65%) brightness(50%);
+
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      &__add {
+        background-color: v.$accent;
+        color: v.$rose-50;
+      }
+
+      &__remove {
+        background-color: v.$neutral-500;
+        color: v.$neutral-100;
+      }
+    }
+
+    &__button-bar {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 2rem;
+
+      button {
+        padding-block: 1rem;
+        padding-inline: 4rem;
+        min-width: 12rem;
+        border-radius: 0.75rem;
+        border: none;
+        font-size: large;
+
+        &:hover {
+          transition: all 200ms ease-in-out;
+          cursor: pointer;
+          scale: 1.025;
+        }
+
+        &:disabled {
+          filter: grayscale(65%) brightness(50%);
+
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      &__confirm {
+        background-color: v.$accent;
+        color: v.$rose-50;
+      }
+
+      &__cancel {
+        background-color: v.$neutral-500;
+        color: v.$neutral-100;
+      }
+    }
+  }
+
+}
+
+.available {
+  color: v.$green-300;
+}
+
+.unavailable {
+  color: v.$red-300;
+}
+
+.modal-shown {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
