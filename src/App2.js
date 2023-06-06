@@ -25,10 +25,14 @@ function App(){
 	const [logBtnText, setText] = useState("")
 
 	const handleAddToCart = (manga) => {
-        if(!mangasInCart.includes(manga)){
-            const newCart = [...mangasInCart, manga];
-            setmangasInCart(newCart);
-        }
+		if(user.length > 0){
+			if(!mangasInCart.some((item) => item.id === manga.id)){
+	            const newCart = [...mangasInCart, manga];
+	            setmangasInCart(newCart);
+	            alert("Agregado correctamente")
+        	}
+		}else
+			alert("Registrate para usar esta función")
     }
 
     const deleteMangaFromCart = (manga) => {

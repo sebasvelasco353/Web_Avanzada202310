@@ -15,20 +15,30 @@ function AddManga(){
 	const [available, setAvailable] = useState("");
 	const [image, setImage] = useState("");
 
+	const isEmpty = (value) => {
+	  return value === "";
+	};
+
 	const handleAddManga = async () => {
-		try{
-			const docRef = await addDoc(collection(db, "mangas"), {
-						    			  Cantidad: amount,
-										  Disponible: available,
-										  Nombre: name,
-										  Precio: price,
-										  image: image
-										});
-			alert("Manga agregado correctamente")
-			navigate("/addManga")
-		}catch(error){
-			alert("No se ha podido agregar el manga")
+		if(!isEmpty(name) && !isEmpty(price) && 
+    		!isEmpty(amount) && !isEmpty(available) && !isEmpty(image)){
+			try{
+				const docRef = await addDoc(collection(db, "mangas"), {
+							    			  Cantidad: amount,
+											  Disponible: available,
+											  Nombre: name,
+											  Precio: price,
+											  image: image
+											});
+				alert("Manga agregado correctamente")
+			}catch(error){
+				console.log(error)
+			}
+			window.location.href = "#/mangas";	
+		}else{
+			alert("Llena todos los campos")
 		}
+		
 	}
 	
 	return(
