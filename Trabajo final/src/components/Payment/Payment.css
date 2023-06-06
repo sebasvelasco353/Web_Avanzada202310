@@ -1,0 +1,54 @@
+#payment-container{
+
+    flex-direction: column;
+    background-color: rgb(254, 254, 254);
+    margin: 10px 30px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(186, 186, 186);
+}
+
+.payment-open{
+    display: flex;
+}
+
+.payment-closed{
+    display: none;
+}
+#finish-button{
+    background-color: rgb(47, 255, 61);
+    color: black;
+       margin: 10px 20px;
+       height: 40px;
+       border-radius:10px;
+}
+
+#finish-button:hover{
+    transition: background-color 0.5s;
+    background-color: rgb(11, 82, 16);
+    color: rgb(255, 255, 255);
+       margin: 10px 20px;
+       height: 40PX;
+       cursor: pointer;
+}
+
+#payment-container h2{
+    margin: 30px 10px;
+}
+
+#payment-container h3{
+    margin: 10px 40px;
+}
+
+#payment-container input{
+    margin: 0px 10px;
+    border-radius: 5px;
+}
+.payment-h-cotainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 150px;
+    flex-wrap: wrap;
+}
