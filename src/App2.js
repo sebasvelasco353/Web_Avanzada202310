@@ -14,6 +14,7 @@ import Sigin from "./components/Signin/signIn";
 import Cart from "./components/Cart/cart";
 import Catalogue from "./components/Manga/manga";
 import AddManga from "./components/Manga/addManga";
+import DeleteManga from "./components/Manga/deleteManga";
 import { signOut } from 'firebase/auth';
 import { AppBar, List, ListItem, ListItemText} from "@mui/material";
 
@@ -63,16 +64,27 @@ function App(){
     const renderHeader = () => {
     	if(user[2] == 'admin'){
     		return(
-	    		<ul className="header">
-			      <div className="left-container">
-					<li><NavLink to="/mangas">Catalogo</NavLink></li>
-					<li><NavLink to="/addManga">Agregar</NavLink></li>
-			      </div>
-			      <div className="right-container">	
-					<li><NavLink to="/cart">Carrito</NavLink></li>
-					<li onClick={handleLogout}><NavLink to="/signin">{logBtnText}</NavLink></li>
-			      </div>
-			    </ul>
+    			<List className="header">
+	    			<div className="left-container">
+	    				<ListItem>
+	    					<NavLink to="/mangas">Catalogo</NavLink>
+	    				</ListItem>
+	    				<ListItem>
+	    					<NavLink to="/addManga">Agregar</NavLink>
+	    				</ListItem>
+	    				<ListItem>
+	    					<NavLink to="/deleteManga">Eliminar</NavLink>
+	    				</ListItem>
+			      	</div>
+			      	<div className="right-container">
+			      		<ListItem>
+			      			<NavLink to="/cart">Carrito</NavLink>
+			      		</ListItem>	
+						<ListItem onClick={handleLogout}>
+							<NavLink to="/signin">{logBtnText}</NavLink>
+						</ListItem>
+				    </div>
+    			</List>
     			);
     	}else{
     		return(
@@ -110,6 +122,7 @@ function App(){
 			    	<Route path="/mangas" element={<Catalogue addToCart = {handleAddToCart}/>}/>
 			    	<Route path="/" element={<Catalogue addToCart = {handleAddToCart}/>}/>
 			    	<Route path="/addManga" element={ (user[2] == 'admin') ? <AddManga/> : <Navigate to='/' />}/>
+			    	<Route path="/deleteManga" element={ (user[2] == 'admin') ? <DeleteManga/> : <Navigate to='/' />}/>
 			    </Routes>
 			  </div>
 		  </EcommerceContext.Provider>	
