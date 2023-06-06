@@ -2,6 +2,7 @@
   position: relative;
   background: linear-gradient(to bottom, #9f1239 0%, #be123c 5%, #262626 15%);
   padding-top: 12rem;
+  height: 100%;
 }
 .home__wrapper {
   display: flex;

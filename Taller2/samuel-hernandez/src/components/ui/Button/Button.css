@@ -14,6 +14,11 @@
   border-radius: 0.5rem;
   height: 3rem;
 }
+.button__float {
+  position: fixed !important;
+  bottom: 1rem !important;
+  right: 1rem !important;
+}
 .button a {
   text-decoration: none;
   color: inherit;

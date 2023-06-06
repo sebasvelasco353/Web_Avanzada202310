@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {ChangeEventHandler, useState} from "react";
 import "./Input.css";
 import {InputAdornment, TextField} from "@mui/material";
 
@@ -14,6 +14,9 @@ export const Input = (
         actionClick?: React.MouseEventHandler<HTMLButtonElement>,
         passwordState?: string,
         error?: boolean,
+        multiline?: boolean,
+        value? : string | readonly string[] | number,
+        onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
     }
 ) => {
 
@@ -30,7 +33,7 @@ export const Input = (
     }
 
     return (
-        <TextField error={props.error} onFocus={handleFocusIn} onBlur={handleFocusOut} type={props.type} label={props.label}
+        <TextField onChange={props.onChange} error={props.error} onFocus={handleFocusIn} onBlur={handleFocusOut} multiline={props.multiline} type={props.type} label={props.label}
                    className={`input ${isFocused ? "input__focused" : ""}`} name={props.name} InputProps={
             {
                 endAdornment: (

@@ -5,8 +5,10 @@ interface IModalContext {
     isOpen: boolean,
     item: Item,
     initialQuantity : number,
+    editMode: boolean,
     open: (item: Item, quantity: number) => void,
     close: () => void,
+    openOnEdit: () => void,
 }
 
 const ModalContext = createContext<IModalContext>({} as IModalContext);

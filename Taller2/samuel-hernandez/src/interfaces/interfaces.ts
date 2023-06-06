@@ -24,6 +24,7 @@ export interface ModalState {
     isOpen: boolean,
     item : Item,
     initialQuantity: number,
+    editMode: boolean,
 }
 
 // Session and User

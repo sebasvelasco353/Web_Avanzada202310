@@ -9,12 +9,14 @@ import {Item} from "../../interfaces/interfaces";
 import {useContext, useEffect, useState} from "react";
 import UserContext from "../../context/User/UserContext";
 import {useRevalidateUser} from "../../hooks/useRevalidateUser";
+import {Button} from "../../components/ui/Button/Button";
+import ModalContext from "../../context/Modal/ModalContext";
 
 export const Home = () => {
 
     useRevalidateUser();
     const [items, setItems] = useState([] as Item[]);
-    const { getUser } = useContext(UserContext)
+    const { openOnEdit } = useContext(ModalContext);
 
     const fetchItems = async () => {
 
@@ -30,15 +32,17 @@ export const Home = () => {
 
     useEffect(() => {
         fetchItems();
-        console.log(getUser())
     }, [])
 
+    const handleClick = () => {
+        openOnEdit();
+    };
+
     return (
-        <ModalProvider>
-            <Helmet>
-                <title>Hotshop | Home</title>
-            </Helmet>
             <main className={"home"}>
+                <Helmet>
+                    <title>Hotshop | Home</title>
+                </Helmet>
                 <header className={"home__header"}>
 
                 </header>
@@ -50,12 +54,9 @@ export const Home = () => {
                             );
                         })}
                     </section>
-                    {getUser().isAdmin && <button>
-                        Soy admin
-                    </button>}
                 </section>
                 <ItemModal/>
+                <Button onClick={handleClick} className={"button button__float"}>{"Add items"}</Button>
             </main>
-        </ModalProvider>
     );
 }
