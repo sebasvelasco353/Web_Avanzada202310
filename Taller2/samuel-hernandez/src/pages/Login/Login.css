@@ -1,7 +1,7 @@
 .login {
   padding-block: 2rem;
   padding-inline: 8rem;
-  height: 100%;
+  height: calc(100vh - 20rem);
   padding-top: 12rem;
 }
 .login__card {

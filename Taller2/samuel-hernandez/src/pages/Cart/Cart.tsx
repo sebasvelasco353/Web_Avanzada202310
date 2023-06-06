@@ -1,6 +1,6 @@
 import {Helmet} from "react-helmet";
 import "./Cart.css";
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import CartContext from "../../context/Cart/CartContext";
 import {CartEntry} from "../../components/CartEntry/CartEntry";
 import UserContext from "../../context/User/UserContext";
@@ -9,7 +9,7 @@ import {useRevalidateUser} from "../../hooks/useRevalidateUser";
 
 export const Cart = () => {
 
-    useRevalidateUser();
+    const shouldLogin = !useRevalidateUser();
     const {items, clear, updateItem, productNumber, total} = useContext(CartContext);
     const {displayName} = useContext(UserContext);
     const renderedTotal = ((Math.round(total) * 100) / 100).toFixed(2);
@@ -33,6 +33,10 @@ export const Cart = () => {
         alert(`You have successfully paid $${renderedTotal} to the Chinese government and have now been deducted -198327212 social points 🫡🥶😱🥸`);
         navigate("/");
     };
+
+    useEffect(() => {
+        if (shouldLogin) navigate("/login?redirect=true");
+    }, []);
 
     return (
         <main className={"cart"}>
