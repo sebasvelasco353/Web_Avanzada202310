@@ -3,6 +3,8 @@ import {auth, db} from "../../config/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom"; 
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import "./sigin.css"
 
 function Sigin({user}){
@@ -36,55 +38,29 @@ function Sigin({user}){
 	}
 
 	return(
-		<div>
-		    <form>
-			    <table>
-			    	<thead>
-		              <tr>
-		            	<th colSpan="2">Sign in</th>
-		          	  </tr>
-		        	</thead>
-		        	<tbody>
-		        		<tr></tr>
-		        		<tr></tr>
-		        		<tr>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td>
-		        				<div className="form-group">
-						          <label htmlFor="email">Correo electrónico:</label>
-						          <input type="text" id="email" onChange={(e) => setEmail(e.target.value)}/>
-						        </div></td>
-		        		</tr>
-		        		<tr>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td>
-		        				<div className="form-group">
-						          <label htmlFor="password">Contraseña:</label>
-						          <input type="password" id="password" onChange={(e) => setPassword(e.target.value)}/>
-						        </div></td>
-		        		</tr>
-		        		<tr>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td></td>
-		        			<td>
-		        				 <div className="form-group">
-						         <button onClick={handleSignIn}>Signin</button>
-						         <button onClick={handleLogIn}>Login</button>
-						        </div></td>
-		        		</tr>
-		        	</tbody>
-			    </table>
-		    </form>
-	    </div>
+		<>
+			<Container>
+			<Grid container spacing={2}>
+			  <Grid xs={12}>--</Grid>
+			  <Grid xs={4}></Grid>
+			  <Grid xs={4}>
+			  	<div className="form-group">
+					<label htmlFor="email">Correo electrónico:</label>
+					<input type="text" id="email" onChange={(e) => setEmail(e.target.value)}/>
+				</div>
+		        <div className="form-group">
+					<label htmlFor="password">Contraseña:</label>
+					<input type="password" id="password" onChange={(e) => setPassword(e.target.value)}/>
+				</div>
+		        <div className="form-group">
+					<button onClick={handleSignIn}>Signin</button>
+					<button onClick={handleLogIn}>Login</button>
+				</div>
+			</Grid>
+			</Grid>
+		        
+			</Container>
+		</>
 		);
 }
 export default Sigin;
